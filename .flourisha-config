@@ -1,0 +1,69 @@
+#!/bin/bash
+# Flourisha Infrastructure Configuration
+# Source this file in all scripts to ensure consistent settings
+# Last Updated: 2025-12-04
+
+# ===== SERVER INFORMATION =====
+# CRITICAL: Update these if server changes
+SERVER_IP="66.94.121.10"
+SERVER_HOSTNAME="leadingai.info"
+SERVER_PUBLIC_URL="https://leadingai.info"
+
+# ===== DOCKER SANDBOX CONFIGURATION =====
+SANDBOX_IMAGE="flourisha-sandbox:latest"
+SANDBOX_RAM="2g"
+SANDBOX_CPU="2"
+SANDBOX_STORAGE_PATH="/tmp/sandbox-storage"
+SANDBOX_NETWORK_PREFIX="flourisha-sandbox-net"
+SANDBOX_CONTAINER_PREFIX="flourisha-qa"
+SANDBOX_DOMAIN_PATTERN="qa-{id}.leadingai.info"
+
+# ===== TRAEFIK CONFIGURATION =====
+TRAEFIK_CONFIG="/root/traefik/dynamic-conf.yml"
+TRAEFIK_NETWORK="traefik"
+TRAEFIK_PORT_HTTP="80"
+TRAEFIK_PORT_HTTPS="443"
+
+# ===== PATHS =====
+SCRIPTS_DIR="/root/flourisha/00_AI_Brain/scripts"
+DOCS_DIR="/root/flourisha/00_AI_Brain/documentation"
+PROJECT_ROOT="/root/flourisha"
+
+# ===== UTILITY FUNCTIONS =====
+
+# Log functions
+log_info() {
+    echo -e "\033[0;34m[INFO]\033[0m $1"
+}
+
+log_success() {
+    echo -e "\033[0;32m[SUCCESS]\033[0m $1"
+}
+
+log_error() {
+    echo -e "\033[0;31m[ERROR]\033[0m $1" >&2
+}
+
+log_warn() {
+    echo -e "\033[1;33m[WARN]\033[0m $1"
+}
+
+# Get short container ID (first 12 chars)
+get_short_id() {
+    echo "${1:0:12}"
+}
+
+# Generate public URL for sandbox
+get_sandbox_url() {
+    local short_id="$1"
+    echo "https://qa-${short_id}.${SERVER_HOSTNAME}"
+}
+
+# Verify server IP is correct
+verify_server_ip() {
+    if [ "$SERVER_IP" != "66.94.121.10" ]; then
+        log_error "SERVER_IP mismatch! Expected 66.94.121.10, got $SERVER_IP"
+        return 1
+    fi
+    return 0
+}

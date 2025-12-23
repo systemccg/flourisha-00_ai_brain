@@ -1,0 +1,61 @@
+{
+  "protocolVersion": "0.1.0",
+  "provider": {
+    "name": "Flourisha AI Brain",
+    "url": "https://flourisha.local",
+    "organization": "Personal AI Infrastructure"
+  },
+  "agent": {
+    "id": "fabric",
+    "name": "Fabric Pattern Selection",
+    "version": "1.0.0",
+    "description": "Intelligent pattern selection for Fabric CLI. Automatically selects the right pattern from 242+ specialized prompts based on intent - threat modeling, analysis, summarization, content creation, extraction.",
+    "url": "file:///root/flourisha/00_AI_Brain/skills/fabric"
+  },
+  "capabilities": {
+    "streaming": false,
+    "pushNotifications": false,
+    "stateTransitionHistory": false,
+    "extensions": ["fabric-cli-integration"]
+  },
+  "skills": [
+    {
+      "id": "pattern-selection",
+      "description": "Select optimal Fabric pattern from 242+ options based on user intent",
+      "tags": ["fabric", "patterns", "analysis", "content", "automation"],
+      "examples": [
+        "Process content for threat modeling",
+        "Analyze text and create summary",
+        "Extract key insights from document",
+        "Transform text using Fabric patterns"
+      ],
+      "inputModes": {
+        "text/plain": true
+      },
+      "outputModes": {
+        "text/plain": true,
+        "text/markdown": true
+      },
+      "securitySchemes": []
+    }
+  ],
+  "transport": {
+    "preferred": "internal",
+    "endpoints": {
+      "internal": "file:///root/flourisha/00_AI_Brain/skills/fabric"
+    }
+  },
+  "securitySchemes": {},
+  "metadata": {
+    "type": "skill",
+    "patterns": 242,
+    "categories": [
+      "threat-modeling",
+      "analysis",
+      "summarization",
+      "content-creation",
+      "extraction"
+    ],
+    "vendor": "multi"
+  }
+}

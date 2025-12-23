@@ -1,0 +1,318 @@
+{
+  "source": "REMATRIX Google Sheet",
+  "exported": "2025-12-15",
+  "sheet_id": "1IQFoRCMnZt6320MBSkctC0G70N6xb5B7omUkrvVh0y8",
+  "properties": [
+    {
+      "shorthand": "Cedar",
+      "code": "GAPSA",
+      "address": {
+        "street": "4311 Cedar Ridge Trail",
+        "city": "Stone Mountain",
+        "state": "GA",
+        "zip": "30083",
+        "county": "DeKalb"
+      },
+      "full_address": "4311 Cedar Ridge Trail, Stone Mountain, GA 30083",
+      "aliases": ["Cedar", "GAPSA", "Cedar Ridge"],
+      "specs": {
+        "type": "single_family",
+        "sqft": 2491,
+        "beds": 6,
+        "baths": 4,
+        "year_built": 1972
+      },
+      "purchase": {
+        "price": 290001,
+        "date": "2024-03-05",
+        "in_service_date": "2024-04-04"
+      },
+      "ownership": {
+        "owner": "LMV Estates",
+        "title_type": null
+      },
+      "finance": {
+        "current_loan_balance": 224286,
+        "mortgage_servicer": null
+      }
+    },
+    {
+      "shorthand": "Allgood",
+      "code": "GAPSB",
+      "address": {
+        "street": "1241 Allgood Road",
+        "city": "Stone Mountain",
+        "state": "GA",
+        "zip": "30083",
+        "county": "DeKalb"
+      },
+      "full_address": "1241 Allgood Road, Stone Mountain, GA 30083",
+      "aliases": ["Allgood", "GAPSB"],
+      "specs": {
+        "type": "single_family",
+        "sqft": 2008,
+        "beds": 5,
+        "baths": 4,
+        "year_built": 1972
+      },
+      "purchase": {
+        "price": 289000,
+        "date": "2024-05-08",
+        "in_service_date": "2024-05-08"
+      },
+      "ownership": {
+        "owner": "LMV Estates",
+        "title_type": null
+      },
+      "finance": {
+        "current_loan_balance": 215012,
+        "mortgage_servicer": null
+      }
+    },
+    {
+      "shorthand": "Village",
+      "code": "GAPSC",
+      "address": {
+        "street": "526 Village Lane",
+        "city": "Jonesboro",
+        "state": "GA",
+        "zip": "30236",
+        "county": "Clayton"
+      },
+      "full_address": "526 Village Lane, Jonesboro, GA 30236",
+      "aliases": ["Village", "GAPSC", "Village Lane"],
+      "specs": {
+        "type": "single_family",
+        "sqft": 1851,
+        "beds": 3,
+        "baths": 4,
+        "year_built": 1965
+      },
+      "purchase": {
+        "price": 241000,
+        "date": "2024-05-08",
+        "in_service_date": "2024-05-08"
+      },
+      "ownership": {
+        "owner": "LMV Estates",
+        "title_type": null
+      },
+      "finance": {
+        "current_loan_balance": 191328,
+        "mortgage_servicer": null
+      }
+    },
+    {
+      "shorthand": "Wilson",
+      "code": "AZLTA",
+      "address": {
+        "street": "1211 W. Wilson Ave",
+        "city": "Coolidge",
+        "state": "AZ",
+        "zip": "85128",
+        "county": null
+      },
+      "full_address": "1211 W. Wilson Ave, Coolidge, AZ 85128",
+      "aliases": ["Wilson", "AZLTA"],
+      "specs": {
+        "type": "single_family",
+        "sqft": 1543,
+        "beds": 3,
+        "baths": 2,
+        "year_built": 2005
+      },
+      "purchase": {
+        "price": 92000,
+        "date": "2013-07-18",
+        "in_service_date": null
+      },
+      "ownership": {
+        "owner": "LMV Estates",
+        "title_type": null
+      },
+      "finance": {
+        "current_loan_balance": null,
+        "mortgage_servicer": null
+      }
+    },
+    {
+      "shorthand": "Walnut",
+      "code": "FLLTA",
+      "address": {
+        "street": "2365 Walnut Canyon Dr",
+        "city": "Kissimmee",
+        "state": "FL",
+        "zip": "34758",
+        "county": null
+      },
+      "full_address": "2365 Walnut Canyon Dr, Kissimmee, FL 34758",
+      "aliases": ["Walnut", "FLLTA", "Walnut Canyon"],
+      "specs": {
+        "type": "single_family",
+        "sqft": 1636,
+        "beds": 3,
+        "baths": 2,
+        "year_built": 2008
+      },
+      "purchase": {
+        "price": 130500,
+        "date": "2014-04-10",
+        "in_service_date": null
+      },
+      "ownership": {
+        "owner": "LMV Estates",
+        "title_type": null
+      },
+      "finance": {
+        "current_loan_balance": null,
+        "mortgage_servicer": null
+      }
+    },
+    {
+      "shorthand": "Cello",
+      "code": "FLLTB",
+      "address": {
+        "street": "356 Cello St",
+        "city": "Davenport",
+        "state": "FL",
+        "zip": "33896",
+        "county": null
+      },
+      "full_address": "356 Cello St, Davenport, FL 33896",
+      "aliases": ["Cello", "FLLTB"],
+      "specs": {
+        "type": "single_family",
+        "sqft": 1661,
+        "beds": 3,
+        "baths": 2,
+        "year_built": 2001
+      },
+      "purchase": {
+        "price": 131000,
+        "date": "2014-07-11",
+        "in_service_date": null
+      },
+      "ownership": {
+        "owner": "LMV Estates",
+        "title_type": null
+      },
+      "finance": {
+        "current_loan_balance": null,
+        "mortgage_servicer": null
+      }
+    },
+    {
+      "shorthand": "Eagle",
+      "code": "FLLTC",
+      "address": {
+        "street": "534 Eagle Ct",
+        "city": "Poinciana",
+        "state": "FL",
+        "zip": "34759",
+        "county": null
+      },
+      "full_address": "534 Eagle Ct, Poinciana, FL 34759",
+      "aliases": ["Eagle", "FLLTC", "Eagle Ct"],
+      "specs": {
+        "type": "single_family",
+        "sqft": 1238,
+        "beds": 3,
+        "baths": 2,
+        "year_built": 2001
+      },
+      "purchase": {
+        "price": 105000,
+        "date": "2014-03-26",
+        "in_service_date": null
+      },
+      "ownership": {
+        "owner": "LMV Estates",
+        "title_type": null
+      },
+      "finance": {
+        "current_loan_balance": null,
+        "mortgage_servicer": null
+      }
+    },
+    {
+      "shorthand": "Prince",
+      "code": "FL",
+      "address": {
+        "street": "133 Prince Charles Dr",
+        "city": "Davenport",
+        "state": "FL",
+        "zip": "33837",
+        "county": null
+      },
+      "full_address": "133 Prince Charles Dr, Davenport, FL 33837",
+      "aliases": ["Prince", "Prince Charles"],
+      "specs": {
+        "type": "single_family",
+        "sqft": 1412,
+        "beds": 3,
+        "baths": 2,
+        "year_built": 1999
+      },
+      "purchase": {
+        "price": 138000,
+        "date": "2014-06-23",
+        "in_service_date": null
+      },
+      "ownership": {
+        "owner": "Symphony Estates",
+        "title_type": null
+      },
+      "finance": {
+        "current_loan_balance": null,
+        "mortgage_servicer": null
+      }
+    },
+    {
+      "shorthand": "Parrot",
+      "code": "FL",
+      "address": {
+        "street": "747 Parrot Ct",
+        "city": "Poinciana",
+        "state": "FL",
+        "zip": "34759",
+        "county": null
+      },
+      "full_address": "747 Parrot Ct, Poinciana, FL 34759",
+      "aliases": ["Parrot", "Parrot Ct"],
+      "specs": {
+        "type": "single_family",
+        "sqft": 1785,
+        "beds": 3,
+        "baths": 2,
+        "year_built": 2005
+      },
+      "purchase": {
+        "price": 123500,
+        "date": "2014-06-25",
+        "in_service_date": null
+      },
+      "ownership": {
+        "owner": "Symphony Estates",
+        "title_type": null
+      },
+      "finance": {
+        "current_loan_balance": null,
+        "mortgage_servicer": null
+      }
+    }
+  ],
+  "owners": [
+    {
+      "name": "LMV Estates",
+      "type": "legal_entity",
+      "aliases": ["LMV"],
+      "properties": ["Cedar", "Allgood", "Village", "Wilson", "Walnut", "Cello", "Eagle"]
+    },
+    {
+      "name": "Symphony Estates",
+      "type": "legal_entity",
+      "aliases": ["Symphony"],
+      "properties": ["Prince", "Parrot"]
+    }
+  ]
+}

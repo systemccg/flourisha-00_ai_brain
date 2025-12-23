@@ -1,0 +1,86 @@
+{
+  "protocolVersion": "0.1.0",
+  "provider": {
+    "name": "Flourisha AI Brain",
+    "url": "https://flourisha.local",
+    "organization": "Personal AI Infrastructure"
+  },
+  "agent": {
+    "id": "gemini-researcher",
+    "name": "Gemini Researcher",
+    "version": "1.0.0",
+    "description": "Multi-perspective research orchestrator using Google Gemini. Breaks down complex queries into 3-10 variations and launches parallel research agents.",
+    "url": "file:///root/flourisha/00_AI_Brain/agents/gemini-researcher"
+  },
+  "capabilities": {
+    "streaming": true,
+    "pushNotifications": true,
+    "stateTransitionHistory": true,
+    "extensions": ["voice-system", "parallel-orchestration", "gemini-cli"]
+  },
+  "skills": [
+    {
+      "id": "multi-perspective-research",
+      "description": "Break down complex queries into 3-10 complementary variations and run parallel Gemini research",
+      "tags": ["research", "parallel", "gemini", "synthesis", "multi-query"],
+      "examples": [
+        "Research best mattress for heavy users over $5000",
+        "Latest quantum computing practical applications",
+        "Compare AI agent frameworks for production use"
+      ],
+      "inputModes": {
+        "text/plain": true,
+        "application/json": true
+      },
+      "outputModes": {
+        "text/markdown": true,
+        "application/json": true,
+        "text/plain": true
+      },
+      "securitySchemes": []
+    },
+    {
+      "id": "query-decomposition",
+      "description": "Transform single research question into multiple complementary angles without duplication",
+      "tags": ["analysis", "decomposition", "query-planning"],
+      "examples": [
+        "Break down 'AI agent interoperability' into research angles"
+      ],
+      "inputModes": {
+        "text/plain": true
+      },
+      "outputModes": {
+        "application/json": true
+      }
+    },
+    {
+      "id": "research-synthesis",
+      "description": "Collect parallel research results and synthesize into comprehensive findings with conflict resolution",
+      "tags": ["synthesis", "analysis", "conflict-resolution"],
+      "examples": [
+        "Synthesize findings from 7 parallel research queries"
+      ],
+      "inputModes": {
+        "application/json": true
+      },
+      "outputModes": {
+        "text/markdown": true,
+        "application/json": true
+      }
+    }
+  ],
+  "transport": {
+    "preferred": "internal",
+    "endpoints": {
+      "internal": "file:///root/flourisha/00_AI_Brain/agents/gemini-researcher"
+    }
+  },
+  "securitySchemes": {},
+  "metadata": {
+    "model": "sonnet",
+    "color": "yellow",
+    "voiceId": "iLVmqjzCGGvqtMCk6vVQ",
+    "voiceEnabled": true,
+    "vendor": "multi"
+  }
+}

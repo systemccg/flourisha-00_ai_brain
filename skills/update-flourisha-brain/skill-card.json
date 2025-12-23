@@ -1,0 +1,27 @@
+{
+  "name": "update-flourisha-brain",
+  "description": "Updates Flourisha AI Brain documentation after successful sessions or significant changes",
+  "version": "1.0.0",
+  "triggers": [
+    "update the brain",
+    "update documentation",
+    "document this",
+    "update flourisha brain"
+  ],
+  "capabilities": [
+    "documentation-update",
+    "knowledge-management",
+    "session-capture"
+  ],
+  "updates": [
+    "MASTER_CONTEXT.md",
+    "documentation/**/*.md",
+    "QUICK_REFERENCE.md",
+    "CORE/SKILL.md (rarely)"
+  ],
+  "modes": [
+    "manual (user-triggered)",
+    "automatic (SessionEnd with confirmation)",
+    "sub-agent (context-efficient)"
+  ]
+}

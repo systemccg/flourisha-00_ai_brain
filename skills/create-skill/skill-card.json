@@ -1,0 +1,27 @@
+{
+  "name": "create-skill",
+  "description": "Guide for creating new skills in Flourisha's AI Brain following modern best practices. Creates skills with A2A protocol integration (skill-card.json), proper documentation placement, skills registry updates, and Google Drive sync. Follows Anthropic skill standards + PAI patterns + A2A protocol.",
+  "version": "2.0.0",
+  "triggers": [
+    "create a new skill",
+    "build a skill",
+    "add a skill",
+    "update existing skill",
+    "structure a skill",
+    "make a skill"
+  ],
+  "capabilities": [
+    "skill-creation",
+    "skill-structuring",
+    "template-generation",
+    "a2a-integration",
+    "registry-management"
+  ],
+  "requires": {
+    "tools": ["Write", "Read", "Edit"],
+    "skills": []
+  },
+  "tags": ["meta", "skill-management", "a2a-protocol"],
+  "author": "Flourisha AI Brain",
+  "lastUpdated": "2025-11-20"
+}

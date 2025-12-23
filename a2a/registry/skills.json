@@ -1,0 +1,182 @@
+{
+  "protocolVersion": "0.1.0",
+  "registryVersion": "1.0.0",
+  "updated": "2025-11-19T20:05:00Z",
+  "location": "file:///root/flourisha/00_AI_Brain/skills",
+  "description": "Master registry of all Flourisha AI Brain skills following A2A protocol",
+  "skills": [
+    {
+      "id": "CORE",
+      "name": "PAI Core Identity",
+      "type": "context",
+      "skillPath": "file:///root/flourisha/00_AI_Brain/skills/CORE/SKILL.md",
+      "tags": ["identity", "core", "context", "flourisha"],
+      "autoload": true,
+      "description": "Core Flourisha identity and system context - loaded at startup"
+    },
+    {
+      "id": "alex-hormozi-pitch",
+      "name": "Alex Hormozi Pitch Creator",
+      "type": "skill",
+      "skillPath": "file:///root/flourisha/00_AI_Brain/skills/alex-hormozi-pitch/SKILL.md",
+      "tags": ["sales", "offers", "pitches", "hormozi", "value-equation"],
+      "slashCommand": "/create-hormozi-pitch",
+      "description": "Create irresistible offers using Alex Hormozi's methodology"
+    },
+    {
+      "id": "research",
+      "name": "Research Orchestration",
+      "type": "skill",
+      "skillPath": "file:///root/flourisha/00_AI_Brain/skills/research/SKILL.md",
+      "tags": ["research", "orchestration", "multi-agent"],
+      "description": "Multi-source research orchestration with parallel agents"
+    },
+    {
+      "id": "fabric",
+      "name": "Fabric Pattern Selection",
+      "type": "skill",
+      "skillPath": "file:///root/flourisha/00_AI_Brain/skills/fabric/SKILL.md",
+      "tags": ["patterns", "fabric", "analysis", "content"],
+      "description": "Intelligent pattern selection for Fabric CLI with 242+ prompts"
+    },
+    {
+      "id": "create-skill",
+      "name": "Skill Creator",
+      "type": "meta-skill",
+      "skillPath": "file:///root/flourisha/00_AI_Brain/skills/create-skill/SKILL.md",
+      "tags": ["meta", "skill-creation", "pai", "templates"],
+      "description": "Guide for creating new PAI skills with standards and patterns"
+    },
+    {
+      "id": "prompting",
+      "name": "Prompt Engineering",
+      "type": "skill",
+      "skillPath": "file:///root/flourisha/00_AI_Brain/skills/prompting/SKILL.md",
+      "tags": ["prompting", "engineering", "anthropic", "best-practices"],
+      "description": "Prompt engineering standards based on Anthropic best practices"
+    },
+    {
+      "id": "agent-observability",
+      "name": "Agent Observability",
+      "type": "skill",
+      "skillPath": "file:///root/flourisha/00_AI_Brain/skills/agent-observability/SKILL.md",
+      "tags": ["observability", "monitoring", "agents", "debugging"],
+      "description": "Agent monitoring and observability patterns"
+    },
+    {
+      "id": "financial-analysis",
+      "name": "Financial Analysis",
+      "type": "skill",
+      "skillPath": "file:///root/flourisha/00_AI_Brain/skills/financial-analysis/SKILL.md",
+      "tags": ["finance", "analysis", "accounting"],
+      "description": "Financial analysis and accounting workflows"
+    },
+    {
+      "id": "real-estate-core",
+      "name": "Real Estate Core",
+      "type": "skill",
+      "skillPath": "file:///root/flourisha/00_AI_Brain/skills/real-estate-core/SKILL.md",
+      "tags": ["real-estate", "property", "investment"],
+      "description": "Core real estate investment and property management"
+    },
+    {
+      "id": "property-management",
+      "name": "Property Management",
+      "type": "skill",
+      "skillPath": "file:///root/flourisha/00_AI_Brain/skills/property-management/SKILL.md",
+      "tags": ["property", "management", "real-estate"],
+      "description": "Property management operations and workflows"
+    },
+    {
+      "id": "deal-pipeline",
+      "name": "Deal Pipeline",
+      "type": "skill",
+      "skillPath": "file:///root/flourisha/00_AI_Brain/skills/deal-pipeline/SKILL.md",
+      "tags": ["deals", "pipeline", "crm"],
+      "description": "Deal pipeline and CRM management"
+    },
+    {
+      "id": "ffuf",
+      "name": "FFUF Web Fuzzing",
+      "type": "skill",
+      "skillPath": "file:///root/flourisha/00_AI_Brain/skills/ffuf/SKILL.md",
+      "tags": ["security", "fuzzing", "pentesting", "ffuf"],
+      "description": "Expert guidance for ffuf web fuzzing during penetration testing"
+    },
+    {
+      "id": "example-skill",
+      "name": "Example Skill",
+      "type": "template",
+      "skillPath": "file:///root/flourisha/00_AI_Brain/skills/example-skill/SKILL.md",
+      "tags": ["template", "example"],
+      "description": "Template skill for creating new skills"
+    },
+    {
+      "id": "update-flourisha-brain",
+      "name": "Update Flourisha Brain",
+      "type": "meta-skill",
+      "skillPath": "file:///root/flourisha/00_AI_Brain/skills/update-flourisha-brain/SKILL.md",
+      "tags": ["meta", "documentation", "knowledge-management", "maintenance"],
+      "description": "Updates Flourisha AI Brain documentation after significant sessions or changes"
+    },
+    {
+      "id": "youtube-learning-processor",
+      "name": "YouTube Learning Processor",
+      "type": "skill",
+      "skillPath": "file:///root/flourisha/00_AI_Brain/skills/youtube-learning-processor/SKILL.md",
+      "tags": ["learning", "youtube", "automation", "knowledge-capture", "ai-summarization"],
+      "description": "Processes liked YouTube videos to create summaries and extract Flourisha improvement ideas"
+    },
+    {
+      "id": "clickup-tasks",
+      "name": "ClickUp Task Management",
+      "type": "skill",
+      "skillPath": "file:///root/flourisha/00_AI_Brain/skills/clickup-tasks/SKILL.md",
+      "tags": ["clickup", "tasks", "project-management", "autonomous-coding"],
+      "mcpServers": ["@taazkareem/clickup-mcp-server"],
+      "description": "ClickUp task management for autonomous coding projects with multi-session support"
+    }
+  ],
+  "categories": {
+    "core": {
+      "description": "Core system skills loaded at startup",
+      "skills": ["CORE"]
+    },
+    "sales-marketing": {
+      "description": "Sales, marketing, and offer creation skills",
+      "skills": ["alex-hormozi-pitch"]
+    },
+    "research": {
+      "description": "Research and information gathering skills",
+      "skills": ["research"]
+    },
+    "content": {
+      "description": "Content processing and pattern-based skills",
+      "skills": ["fabric"]
+    },
+    "meta": {
+      "description": "Meta skills for working with PAI system itself",
+      "skills": ["create-skill", "prompting", "agent-observability", "update-flourisha-brain"]
+    },
+    "knowledge-management": {
+      "description": "Knowledge capture and learning automation",
+      "skills": ["youtube-learning-processor"]
+    },
+    "business": {
+      "description": "Business operations and analysis skills",
+      "skills": ["financial-analysis", "real-estate-core", "property-management", "deal-pipeline"]
+    },
+    "security": {
+      "description": "Security and penetration testing skills",
+      "skills": ["ffuf"]
+    },
+    "templates": {
+      "description": "Template and example skills",
+      "skills": ["example-skill"]
+    },
+    "project-management": {
+      "description": "Project and task management skills",
+      "skills": ["clickup-tasks"]
+    }
+  }
+}

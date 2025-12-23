@@ -1,0 +1,58 @@
+{
+  "name": "youtube-learning-processor",
+  "description": "Automatically processes YouTube videos you've liked to create intelligent summaries, categorize content, and extract actionable Flourisha improvement ideas. Fetches liked videos, extracts transcripts, generates AI summaries, intelligently categorizes into PARA structure, and creates actionable implementation plans.",
+  "version": "1.0.0",
+  "triggers": [
+    "process my youtube likes",
+    "summarize youtube videos",
+    "extract youtube learnings",
+    "check youtube for flourisha improvements",
+    "sync youtube knowledge"
+  ],
+  "capabilities": [
+    "youtube-api-integration",
+    "transcript-extraction",
+    "ai-summarization",
+    "intelligent-categorization",
+    "knowledge-capture",
+    "improvement-extraction",
+    "para-organization"
+  ],
+  "requires": {
+    "tools": ["Bash", "Read", "Write"],
+    "apis": ["youtube-data-api-v3"],
+    "dependencies": [
+      "google-auth-oauthlib",
+      "google-auth-httplib2",
+      "google-api-python-client",
+      "youtube-transcript-api"
+    ],
+    "skills": []
+  },
+  "outputs": {
+    "summaries": "01f_Flourisha_Projects/flourisha-enhancements/youtube-learnings/",
+    "improvements": "01f_Flourisha_Projects/flourisha-enhancements/improvement-ideas/"
+  },
+  "configuration": {
+    "config_file": "~/.config/youtube-processor/config.json",
+    "credentials": "/root/flourisha/00_AI_Brain/credentials/youtube_oauth.json",
+    "token_path": "/root/flourisha/00_AI_Brain/credentials/youtube_token.json",
+    "state_tracking": "~/.config/youtube-processor/processed_videos.json"
+  },
+  "categories": [
+    "flourisha-improvements",
+    "ai-tech-learning",
+    "business-strategy",
+    "productivity",
+    "development",
+    "other"
+  ],
+  "scheduling": {
+    "manual": true,
+    "automatic": true,
+    "recommended_frequency": "daily"
+  },
+  "tags": ["learning", "youtube", "automation", "knowledge-capture", "flourisha-improvements", "ai-summarization"],
+  "author": "Flourisha AI Brain",
+  "lastUpdated": "2025-11-20"
+}

@@ -1,0 +1,98 @@
+{
+  "protocolVersion": "0.1.0",
+  "registryVersion": "1.0.0",
+  "updated": "2025-11-19T20:05:00Z",
+  "description": "System-wide capabilities registry for Flourisha AI Brain",
+  "systemCapabilities": {
+    "voiceSystem": {
+      "enabled": true,
+      "description": "Voice notification system for agent completion announcements",
+      "endpoint": "http://localhost:8888/notify",
+      "supportedAgents": [
+        "gemini-researcher",
+        "perplexity-researcher",
+        "claude-researcher",
+        "researcher",
+        "architect",
+        "engineer",
+        "designer",
+        "pentester"
+      ]
+    },
+    "parallelOrchestration": {
+      "enabled": true,
+      "description": "Launch multiple agents in parallel for concurrent task execution",
+      "maxParallelAgents": 10,
+      "supportedAgents": [
+        "gemini-researcher",
+        "claude-researcher"
+      ]
+    },
+    "googleDriveSync": {
+      "enabled": true,
+      "description": "Bidirectional sync with Google Drive for Obsidian integration",
+      "syncPath": "/root/flourisha/00_AI_Brain",
+      "remoteDrive": "Flourisha_gDrive",
+      "commands": {
+        "pull": "flourisha-pull",
+        "push": "flourisha-push"
+      }
+    },
+    "obsidianIntegration": {
+      "enabled": true,
+      "description": "Edit skills, agents, and docs in Obsidian with auto-sync",
+      "windowsPath": "G:\\Shared drives\\Flourisha_gDrive\\00_AI_Brain"
+    },
+    "multiVendorSupport": {
+      "enabled": true,
+      "description": "Skills and agents work across multiple AI vendors via symlinks",
+      "supportedVendors": [
+        "claude",
+        "gemini"
+      ],
+      "symlinkPattern": "/root/.[vendor]/skills -> /root/flourisha/00_AI_Brain/skills"
+    },
+    "progressiveDisclosure": {
+      "enabled": true,
+      "description": "Tiered context loading (metadata -> instructions -> resources)",
+      "tiers": {
+        "tier1": "Metadata (always loaded, ~100 tokens)",
+        "tier2": "Instructions (loaded when triggered, ~2000 tokens)",
+        "tier3": "Resources (loaded as needed, 500-2000 tokens each)"
+      }
+    }
+  },
+  "transportProtocols": {
+    "internal": {
+      "description": "Internal file-based agent invocation within PAI system",
+      "protocol": "file",
+      "enabled": true
+    },
+    "jsonrpc": {
+      "description": "JSON-RPC 2.0 for future external agent communication",
+      "protocol": "jsonrpc",
+      "enabled": false,
+      "plannedVersion": "2.0.0"
+    }
+  },
+  "securitySchemes": {
+    "authorizationRequired": {
+      "description": "Explicit authorization required for sensitive operations (pentesting, security testing)",
+      "type": "custom",
+      "applicableAgents": ["pentester"]
+    }
+  },
+  "extensions": {
+    "voice-system": "Voice notification system integration",
+    "parallel-orchestration": "Multi-agent parallel execution",
+    "google-drive-sync": "Google Drive bidirectional sync",
+    "obsidian-integration": "Obsidian markdown editor integration",
+    "gemini-cli": "Google Gemini CLI integration",
+    "perplexity-api": "Perplexity API integration",
+    "websearch": "Claude WebSearch integration",
+    "code-implementation": "Professional code implementation capabilities",
+    "prd-creation": "Product Requirements Document creation",
+    "ux-design": "UX/UI design capabilities",
+    "security-testing": "Security testing and pentesting capabilities"
+  }
+}

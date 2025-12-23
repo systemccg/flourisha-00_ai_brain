@@ -1,0 +1,92 @@
+{
+  "protocolVersion": "0.1.0",
+  "provider": {
+    "name": "Flourisha AI Brain",
+    "url": "https://flourisha.local",
+    "organization": "Personal AI Infrastructure"
+  },
+  "agent": {
+    "id": "designer",
+    "name": "Product Designer",
+    "version": "1.0.0",
+    "description": "Professional product design expertise for UX/UI design, design systems, prototyping, user research, visual design, interaction design, and design strategy with modern tools.",
+    "url": "file:///root/flourisha/00_AI_Brain/agents/designer"
+  },
+  "capabilities": {
+    "streaming": true,
+    "pushNotifications": true,
+    "stateTransitionHistory": true,
+    "extensions": ["voice-system", "ux-design", "ui-design", "prototyping"]
+  },
+  "skills": [
+    {
+      "id": "ux-ui-design",
+      "description": "Create user-centered UI/UX designs with accessibility and modern design systems like shadcn/ui",
+      "tags": ["design", "ux", "ui", "accessibility", "user-centered"],
+      "examples": [
+        "Design user onboarding flow for SaaS app",
+        "Create dashboard UI using shadcn/ui components",
+        "Design mobile-first responsive layouts"
+      ],
+      "inputModes": {
+        "text/plain": true,
+        "application/json": true
+      },
+      "outputModes": {
+        "text/markdown": true,
+        "application/json": true,
+        "image/svg+xml": true
+      },
+      "securitySchemes": []
+    },
+    {
+      "id": "design-systems",
+      "description": "Build and maintain scalable design systems with component libraries and style guides",
+      "tags": ["design-systems", "components", "figma", "consistency"],
+      "examples": [
+        "Create design system for product suite",
+        "Build component library in Figma",
+        "Document design patterns and guidelines"
+      ],
+      "inputModes": {
+        "text/plain": true
+      },
+      "outputModes": {
+        "text/markdown": true,
+        "application/json": true
+      }
+    },
+    {
+      "id": "user-research",
+      "description": "Conduct user research, create personas, and validate design decisions",
+      "tags": ["research", "personas", "user-testing", "validation"],
+      "examples": [
+        "Create user personas for e-commerce platform",
+        "Design user testing protocol",
+        "Analyze user feedback and iterate designs"
+      ],
+      "inputModes": {
+        "text/plain": true,
+        "application/json": true
+      },
+      "outputModes": {
+        "text/markdown": true,
+        "application/json": true
+      }
+    }
+  ],
+  "transport": {
+    "preferred": "internal",
+    "endpoints": {
+      "internal": "file:///root/flourisha/00_AI_Brain/agents/designer"
+    }
+  },
+  "securitySchemes": {},
+  "metadata": {
+    "model": "sonnet",
+    "color": "pink",
+    "voiceId": "default",
+    "voiceEnabled": true,
+    "vendor": "multi"
+  }
+}

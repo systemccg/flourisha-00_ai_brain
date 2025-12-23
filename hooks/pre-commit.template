@@ -1,0 +1,32 @@
+#!/bin/bash
+#
+# Flourisha Pre-Commit Hook
+#
+# Automatically validates protected files before allowing commits.
+# This prevents accidentally committing sensitive data to repositories.
+#
+# Adapted from Daniel Miessler's PAI (2025-11-20) for Flourisha
+#
+# Installation:
+#   cp ~/.claude/hooks/pre-commit.template .git/hooks/pre-commit
+#   chmod +x .git/hooks/pre-commit
+#
+
+set -e
+
+echo ""
+echo " Running Flourisha pre-commit validation..."
+echo ""
+
+# Check if bun is available
+if ! command -v bun &> /dev/null; then
+    echo " Bun not found. Skipping validation."
+    echo "   Install bun: https://bun.sh"
+    exit 0
+fi
+
+# Run the protected files validator on staged files only
+bun ~/.claude/hooks/validate-protected.ts --staged
+
+# If validation passes, proceed with commit
+exit 0

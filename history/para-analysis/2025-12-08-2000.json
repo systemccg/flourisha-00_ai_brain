@@ -1,0 +1,686 @@
+{
+  "timestamp": "2025-12-08T20:00:01.416518",
+  "since_last_run": null,
+  "run_interval_hours": null,
+  "changes": {
+    "new_files": [
+      {
+        "path": "/root/flourisha/01f_Flourisha_Projects/PROJECT_REGISTRY.md",
+        "category": "projects",
+        "size": 2111,
+        "created": "2025-12-05T20:36:16.328279"
+      },
+      {
+        "path": "/root/flourisha/01f_Flourisha_Projects/auto_sync_test.txt",
+        "category": "projects",
+        "size": 50,
+        "created": "2025-11-17T20:51:23.943000"
+      },
+      {
+        "path": "/root/flourisha/01f_Flourisha_Projects/flourisha-enhancements/README.md",
+        "category": "projects",
+        "size": 5233,
+        "created": "2025-11-20T21:25:50.352059"
+      },
+      {
+        "path": "/root/flourisha/01f_Flourisha_Projects/flourisha-enhancements/youtube-learnings/index.md",
+        "category": "projects",
+        "size": 1082,
+        "created": "2025-11-20T21:25:51.275047"
+      },
+      {
+        "path": "/root/flourisha/01f_Flourisha_Projects/flourisha-enhancements/improvement-ideas/index.md",
+        "category": "projects",
+        "size": 1010,
+        "created": "2025-11-20T21:25:52.241035"
+      },
+      {
+        "path": "/root/flourisha/01f_Flourisha_Projects/benefits-package/Employee Benefits Strategy.md",
+        "category": "projects",
+        "size": 18244,
+        "created": "2025-11-24T20:03:22.473000"
+      },
+      {
+        "path": "/root/flourisha/01f_Flourisha_Projects/murphy-bed-research/FINAL-REPORT-King-Size-Murphy-Bed-Competitors.md",
+        "category": "projects",
+        "size": 15973,
+        "created": "2025-11-18T19:08:52.536083"
+      },
+      {
+        "path": "/root/flourisha/01f_Flourisha_Projects/murphy-bed-research/RESEARCH_SUMMARY.txt",
+        "category": "projects",
+        "size": 3139,
+        "created": "2025-11-18T19:08:52.536083"
+      },
+      {
+        "path": "/root/flourisha/01f_Flourisha_Projects/murphy-bed-research/QUICK-REFERENCE-COMPETITIVE-PRODUCTS.md",
+        "category": "projects",
+        "size": 11354,
+        "created": "2025-11-18T19:08:52.537083"
+      },
+      {
+        "path": "/root/flourisha/01f_Flourisha_Projects/murphy-bed-research/00-READ-ME.txt",
+        "category": "projects",
+        "size": 7704,
+        "created": "2025-11-18T19:08:52.537083"
+      },
+      {
+        "path": "/root/flourisha/01f_Flourisha_Projects/murphy-bed-research/DELIVERABLE-SUMMARY.txt",
+        "category": "projects",
+        "size": 11277,
+        "created": "2025-11-18T19:08:52.537083"
+      },
+      {
+        "path": "/root/flourisha/01f_Flourisha_Projects/murphy-bed-research/README.md",
+        "category": "projects",
+        "size": 7060,
+        "created": "2025-11-18T19:08:52.537083"
+      },
+      {
+        "path": "/root/flourisha/01f_Flourisha_Projects/murphy-bed-research/RESEARCH-SUMMARY.md",
+        "category": "projects",
+        "size": 7736,
+        "created": "2025-11-18T19:08:52.536083"
+      },
+      {
+        "path": "/root/flourisha/01f_Flourisha_Projects/murphy-bed-research/RESEARCH_SUMMARY.md",
+        "category": "projects",
+        "size": 6645,
+        "created": "2025-11-18T19:08:52.536083"
+      },
+      {
+        "path": "/root/flourisha/01f_Flourisha_Projects/murphy-bed-research/INDEX.md",
+        "category": "projects",
+        "size": 11414,
+        "created": "2025-11-18T19:08:52.536083"
+      },
+      {
+        "path": "/root/flourisha/01f_Flourisha_Projects/murphy-bed-research/raw-outputs/perplexity-003-dtc-brands.md",
+        "category": "projects",
+        "size": 22704,
+        "created": "2025-11-18T19:08:52.535083"
+      },
+      {
+        "path": "/root/flourisha/01f_Flourisha_Projects/murphy-bed-research/raw-outputs/gemini-003-budget-alternatives.md",
+        "category": "projects",
+        "size": 17938,
+        "created": "2025-11-18T19:08:52.536083"
+      },
+      {
+        "path": "/root/flourisha/01f_Flourisha_Projects/murphy-bed-research/raw-outputs/claude-001-premium-brands.md",
+        "category": "projects",
+        "size": 16213,
+        "created": "2025-11-18T19:08:52.535083"
+      },
+      {
+        "path": "/root/flourisha/01f_Flourisha_Projects/murphy-bed-research/raw-outputs/claude-003-retailers.md",
+        "category": "projects",
+        "size": 11746,
+        "created": "2025-11-18T19:08:52.535083"
+      },
+      {
+        "path": "/root/flourisha/01f_Flourisha_Projects/murphy-bed-research/raw-outputs/gemini-001-pricing-analysis.md",
+        "category": "projects",
+        "size": 19642,
+        "created": "2025-11-18T19:08:52.536083"
+      },
+      {
+        "path": "/root/flourisha/01f_Flourisha_Projects/murphy-bed-research/raw-outputs/perplexity-001-wilding-baseline.md",
+        "category": "projects",
+        "size": 12802,
+        "created": "2025-11-18T19:08:52.536083"
+      },
+      {
+        "path": "/root/flourisha/01f_Flourisha_Projects/murphy-bed-research/raw-outputs/claude-002-midrange-brands.md",
+        "category": "projects",
+        "size": 14344,
+        "created": "2025-11-18T19:08:52.535083"
+      },
+      {
+        "path": "/root/flourisha/01f_Flourisha_Projects/murphy-bed-research/raw-outputs/perplexity-002-top-competitors.md",
+        "category": "projects",
+        "size": 17215,
+        "created": "2025-11-18T19:08:52.535083"
+      },
+      {
+        "path": "/root/flourisha/01f_Flourisha_Projects/murphy-bed-research/raw-outputs/gemini-002-custom-vs-prefab.md",
+        "category": "projects",
+        "size": 23644,
+        "created": "2025-11-18T19:08:52.536083"
+      },
+      {
+        "path": "/root/flourisha/01f_Flourisha_Projects/industry-trends-study/SOURCES.md",
+        "category": "projects",
+        "size": 1100,
+        "created": "2025-11-20T02:41:34.857546"
+      },
+      {
+        "path": "/root/flourisha/01f_Flourisha_Projects/industry-trends-study/README.md",
+        "category": "projects",
+        "size": 1167,
+        "created": "2025-11-20T02:46:46.862000"
+      },
+      {
+        "path": "/root/flourisha/01f_Flourisha_Projects/industry-trends-study/FINDINGS.md",
+        "category": "projects",
+        "size": 1214,
+        "created": "2025-11-20T02:41:34.898545"
+      },
+      {
+        "path": "/root/flourisha/01f_Flourisha_Projects/industry-trends-study/ANALYSIS.md",
+        "category": "projects",
+        "size": 1397,
+        "created": "2025-11-20T02:41:34.924545"
+      },
+      {
+        "path": "/root/flourisha/01f_Flourisha_Projects/cambria-clearness-committee/Kika Masters - Mastermind Session Summary.md",
+        "category": "projects",
+        "size": 38100,
+        "created": "2025-11-17T01:59:02.815362"
+      },
+      {
+        "path": "/root/flourisha/01f_Flourisha_Projects/cambria-clearness-committee/Patrick McNelly - Mastermind Session Summary.md",
+        "category": "projects",
+        "size": 33214,
+        "created": "2025-11-17T01:53:52.276544"
+      },
+      {
+        "path": "/root/flourisha/01f_Flourisha_Projects/cambria-clearness-committee/Cambria Clearness Committee - Inspirational Summaries.md",
+        "category": "projects",
+        "size": 16521,
+        "created": "2025-11-17T19:42:02.236017"
+      },
+      {
+        "path": "/root/flourisha/01f_Flourisha_Projects/cambria-clearness-committee/Greg Wasmuth - Mastermind Session Summary.md",
+        "category": "projects",
+        "size": 33610,
+        "created": "2025-11-17T19:12:00.886358"
+      },
+      {
+        "path": "/root/flourisha/01f_Flourisha_Projects/cambria-clearness-committee/Jon Ray - Mastermind Session Summary.md",
+        "category": "projects",
+        "size": 26077,
+        "created": "2025-11-17T01:49:04.623521"
+      },
+      {
+        "path": "/root/flourisha/01f_Flourisha_Projects/cambria-clearness-committee/Joanna Wasmuth - Mastermind Session Summary.md",
+        "category": "projects",
+        "size": 38556,
+        "created": "2025-11-17T19:16:25.196130"
+      },
+      {
+        "path": "/root/flourisha/01f_Flourisha_Projects/cambria-clearness-committee/original transcripts/processed/Susanna Nov 6 at 9-22 PM.txt",
+        "category": "projects",
+        "size": 44600,
+        "created": "2025-11-17T19:04:37.149000"
+      },
+      {
+        "path": "/root/flourisha/01f_Flourisha_Projects/cambria-clearness-committee/original transcripts/processed/Greg  Nov 5 at 6-14 PM.txt",
+        "category": "projects",
+        "size": 42243,
+        "created": "2025-11-17T19:04:32.531000"
+      },
+      {
+        "path": "/root/flourisha/01f_Flourisha_Projects/cambria-clearness-committee/original transcripts/processed/Patrick Nov 6 at 6-53 PM.txt",
+        "category": "projects",
+        "size": 39097,
+        "created": "2025-11-17T01:44:09.508000"
+      },
+      {
+        "path": "/root/flourisha/01f_Flourisha_Projects/cambria-clearness-committee/original transcripts/processed/Jon Ray part 1 Nov 5 at 5-08 PM.txt",
+        "category": "projects",
+        "size": 41341,
+        "created": "2025-11-17T01:44:04.983000"
+      },
+      {
+        "path": "/root/flourisha/01f_Flourisha_Projects/cambria-clearness-committee/original transcripts/processed/Kika session - Nov 6 at 8-05 PM.txt",
+        "category": "projects",
+        "size": 53493,
+        "created": "2025-11-17T01:44:12.068000"
+      },
+      {
+        "path": "/root/flourisha/01f_Flourisha_Projects/cambria-clearness-committee/original transcripts/processed/Joanna Nov 5 at 7-44 PM.txt",
+        "category": "projects",
+        "size": 43929,
+        "created": "2025-11-17T19:04:40.925000"
+      },
+      {
+        "path": "/root/flourisha/01f_Flourisha_Projects/cambria-clearness-committee/markdown output/Kika Masters - Mastermind Session Summary.md",
+        "category": "projects",
+        "size": 38100,
+        "created": "2025-11-17T01:59:02.815000"
+      },
+      {
+        "path": "/root/flourisha/01f_Flourisha_Projects/cambria-clearness-committee/markdown output/Patrick McNelly - Mastermind Session Summary.md",
+        "category": "projects",
+        "size": 33214,
+        "created": "2025-11-17T01:53:52.276000"
+      },
+      {
+        "path": "/root/flourisha/01f_Flourisha_Projects/cambria-clearness-committee/markdown output/Cambria Clearness Committee - Inspirational Summaries.md",
+        "category": "projects",
+        "size": 16521,
+        "created": "2025-11-17T19:42:02.236000"
+      },
+      {
+        "path": "/root/flourisha/01f_Flourisha_Projects/cambria-clearness-committee/markdown output/Susanna Ray - Mastermind Session Summary.md",
+        "category": "projects",
+        "size": 39418,
+        "created": "2025-11-17T19:20:45.542000"
+      },
+      {
+        "path": "/root/flourisha/01f_Flourisha_Projects/cambria-clearness-committee/markdown output/Greg Wasmuth - Mastermind Session Summary.md",
+        "category": "projects",
+        "size": 33610,
+        "created": "2025-11-17T19:12:00.886000"
+      },
+      {
+        "path": "/root/flourisha/01f_Flourisha_Projects/cambria-clearness-committee/markdown output/Jon Ray - Mastermind Session Summary.md",
+        "category": "projects",
+        "size": 26077,
+        "created": "2025-11-17T01:49:04.623000"
+      },
+      {
+        "path": "/root/flourisha/01f_Flourisha_Projects/cambria-clearness-committee/markdown output/Joanna Wasmuth - Mastermind Session Summary.md",
+        "category": "projects",
+        "size": 38556,
+        "created": "2025-11-17T19:16:25.196000"
+      },
+      {
+        "path": "/root/flourisha/01f_Flourisha_Projects/cambria-clearness-committee/unprocessed/Susanna Nov 6 at 9-22 PM.txt",
+        "category": "projects",
+        "size": 44600,
+        "created": "2025-11-17T19:04:37.149726"
+      },
+      {
+        "path": "/root/flourisha/01f_Flourisha_Projects/cambria-clearness-committee/unprocessed/Greg  Nov 5 at 6-14 PM.txt",
+        "category": "projects",
+        "size": 42243,
+        "created": "2025-11-17T19:04:32.531782"
+      },
+      {
+        "path": "/root/flourisha/01f_Flourisha_Projects/cambria-clearness-committee/unprocessed/Patrick Nov 6 at 6-53 PM.txt",
+        "category": "projects",
+        "size": 39097,
+        "created": "2025-11-17T01:44:09.508198"
+      },
+      {
+        "path": "/root/flourisha/01f_Flourisha_Projects/cambria-clearness-committee/unprocessed/Jon Ray part 1 Nov 5 at 5-08 PM.txt",
+        "category": "projects",
+        "size": 41341,
+        "created": "2025-11-17T01:44:04.983255"
+      },
+      {
+        "path": "/root/flourisha/01f_Flourisha_Projects/cambria-clearness-committee/unprocessed/Kika session - Nov 6 at 8-05 PM.txt",
+        "category": "projects",
+        "size": 53493,
+        "created": "2025-11-17T01:44:12.068166"
+      },
+      {
+        "path": "/root/flourisha/01f_Flourisha_Projects/cambria-clearness-committee/unprocessed/Joanna Nov 5 at 7-44 PM.txt",
+        "category": "projects",
+        "size": 43929,
+        "created": "2025-11-17T19:04:40.925681"
+      },
+      {
+        "path": "/root/flourisha/01f_Flourisha_Projects/claudecodeopportunity/Cover Letter - Greg Wasmuth.md",
+        "category": "projects",
+        "size": 10704,
+        "created": "2025-11-18T19:19:53.673742"
+      },
+      {
+        "path": "/root/flourisha/01f_Flourisha_Projects/claudecodeopportunity/Challenges facing Anthropic and their Claude Code Product.md",
+        "category": "projects",
+        "size": 18693,
+        "created": "2025-11-18T18:09:18.677000"
+      },
+      {
+        "path": "/root/flourisha/01f_Flourisha_Projects/claudecodeopportunity/Resume - Greg Wasmuth - Anthropic Head of Marketing.md",
+        "category": "projects",
+        "size": 13806,
+        "created": "2025-11-18T23:32:54.293187"
+      },
+      {
+        "path": "/root/flourisha/01f_Flourisha_Projects/claudecodeopportunity/Bio and Resume of Greg Wasmuth.md",
+        "category": "projects",
+        "size": 12211,
+        "created": "2025-11-18T18:42:29.747985"
+      },
+      {
+        "path": "/root/flourisha/01f_Flourisha_Projects/claudecodeopportunity/Job Description-Head of Marketing, Claude Code.md",
+        "category": "projects",
+        "size": 7184,
+        "created": "2025-11-18T18:07:44.510000"
+      },
+      {
+        "path": "/root/flourisha/01f_Flourisha_Projects/claudecodeopportunity/Why Anthropic - Application Response.md",
+        "category": "projects",
+        "size": 2353,
+        "created": "2025-11-19T00:24:10.383795"
+      },
+      {
+        "path": "/root/flourisha/01f_Flourisha_Projects/docker-sandbox-template/docker-compose.yml",
+        "category": "projects",
+        "size": 444,
+        "created": "2025-12-04T22:20:09.989216"
+      },
+      {
+        "path": "/root/flourisha/01f_Flourisha_Projects/usa-for-iom/IOM 11-21 Board Meeting Preparation (1).md",
+        "category": "projects",
+        "size": 4685,
+        "created": "2025-11-21T20:29:07.934000"
+      },
+      {
+        "path": "/root/flourisha/01f_Flourisha_Projects/usa-for-iom/IOM 11-21 Board Meeting Preparation.md",
+        "category": "projects",
+        "size": 26848,
+        "created": "2025-11-21T19:08:46.810000"
+      },
+      {
+        "path": "/root/flourisha/01f_Flourisha_Projects/usa-for-iom/Strategic plan for USA for iom - Nov 21 at 8_36 AM.md",
+        "category": "projects",
+        "size": 23621,
+        "created": "2025-11-21T18:52:58.842000"
+      },
+      {
+        "path": "/root/flourisha/01f_Flourisha_Projects/usa-for-iom/Untitled.md",
+        "category": "projects",
+        "size": 11849,
+        "created": "2025-11-21T19:59:19.699000"
+      },
+      {
+        "path": "/root/flourisha/01f_Flourisha_Projects/real-estate/Cover Letter.md",
+        "category": "projects",
+        "size": 1823,
+        "created": "2025-11-25T22:29:42.760000"
+      },
+      {
+        "path": "/root/flourisha/03f_Flourisha_Resources/Project_Templates/README.md",
+        "category": "resources",
+        "size": 1982,
+        "created": "2025-11-20T02:30:10.748312"
+      },
+      {
+        "path": "/root/flourisha/03f_Flourisha_Resources/Project_Templates/general-project/TASKS.md",
+        "category": "resources",
+        "size": 328,
+        "created": "2025-11-20T02:30:33.580020"
+      },
+      {
+        "path": "/root/flourisha/03f_Flourisha_Resources/Project_Templates/general-project/RESOURCES.md",
+        "category": "resources",
+        "size": 483,
+        "created": "2025-11-20T02:30:36.173986"
+      },
+      {
+        "path": "/root/flourisha/03f_Flourisha_Resources/Project_Templates/general-project/README.md",
+        "category": "resources",
+        "size": 1221,
+        "created": "2025-11-20T02:30:31.386048"
+      },
+      {
+        "path": "/root/flourisha/03f_Flourisha_Resources/Project_Templates/general-project/NOTES.md",
+        "category": "resources",
+        "size": 486,
+        "created": "2025-11-20T02:30:34.966002"
+      },
+      {
+        "path": "/root/flourisha/03f_Flourisha_Resources/Project_Templates/client-project/README.md",
+        "category": "resources",
+        "size": 1403,
+        "created": "2025-11-20T02:31:03.181640"
+      },
+      {
+        "path": "/root/flourisha/03f_Flourisha_Resources/Project_Templates/client-project/INVOICES.md",
+        "category": "resources",
+        "size": 980,
+        "created": "2025-11-20T02:31:05.696608"
+      },
+      {
+        "path": "/root/flourisha/03f_Flourisha_Resources/Project_Templates/client-project/DELIVERABLES.md",
+        "category": "resources",
+        "size": 916,
+        "created": "2025-11-20T02:31:04.998617"
+      },
+      {
+        "path": "/root/flourisha/03f_Flourisha_Resources/Project_Templates/client-project/MEETINGS.md",
+        "category": "resources",
+        "size": 539,
+        "created": "2025-11-20T02:31:04.094629"
+      },
+      {
+        "path": "/root/flourisha/03f_Flourisha_Resources/Project_Templates/research-project/SOURCES.md",
+        "category": "resources",
+        "size": 1081,
+        "created": "2025-11-20T02:31:41.975143"
+      },
+      {
+        "path": "/root/flourisha/03f_Flourisha_Resources/Project_Templates/research-project/README.md",
+        "category": "resources",
+        "size": 1177,
+        "created": "2025-11-20T02:31:40.962156"
+      },
+      {
+        "path": "/root/flourisha/03f_Flourisha_Resources/Project_Templates/research-project/FINDINGS.md",
+        "category": "resources",
+        "size": 1203,
+        "created": "2025-11-20T02:31:42.826132"
+      },
+      {
+        "path": "/root/flourisha/03f_Flourisha_Resources/Project_Templates/research-project/ANALYSIS.md",
+        "category": "resources",
+        "size": 1386,
+        "created": "2025-11-20T02:31:43.691121"
+      },
+      {
+        "path": "/root/flourisha/03f_Flourisha_Resources/Project_Templates/development-project/README.md",
+        "category": "resources",
+        "size": 1774,
+        "created": "2025-11-20T02:32:37.551431"
+      },
+      {
+        "path": "/root/flourisha/03f_Flourisha_Resources/Project_Templates/development-project/SPECS.md",
+        "category": "resources",
+        "size": 1905,
+        "created": "2025-11-20T02:32:38.261422"
+      },
+      {
+        "path": "/root/flourisha/03f_Flourisha_Resources/Project_Templates/development-project/DEPLOYMENT.md",
+        "category": "resources",
+        "size": 4220,
+        "created": "2025-11-20T02:33:07.404048"
+      },
+      {
+        "path": "/root/flourisha/03f_Flourisha_Resources/Project_Templates/development-project/TESTING.md",
+        "category": "resources",
+        "size": 2801,
+        "created": "2025-11-20T02:32:39.932400"
+      },
+      {
+        "path": "/root/flourisha/03f_Flourisha_Resources/Project_Templates/development-project/ARCHITECTURE.md",
+        "category": "resources",
+        "size": 2620,
+        "created": "2025-11-20T02:32:39.129411"
+      },
+      {
+        "path": "/root/flourisha/03f_Flourisha_Resources/Content_Intelligence/YouTube/2025-11-22_test_video_introduction_to_fastapi_test_con.md",
+        "category": "resources",
+        "size": 811,
+        "created": "2025-11-22T19:22:12.502779"
+      }
+    ],
+    "modified_files": [],
+    "deleted_files": [],
+    "moved_files": []
+  },
+  "project_activity": {
+    "flourisha-enhancements": {
+      "files_changed": 3,
+      "priority": {
+        "project": "flourisha-enhancements",
+        "priority_level": "Urgent",
+        "priority_score": 8.0,
+        "factors": {},
+        "deadline": null,
+        "last_activity": "2025-11-20T21:25:52.241035",
+        "activity_level": "Low"
+      },
+      "activity_level": "Normal"
+    },
+    "benefits-package": {
+      "files_changed": 1,
+      "priority": {
+        "project": "benefits-package",
+        "priority_level": "Normal",
+        "priority_score": 5.0,
+        "factors": {},
+        "deadline": null,
+        "last_activity": "2025-11-24T20:03:22.473000",
+        "activity_level": "Low"
+      },
+      "activity_level": "Normal"
+    },
+    "murphy-bed-research": {
+      "files_changed": 18,
+      "priority": {
+        "project": "murphy-bed-research",
+        "priority_level": "Normal",
+        "priority_score": 5.0,
+        "factors": {},
+        "deadline": null,
+        "last_activity": "2025-11-18T19:08:52.537083",
+        "activity_level": "Low"
+      },
+      "activity_level": "Urgent"
+    },
+    "industry-trends-study": {
+      "files_changed": 4,
+      "priority": {
+        "project": "industry-trends-study",
+        "priority_level": "Normal",
+        "priority_score": 5.0,
+        "factors": {},
+        "deadline": null,
+        "last_activity": "2025-11-20T02:46:46.862000",
+        "activity_level": "Low"
+      },
+      "activity_level": "Normal"
+    },
+    "flourisha-app": {
+      "files_changed": 0,
+      "priority": {
+        "project": "flourisha-app",
+        "priority_level": "Normal",
+        "priority_score": 5.0,
+        "factors": {},
+        "deadline": null,
+        "last_activity": null,
+        "activity_level": "Low"
+      },
+      "activity_level": "Low"
+    },
+    "cambria-clearness-committee": {
+      "files_changed": 25,
+      "priority": {
+        "project": "cambria-clearness-committee",
+        "priority_level": "Normal",
+        "priority_score": 5.0,
+        "factors": {},
+        "deadline": null,
+        "last_activity": "2025-11-17T20:18:54.334000",
+        "activity_level": "Low"
+      },
+      "activity_level": "Urgent"
+    },
+    "claudecodeopportunity": {
+      "files_changed": 6,
+      "priority": {
+        "project": "claudecodeopportunity",
+        "priority_level": "Normal",
+        "priority_score": 5.0,
+        "factors": {},
+        "deadline": null,
+        "last_activity": "2025-11-19T00:24:10.383795",
+        "activity_level": "Low"
+      },
+      "activity_level": "High"
+    },
+    "docker-sandbox-template": {
+      "files_changed": 1,
+      "priority": {
+        "project": "docker-sandbox-template",
+        "priority_level": "Normal",
+        "priority_score": 5.0,
+        "factors": {},
+        "deadline": null,
+        "last_activity": "2025-12-04T22:27:52.472023",
+        "activity_level": "High"
+      },
+      "activity_level": "Normal"
+    },
+    "usa-for-iom": {
+      "files_changed": 4,
+      "priority": {
+        "project": "usa-for-iom",
+        "priority_level": "Normal",
+        "priority_score": 5.0,
+        "factors": {},
+        "deadline": null,
+        "last_activity": "2025-11-22T18:21:10.819000",
+        "activity_level": "Low"
+      },
+      "activity_level": "Normal"
+    },
+    "Content_Intelligence": {
+      "files_changed": 0,
+      "priority": {
+        "project": "Content_Intelligence",
+        "priority_level": "Normal",
+        "priority_score": 5.0,
+        "factors": {},
+        "deadline": null,
+        "last_activity": "2025-11-22T19:22:12.503779",
+        "activity_level": "Low"
+      },
+      "activity_level": "Low"
+    },
+    "real-estate": {
+      "files_changed": 1,
+      "priority": {
+        "project": "real-estate",
+        "priority_level": "Normal",
+        "priority_score": 5.0,
+        "factors": {},
+        "deadline": null,
+        "last_activity": "2025-11-25T22:29:42.760000",
+        "activity_level": "Low"
+      },
+      "activity_level": "Normal"
+    }
+  },
+  "priority_changes": [
+    {
+      "project": "flourisha-enhancements",
+      "from": "Normal",
+      "to": "Urgent"
+    }
+  ],
+  "cross_references": [],
+  "summary": {
+    "total_files_tracked": 84,
+    "total_changes": 84,
+    "active_projects": 3,
+    "urgent_projects": [
+      "flourisha-enhancements"
+    ]
+  },
+  "metadata": {
+    "analyzer_version": "1.0.0",
+    "para_folders": {
+      "projects": "/root/flourisha/01f_Flourisha_Projects",
+      "areas": "/root/flourisha/02f_Flourisha_Areas",
+      "resources": "/root/flourisha/03f_Flourisha_Resources",
+      "archives": "/root/flourisha/04f_Flourisha_Archives"
+    }
+  }
+}

@@ -1,0 +1,155 @@
+{
+  "_description": "Playlist-aware processing templates for YouTube Learning Processor",
+  "_version": "1.0.0",
+
+  "playlist_mappings": {
+    "flourisha-enhancements": "flourisha_enhancement",
+    "Automation": "flourisha_enhancement",
+    "AI future": "flourisha_enhancement",
+    "No-code app dev": "flourisha_enhancement",
+
+    "HLTH-Diet": "health",
+    "HLT-Diet": "health",
+    "HLT-fitness": "health",
+    "HLT-Exercise": "health",
+    "HLT-physical therapy": "health",
+    "HLT-Mindfulness": "health",
+    "HLT-Mindful mornings": "health",
+    "Mindfulness": "health",
+    "PE Recovery": "health",
+    "Healing Journey": "health",
+
+    "FIN-Crypto": "finance",
+    "FIN-real estate": "finance",
+
+    "BIZ-Sales": "business",
+    "BIZ-Ideas": "business",
+    "BIZ.Ideation": "business",
+    "Marketing": "business",
+    "Strategy": "business",
+
+    "Music production": "music_production",
+    "Music Prod-Techniques": "music_production",
+    "Music Prod-Ref Tracks": "skip",
+    "Music-Favorites": "skip",
+
+    "Personal Growth": "personal_development",
+    "Personal development": "personal_development",
+    "Productivity": "personal_development",
+
+    "ASOT": "skip",
+    "Haven Chill": "skip",
+    "Haven Chill 2": "skip",
+    "Christian Trance": "skip",
+    "Hillsong": "skip"
+  },
+
+  "templates": {
+    "flourisha_enhancement": {
+      "name": "Flourisha Enhancement",
+      "description": "Detailed solution design for incorporating video concepts into Flourisha",
+      "output_dir": "01f_Flourisha_Projects/flourisha-enhancements/youtube-ideas",
+      "filename_pattern": "{date}_{title_slug}.md",
+      "prompt": "You are analyzing a YouTube video to extract SPECIFIC, ACTIONABLE ideas for improving Flourisha, a personal AI infrastructure system built on Claude Code.\n\nBe CONCRETE and DETAILED - avoid vague abstractions. Include specific tools, techniques, code patterns, and implementation details mentioned in the video.\n\n1. **Video Overview**: What specific topics, tools, or techniques does this video cover? List the main sections/segments discussed.\n\n2. **Core Concept**: What is the specific technique or approach demonstrated? Include actual tool names, code snippets mentioned, configuration details, or workflow steps.\n\n3. **What Makes This Work**: WHY does this approach work? What's the key insight or mechanism that makes it effective? Be specific.\n\n4. **Flourisha Enhancement**:\n   - **Specific Problem Solved**: What exact limitation or gap would this address?\n   - **Implementation Approach**: Concrete steps - mention specific files, tools, APIs, or patterns\n   - **Integration Points**: Which existing Flourisha components (skills, hooks, services) would this connect to?\n\n5. **Key Technical Details**: Any specific configurations, prompts, code patterns, or settings mentioned that are worth capturing.\n\n6. **Priority**: High/Medium/Low with specific justification\n\nVideo Title: {title}\nChannel: {channel}\nVideo Description: {description}\n\nTranscript:\n{transcript}",
+      "frontmatter": {
+        "type": "flourisha-enhancement",
+        "source": "youtube",
+        "status": "proposed"
+      }
+    },
+
+    "health": {
+      "name": "Health Protocol Update",
+      "description": "Recommendations for health protocol updates (future implementation)",
+      "output_dir": "02f_Flourisha_Areas/health/youtube-insights",
+      "filename_pattern": "{date}_{title_slug}.md",
+      "prompt": "You are analyzing a YouTube video about health, fitness, mindfulness, or wellness.\n\nExtract insights that could inform a personal health protocol. Provide:\n\n1. **Topic Category**: Diet / Exercise / Mindfulness / Recovery / Sleep / Other\n\n2. **Key Insight** (2-3 sentences): What is the main health-related takeaway?\n\n3. **Actionable Recommendation**: What specific behavior, practice, or habit is suggested?\n\n4. **Evidence Level**: Anecdotal / Research-backed / Expert opinion\n\n5. **Protocol Update Suggestion**: How might this update a personal health protocol?\n   - What section would it affect?\n   - Is this an addition, modification, or consideration?\n\n6. **Personal Applicability**: High / Medium / Low - considering general lifestyle fit\n\nNote: This will be reviewed later when building the health protocol document.\n\nVideo Title: {title}\nChannel: {channel}\nTranscript:\n{transcript}",
+      "frontmatter": {
+        "type": "health-insight",
+        "source": "youtube",
+        "category": "{{extracted}}",
+        "status": "pending_review"
+      },
+      "note": "Health protocol document not yet created - insights saved for future integration"
+    },
+
+    "business": {
+      "name": "Business Insight",
+      "description": "Business strategy and operations insights",
+      "output_dir": "02f_Flourisha_Areas/business/youtube-insights",
+      "filename_pattern": "{date}_{title_slug}.md",
+      "prompt": "You are analyzing a YouTube video about business, sales, marketing, or strategy.\n\nExtract actionable business insights:\n\n1. **Category**: Sales / Marketing / Strategy / Operations / Ideation\n\n2. **Core Insight** (2-3 sentences): What is the main business takeaway?\n\n3. **Actionable Application**: How could this be applied to a small business or consulting practice?\n\n4. **Key Tactics**: List 2-3 specific tactics or techniques mentioned\n\n5. **Resource or Tool Mentioned**: Any tools, frameworks, or resources referenced?\n\nVideo Title: {title}\nChannel: {channel}\nTranscript:\n{transcript}",
+      "frontmatter": {
+        "type": "business-insight",
+        "source": "youtube",
+        "category": "{{extracted}}"
+      }
+    },
+
+    "finance": {
+      "name": "Finance Insight",
+      "description": "Financial and investment insights",
+      "output_dir": "02f_Flourisha_Areas/finance/youtube-insights",
+      "filename_pattern": "{date}_{title_slug}.md",
+      "prompt": "You are analyzing a YouTube video about finance, real estate, or cryptocurrency.\n\nExtract financial insights (NOT financial advice):\n\n1. **Category**: Real Estate / Crypto / Investing / Personal Finance\n\n2. **Key Concept** (2-3 sentences): What financial concept or strategy is discussed?\n\n3. **Market Context**: Any relevant market conditions or timing considerations mentioned?\n\n4. **Risk Factors**: What risks or cautions are mentioned?\n\n5. **Learning Point**: What's worth researching further?\n\nDisclaimer: This is for educational purposes, not financial advice.\n\nVideo Title: {title}\nChannel: {channel}\nTranscript:\n{transcript}",
+      "frontmatter": {
+        "type": "finance-insight",
+        "source": "youtube",
+        "category": "{{extracted}}"
+      }
+    },
+
+    "personal_development": {
+      "name": "Personal Development",
+      "description": "Personal growth and productivity insights",
+      "output_dir": "02f_Flourisha_Areas/personal-growth/youtube-insights",
+      "filename_pattern": "{date}_{title_slug}.md",
+      "prompt": "You are analyzing a YouTube video about personal development, productivity, or self-improvement.\n\nExtract growth-oriented insights:\n\n1. **Theme**: Productivity / Mindset / Habits / Skills / Relationships\n\n2. **Core Message** (2-3 sentences): What's the main personal development takeaway?\n\n3. **Practical Application**: One specific thing to try or implement\n\n4. **Mindset Shift**: Any perspective or mental model worth adopting?\n\n5. **Quote or Principle**: A memorable quote or principle from the video\n\nVideo Title: {title}\nChannel: {channel}\nTranscript:\n{transcript}",
+      "frontmatter": {
+        "type": "personal-development",
+        "source": "youtube",
+        "theme": "{{extracted}}"
+      }
+    },
+
+    "music_production": {
+      "name": "Music Production",
+      "description": "Music production techniques and tips",
+      "output_dir": "03f_Flourisha_Resources/music-production/youtube-notes",
+      "filename_pattern": "{date}_{title_slug}.md",
+      "prompt": "You are analyzing a YouTube video about music production.\n\nExtract production insights:\n\n1. **Topic**: Mixing / Sound Design / Arrangement / Mastering / Workflow / Gear\n\n2. **Key Technique**: What specific technique or approach is taught?\n\n3. **Tools/Plugins**: Any specific DAW, plugins, or gear mentioned?\n\n4. **Quick Tip**: The most actionable tip from the video\n\n5. **Genre Relevance**: What genres does this apply to?\n\nVideo Title: {title}\nChannel: {channel}\nTranscript:\n{transcript}",
+      "frontmatter": {
+        "type": "music-production",
+        "source": "youtube",
+        "topic": "{{extracted}}"
+      }
+    },
+
+    "default": {
+      "name": "General Learning",
+      "description": "Default template for unmapped playlists",
+      "output_dir": "03f_Flourisha_Resources/youtube-learnings",
+      "filename_pattern": "{date}_{title_slug}.md",
+      "prompt": "Summarize this YouTube video:\n\n1. **Summary** (2-3 sentences): What is this video about?\n\n2. **Key Points**: 3-5 main takeaways\n\n3. **Category**: What topic area does this cover?\n\n4. **Actionable Insight**: One thing worth remembering or applying\n\nVideo Title: {title}\nChannel: {channel}\nTranscript:\n{transcript}",
+      "frontmatter": {
+        "type": "youtube-learning",
+        "source": "youtube"
+      }
+    },
+
+    "skip": {
+      "name": "Skip Processing",
+      "description": "Music/entertainment playlists - don't process",
+      "action": "skip",
+      "reason": "Entertainment content - no learning extraction needed"
+    }
+  },
+
+  "settings": {
+    "default_template": "default",
+    "transcript_max_length": 0,
+    "require_transcript": false,
+    "fallback_to_description": true,
+    "model": "claude-opus-4-20250514"
+  }
+}

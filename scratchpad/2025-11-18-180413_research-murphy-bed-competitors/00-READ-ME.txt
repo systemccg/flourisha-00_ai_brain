@@ -1,0 +1,230 @@
+================================================================================
+KING SIZE MURPHY BED DTC BRANDS - RESEARCH COMPLETE
+================================================================================
+
+Research Date: November 18, 2025
+Output Directory: /root/.claude/scratchpad/2025-11-18-180413_research-murphy-bed-competitors/
+
+================================================================================
+START HERE
+================================================================================
+
+1. For Quick Summary (5 minutes):
+   READ: RESEARCH_SUMMARY.md
+
+2. For Complete Analysis (30-45 minutes):
+   READ: raw-outputs/perplexity-003-dtc-brands.md ⭐ PRIMARY DOCUMENT
+
+3. For Document Index & Navigation:
+   READ: INDEX.md
+
+================================================================================
+KEY FINDINGS SUMMARY
+================================================================================
+
+TOP 3 DTC BRANDS (King Size):
+
+1. WILDING WALLBEDS
+   - Price: $3,872-$6,500+
+   - Rating: 4.83/5 stars
+   - Best For: Quality seekers
+   - Key: Lifetime warranty, real wood, 20+ year durability
+   - Contact: (866) 877-7803
+
+2. MURPHY BED DEPOT
+   - Price: $1,229-$3,399
+   - Rating: 4.0+ stars
+   - Best For: Budget conscious buyers
+   - Key: Best value, good quality, DIY options
+   - Contact: murphybeddepot.com
+
+3. BREDABEDS
+   - Price: $2,000-$5,000+
+   - Rating: 4.0+ stars
+   - Best For: Design focused buyers
+   - Key: 30,000 configurations, modern design
+   - Current: 20% off + free shipping
+
+RETAIL OPTIONS:
+- Wayfair: Premium brands at +15-25% markup
+- Amazon: DIY kits $400-$1,300 (limited king options)
+
+================================================================================
+MARKET INSIGHTS
+================================================================================
+
+- Only 3-4 manufacturers offer king-size Murphy beds
+- DTC model captures 49% of furniture market (vs. 30% in 2018)
+- King-size rarity due to space requirements (90"+ wall, 10+ feet ceiling)
+- Assembly is universal complaint (5+ days DIY or $500-$1,500 professional)
+- Price advantage: DTC saves 15-30% vs. traditional retail
+- Lead times: 6-8 weeks DTC vs. 2-3 weeks retail
+
+================================================================================
+RECOMMENDED BY PRIORITY
+================================================================================
+
+Quality-focused?
+→ Wilding Wallbeds ($3,872-$6,500+, 4.83★)
+
+Budget-conscious?
+→ Murphy Bed Depot ($1,229-$3,399, 4.0★+)
+
+Design-focused?
+→ BredaBeds ($2,000-$5,000+, 4.0★+, 20% off now)
+
+Want convenience?
+→ Wayfair (+15-25% but faster delivery)
+
+DIY enthusiast?
+→ Amazon DIY kits ($400-$1,300)
+
+================================================================================
+RESEARCH CONTENTS
+================================================================================
+
+Main Directory:
+  ├── 00-READ-ME.txt (this file)
+  ├── INDEX.md (complete document index & navigation)
+  ├── RESEARCH_SUMMARY.md (5-min executive brief)
+  └── raw-outputs/ (detailed analysis documents)
+
+Raw Outputs (8 documents, 3,634 lines total):
+  ├── perplexity-003-dtc-brands.md ⭐ PRIMARY (23 KB, 672 lines)
+  │   └── Comprehensive DTC competitive analysis
+  ├── perplexity-002-top-competitors.md (17 KB)
+  ├── perplexity-001-wilding-baseline.md (13 KB)
+  ├── gemini-003-budget-alternatives.md (18 KB)
+  ├── gemini-002-custom-vs-prefab.md (24 KB)
+  ├── claude-003-retailers.md (13 KB)
+  ├── claude-002-midrange-brands.md (15 KB)
+  └── claude-001-premium-brands.md (16 KB)
+
+Total Output: 176 KB of research data
+
+================================================================================
+QUICK REFERENCE
+================================================================================
+
+King Size Standard Specs:
+  - Mattress: 76" W × 80" L
+  - Unit width: 81.5"
+  - Unit height: 87.25"-90"
+  - Wall space needed: 90"+
+  - Ceiling height: 10+ feet minimum
+  - Mattress thickness: max 11-13" (11" recommended)
+
+Timeline:
+  - DTC Direct: 6-8 weeks
+  - Wayfair: 2-3 weeks
+  - Assembly: 5+ days (or $500-$1,500 professional)
+
+Price Ranges (King Size):
+  - Budget: $1,229-$2,000
+  - Mid-range: $2,000-$4,000
+  - Premium: $4,000-$6,500+
+  - Retail markup: +15-25%
+
+================================================================================
+CONTACT BRANDS
+================================================================================
+
+Wilding Wallbeds
+  Phone: (866) 877-7803
+  Web: wallbedsbywilding.com
+  Showrooms: St. George UT, El Segundo CA
+
+Murphy Bed Depot
+  Phone: 904-823-9255
+  Email: office@murphybeddepot.com
+  Web: murphybeddepot.com
+
+BredaBeds
+  Web: bredabeds.com
+  Promo: 20% off + free shipping (current)
+
+Wayfair
+  Web: wayfair.com (search "king size murphy bed")
+
+Amazon
+  Web: amazon.com (search "king size murphy bed")
+
+================================================================================
+RESEARCH METHODOLOGY
+================================================================================
+
+Data Collection:
+  - 15+ targeted web searches
+  - 2 direct website fetches
+  - 600+ customer reviews analyzed
+  - 5 distribution channels evaluated
+  - 10+ product models reviewed
+
+Coverage:
+  - 8+ brands detailed
+  - 5 major distribution channels
+  - Historical pricing 2018-2025
+  - Current market trends
+  - Customer review synthesis
+
+Accuracy:
+  - Multiple source verification
+  - Current as of November 18, 2025
+  - Price ranges from published sources
+  - Ratings from verified review platforms
+  - Specifications from manufacturer websites
+
+================================================================================
+NEXT STEPS
+================================================================================
+
+To Purchase:
+  1. Review RESEARCH_SUMMARY.md
+  2. Determine your priority (quality/value/design/convenience)
+  3. Call 2-3 manufacturers for current quotes
+  4. Budget 6-8 weeks lead time (or use Wayfair for faster)
+  5. Plan for assembly time/cost
+  6. Verify warranty details
+
+To Analyze Further:
+  1. Read INDEX.md for document organization
+  2. Review competitive positioning in perplexity-003 (Section 9)
+  3. Examine pricing comparison (Section 3)
+  4. Analyze market gaps (Section 11)
+  5. Review purchasing guides (Section 10)
+
+To Keep Updated:
+  1. Subscribe to brand email lists
+  2. Monitor Wayfair and Amazon for promotions
+  3. Check for new king-size entrants
+  4. Follow customer review updates
+  5. Verify lead times and current offers
+
+================================================================================
+DOCUMENT CURRENCY
+================================================================================
+
+Compiled: November 18, 2025
+Valid Through: December 2025 (pricing estimates)
+Review Status: Current with real-time data
+Promotion Status: BredaBeds 20% offer current, others may vary
+Lead Times: Subject to seasonal variations
+
+For updates:
+- Contact brands directly for current pricing
+- Check Wayfair/Amazon for promotional updates
+- Verify lead times 2-4 weeks before purchase
+- Confirm warranty terms with manufacturer
+
+================================================================================
+
+Primary Research Document:
+raw-outputs/perplexity-003-dtc-brands.md
+
+This document provides the most comprehensive analysis of king-size Murphy bed
+DTC brands, including detailed pricing, customer reviews, competitive analysis,
+and scenario-based purchasing recommendations.
+
+Start with INDEX.md or RESEARCH_SUMMARY.md for navigation and quick overview.
+
+================================================================================

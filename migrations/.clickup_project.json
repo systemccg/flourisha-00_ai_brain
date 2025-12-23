@@ -1,0 +1,34 @@
+{
+  "initialized": true,
+  "created_at": "2025-12-14T00:00:00Z",
+  "space_id": "14700061",
+  "folder_id": "90117368142",
+  "list_id": "901112669718",
+  "list_name": "Airtable → Supabase Migration",
+  "meta_task_id": "868gqmrh8",
+  "total_tasks": 19,
+  "project": {
+    "name": "MyRemoteLender Universal Document Management Migration",
+    "source": "Airtable",
+    "destination": "Supabase",
+    "tables": 18,
+    "fields": 458
+  },
+  "phases": {
+    "phase1": "Foundation - Mirror Airtable in Supabase",
+    "phase2": "Knowledge Graph Integration",
+    "phase3": "Make.com Migration",
+    "phase4": "Schema.org Alignment"
+  },
+  "key_files": {
+    "plan": "/root/.claude/plans/dazzling-squishing-hare.md",
+    "schema": "/root/flourisha/00_AI_Brain/migrations/airtable_schema.json",
+    "sql": "/root/flourisha/00_AI_Brain/migrations/mrl_tables.sql",
+    "ontology": "/root/flourisha/00_AI_Brain/services/ontology.py"
+  },
+  "airtable": {
+    "base_id": "appRqMOXMBKmPh02V",
+    "base_name": "MyRemoteLender (backup.2024-10-13)"
+  },
+  "notes": "Multi-phase migration preserving Make.com compatibility"
+}

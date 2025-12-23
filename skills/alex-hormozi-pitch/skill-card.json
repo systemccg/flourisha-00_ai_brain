@@ -1,0 +1,85 @@
+{
+  "protocolVersion": "0.1.0",
+  "provider": {
+    "name": "Flourisha AI Brain",
+    "url": "https://flourisha.local",
+    "organization": "Personal AI Infrastructure"
+  },
+  "agent": {
+    "id": "alex-hormozi-pitch",
+    "name": "Alex Hormozi Pitch Creator",
+    "version": "1.0.0",
+    "description": "Create irresistible offers and pitches using Alex Hormozi's methodology from $100M Offers. Guides through value equation, guarantee frameworks, pricing psychology, and creating offers too good not to take.",
+    "url": "file:///root/flourisha/00_AI_Brain/skills/alex-hormozi-pitch"
+  },
+  "capabilities": {
+    "streaming": false,
+    "pushNotifications": false,
+    "stateTransitionHistory": false,
+    "extensions": ["slash-command-integration"]
+  },
+  "skills": [
+    {
+      "id": "create-hormozi-offer",
+      "description": "Generate complete Grand Slam Offer using value equation and guarantee frameworks",
+      "tags": ["sales", "offers", "pricing", "guarantees", "hormozi", "value-equation"],
+      "examples": [
+        "Create offer for online course about productivity",
+        "Design high-ticket consulting proposal with guarantee",
+        "Build value stack for SaaS product launch"
+      ],
+      "inputModes": {
+        "text/plain": true,
+        "application/json": true
+      },
+      "outputModes": {
+        "text/markdown": true,
+        "application/json": true
+      },
+      "securitySchemes": []
+    },
+    {
+      "id": "optimize-value-equation",
+      "description": "Calculate and optimize Value = (Dream Outcome × Likelihood) / (Time × Effort)",
+      "tags": ["value-equation", "optimization", "pricing"],
+      "examples": [
+        "Optimize value equation for SaaS product",
+        "Maximize perceived value for coaching program"
+      ],
+      "inputModes": {
+        "application/json": true
+      },
+      "outputModes": {
+        "application/json": true,
+        "text/markdown": true
+      }
+    },
+    {
+      "id": "design-guarantee",
+      "description": "Select and structure guarantee type (unconditional, conditional, outcome-based, anti)",
+      "tags": ["guarantees", "risk-reversal", "conversion"],
+      "examples": [
+        "Design conditional guarantee for coaching program",
+        "Create outcome-based guarantee for consulting"
+      ],
+      "inputModes": {
+        "application/json": true
+      },
+      "outputModes": {
+        "text/markdown": true
+      }
+    }
+  ],
+  "transport": {
+    "preferred": "internal",
+    "endpoints": {
+      "internal": "file:///root/flourisha/00_AI_Brain/skills/alex-hormozi-pitch"
+    }
+  },
+  "securitySchemes": {},
+  "metadata": {
+    "type": "skill",
+    "slashCommand": "/create-hormozi-pitch",
+    "vendor": "multi"
+  }
+}

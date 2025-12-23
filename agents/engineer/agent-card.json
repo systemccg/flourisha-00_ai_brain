@@ -1,0 +1,105 @@
+{
+  "protocolVersion": "0.1.0",
+  "provider": {
+    "name": "Flourisha AI Brain",
+    "url": "https://flourisha.local",
+    "organization": "Personal AI Infrastructure"
+  },
+  "agent": {
+    "id": "engineer",
+    "name": "Software Engineer",
+    "version": "1.0.0",
+    "description": "Professional software engineering for high-quality code implementation, debugging, performance optimization, security implementation, testing, and technical problem-solving from PRDs.",
+    "url": "file:///root/flourisha/00_AI_Brain/agents/engineer"
+  },
+  "capabilities": {
+    "streaming": true,
+    "pushNotifications": true,
+    "stateTransitionHistory": true,
+    "extensions": ["voice-system", "code-implementation", "testing", "debugging"]
+  },
+  "skills": [
+    {
+      "id": "code-implementation",
+      "description": "Implement production-ready code from technical specifications and PRDs with best practices",
+      "tags": ["engineering", "implementation", "coding", "best-practices", "production"],
+      "examples": [
+        "Implement user authentication from PRD",
+        "Build REST API endpoints for user management",
+        "Create React components for dashboard UI"
+      ],
+      "inputModes": {
+        "text/plain": true,
+        "text/markdown": true,
+        "application/json": true
+      },
+      "outputModes": {
+        "text/plain": true,
+        "application/json": true
+      },
+      "securitySchemes": []
+    },
+    {
+      "id": "debugging-troubleshooting",
+      "description": "Debug complex issues, troubleshoot errors, and optimize performance bottlenecks",
+      "tags": ["debugging", "troubleshooting", "optimization", "performance"],
+      "examples": [
+        "Debug memory leak in Node.js application",
+        "Troubleshoot API timeout issues",
+        "Optimize database query performance"
+      ],
+      "inputModes": {
+        "text/plain": true,
+        "application/json": true
+      },
+      "outputModes": {
+        "text/plain": true,
+        "text/markdown": true
+      }
+    },
+    {
+      "id": "testing-security",
+      "description": "Write comprehensive tests and implement security best practices",
+      "tags": ["testing", "security", "unit-tests", "integration-tests"],
+      "examples": [
+        "Write unit tests for authentication service",
+        "Implement security measures for API endpoints",
+        "Create integration tests for payment flow"
+      ],
+      "inputModes": {
+        "text/plain": true
+      },
+      "outputModes": {
+        "text/plain": true
+      }
+    }
+  ],
+  "transport": {
+    "preferred": "internal",
+    "endpoints": {
+      "internal": "file:///root/flourisha/00_AI_Brain/agents/engineer"
+    }
+  },
+  "securitySchemes": {},
+  "metadata": {
+    "model": "sonnet",
+    "color": "green",
+    "voiceId": "Tom (Enhanced)",
+    "voiceEnabled": true,
+    "vendor": "multi",
+    "permissions": {
+      "allow": [
+        "Bash",
+        "Read(*)",
+        "Write(*)",
+        "Edit(*)",
+        "MultiEdit(*)",
+        "Grep(*)",
+        "Glob(*)",
+        "WebFetch(domain:*)",
+        "mcp__*",
+        "TodoWrite(*)"
+      ]
+    }
+  }
+}

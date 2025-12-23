@@ -1,0 +1,101 @@
+#!/usr/bin/env bun
+/**
+ * PAI Speak - Quick TTS utility
+ * Usage: speak "text to speak" [agent-name]
+ */
+
+import { ElevenLabsClient } from "elevenlabs";
+import { createWriteStream } from "fs";
+import { exec } from "child_process";
+import { promisify } from "util";
+
+const execAsync = promisify(exec);
+
+const ELEVENLABS_API_KEY = process.env.ELEVENLABS_API_KEY;
+
+if (!ELEVENLABS_API_KEY) {
+  console.error("❌ ELEVENLABS_API_KEY not set");
+  process.exit(1);
+}
+
+// Default voice ID from .env or use kai's voice
+const DEFAULT_VOICE_ID = process.env.ELEVENLABS_VOICE_ID || "gNbIwdcnM3B17qzBs2JY";
+
+// Agent voice mapping
+const VOICES: Record<string, string> = {
+  kai: "gNbIwdcnM3B17qzBs2JY",
+  researcher: "gNbIwdcnM3B17qzBs2JY",
+  pentester: "gNbIwdcnM3B17qzBs2JY",
+  engineer: "gNbIwdcnM3B17qzBs2JY",
+  architect: "gNbIwdcnM3B17qzBs2JY",
+  designer: "gNbIwdcnM3B17qzBs2JY",
+  artist: "gNbIwdcnM3B17qzBs2JY",
+  writer: "gNbIwdcnM3B17qzBs2JY",
+};
+
+async function speak(text: string, voiceId: string = DEFAULT_VOICE_ID) {
+  const client = new ElevenLabsClient({ apiKey: ELEVENLABS_API_KEY });
+
+  const outputPath = "/tmp/pai-speech.mp3";
+
+  try {
+    console.log(`🎤 Speaking: "${text}"`);
+
+    const audio = await client.textToSpeech.convert(voiceId, {
+      text,
+      model_id: "eleven_monolingual_v1",
+    });
+
+    const writeStream = createWriteStream(outputPath);
+
+    for await (const chunk of audio) {
+      writeStream.write(chunk);
+    }
+
+    writeStream.end();
+
+    // Wait for write to complete
+    await new Promise((resolve) => writeStream.on("finish", resolve));
+
+    console.log(`✅ Audio generated`);
+
+    // Try to play with available players
+    const players = ["ffplay -nodisp -autoexit", "mpg123", "afplay"];
+
+    for (const player of players) {
+      try {
+        await execAsync(`which ${player.split(" ")[0]}`);
+        console.log(`🔊 Playing with ${player.split(" ")[0]}...`);
+        await execAsync(`${player} ${outputPath} 2>/dev/null`);
+        return;
+      } catch {
+        continue;
+      }
+    }
+
+    console.log(`💾 Audio saved to: ${outputPath}`);
+    console.log(`   Play with: ffplay -nodisp -autoexit ${outputPath}`);
+  } catch (error) {
+    console.error(`❌ Error: ${error instanceof Error ? error.message : String(error)}`);
+    process.exit(1);
+  }
+}
+
+// Parse command line args
+const args = process.argv.slice(2);
+
+if (args.length === 0) {
+  console.log("Usage: speak \"text to speak\" [agent-name]");
+  console.log("\nAvailable agents:", Object.keys(VOICES).join(", "));
+  process.exit(1);
+}
+
+const text = args[0];
+const agentName = args[1]?.toLowerCase();
+const voiceId = agentName && VOICES[agentName] ? VOICES[agentName] : DEFAULT_VOICE_ID;
+
+if (agentName && !VOICES[agentName]) {
+  console.warn(`⚠️  Unknown agent "${agentName}", using default voice`);
+}
+
+speak(text, voiceId);

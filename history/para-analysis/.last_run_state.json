@@ -1,0 +1,784 @@
+{
+  "timestamp": "2025-12-23T08:00:03.123434",
+  "file_checksums": {
+    "/root/flourisha/01f_Flourisha_Projects/PROJECT_REGISTRY.md": {
+      "checksum": "2ecb0330bdc21ecb3beb8743643c8bae",
+      "modified": 1765675303.2428222,
+      "size": 2562,
+      "category": "projects"
+    },
+    "/root/flourisha/01f_Flourisha_Projects/auto_sync_test.txt": {
+      "checksum": "118c2561af661f2294696d919fa23c09",
+      "modified": 1763409083.943,
+      "size": 50,
+      "category": "projects"
+    },
+    "/root/flourisha/01f_Flourisha_Projects/flourisha-enhancements/README.md": {
+      "checksum": "5fd3726df14fe96109efb36b81e3488c",
+      "modified": 1763670350.3520586,
+      "size": 5233,
+      "category": "projects"
+    },
+    "/root/flourisha/01f_Flourisha_Projects/flourisha-enhancements/youtube-ideas/2025-12-14_claude-code-for-productivity-do-more-and-better-co.md": {
+      "checksum": "1a48a9b7f7fd1077aad596aa9e731dda",
+      "modified": 1765752198.057,
+      "size": 1918,
+      "category": "projects"
+    },
+    "/root/flourisha/01f_Flourisha_Projects/flourisha-enhancements/youtube-ideas/2025-12-15_how-to-10x-your-notes-obsidian-claude-ai-agents.md": {
+      "checksum": "e92a9989268057bbca4dba5cb9eee5d4",
+      "modified": 1765842502.036,
+      "size": 12120,
+      "category": "projects"
+    },
+    "/root/flourisha/01f_Flourisha_Projects/flourisha-enhancements/youtube-ideas/2025-12-15_claude-code-for-productivity-do-more-and-better-co.md": {
+      "checksum": "0d216218a94f74f9e0f40182423d7e46",
+      "modified": 1765844072.18,
+      "size": 14458,
+      "category": "projects"
+    },
+    "/root/flourisha/01f_Flourisha_Projects/flourisha-enhancements/youtube-learnings/index.md": {
+      "checksum": "40522b9a07a03a052d8bc5feebc57c76",
+      "modified": 1763670351.275047,
+      "size": 1082,
+      "category": "projects"
+    },
+    "/root/flourisha/01f_Flourisha_Projects/flourisha-enhancements/improvement-ideas/index.md": {
+      "checksum": "67574c9b7c3938816f552598abf2043d",
+      "modified": 1763670352.241,
+      "size": 1010,
+      "category": "projects"
+    },
+    "/root/flourisha/01f_Flourisha_Projects/benefits-package/ICHRA Plan Summary.md": {
+      "checksum": "a30843ab388a7216c98509d5b4a49002",
+      "modified": 1765575558.1922898,
+      "size": 2421,
+      "category": "projects"
+    },
+    "/root/flourisha/01f_Flourisha_Projects/benefits-package/Employee Benefits Strategy.md": {
+      "checksum": "373ca539df0a201d74a2a0199c094997",
+      "modified": 1764011002.473,
+      "size": 18244,
+      "category": "projects"
+    },
+    "/root/flourisha/01f_Flourisha_Projects/benefits-package/dental-research/Dental-Plan-Comparison-and-Implant-Research.md": {
+      "checksum": "506ba540b282567676a671fadc369c00",
+      "modified": 1766173687.478438,
+      "size": 10830,
+      "category": "projects"
+    },
+    "/root/flourisha/01f_Flourisha_Projects/murphy-bed-research/FINAL-REPORT-King-Size-Murphy-Bed-Competitors.md": {
+      "checksum": "12f1857c86b028d6f337a18565d211d1",
+      "modified": 1763489332.536083,
+      "size": 15973,
+      "category": "projects"
+    },
+    "/root/flourisha/01f_Flourisha_Projects/murphy-bed-research/RESEARCH_SUMMARY.txt": {
+      "checksum": "d652f2de930e345116b875fda0854db4",
+      "modified": 1763489332.536083,
+      "size": 3139,
+      "category": "projects"
+    },
+    "/root/flourisha/01f_Flourisha_Projects/murphy-bed-research/QUICK-REFERENCE-COMPETITIVE-PRODUCTS.md": {
+      "checksum": "0cbfbefd929a5d8dc68c24c6a00463be",
+      "modified": 1763489332.5370831,
+      "size": 11354,
+      "category": "projects"
+    },
+    "/root/flourisha/01f_Flourisha_Projects/murphy-bed-research/00-READ-ME.txt": {
+      "checksum": "b06f6b1918214c98b17d901dd72b77e5",
+      "modified": 1763489332.5370831,
+      "size": 7704,
+      "category": "projects"
+    },
+    "/root/flourisha/01f_Flourisha_Projects/murphy-bed-research/DELIVERABLE-SUMMARY.txt": {
+      "checksum": "b944a8cea26cfd96fe0a1dfc11aa89ac",
+      "modified": 1763489332.5370831,
+      "size": 11277,
+      "category": "projects"
+    },
+    "/root/flourisha/01f_Flourisha_Projects/murphy-bed-research/README.md": {
+      "checksum": "31a06101526bbdfd88366ccea8c2946f",
+      "modified": 1763489332.5370831,
+      "size": 7060,
+      "category": "projects"
+    },
+    "/root/flourisha/01f_Flourisha_Projects/murphy-bed-research/RESEARCH-SUMMARY.md": {
+      "checksum": "6df3c8816fcf87a0a1255a6e369211cc",
+      "modified": 1763489332.536083,
+      "size": 7736,
+      "category": "projects"
+    },
+    "/root/flourisha/01f_Flourisha_Projects/murphy-bed-research/RESEARCH_SUMMARY.md": {
+      "checksum": "ab23ca3d78ec93b76a5bfebdbc7a2319",
+      "modified": 1763489332.536083,
+      "size": 6645,
+      "category": "projects"
+    },
+    "/root/flourisha/01f_Flourisha_Projects/murphy-bed-research/INDEX.md": {
+      "checksum": "9cd3586afd33336361f8f0d1997fcba3",
+      "modified": 1763489332.536083,
+      "size": 11414,
+      "category": "projects"
+    },
+    "/root/flourisha/01f_Flourisha_Projects/murphy-bed-research/raw-outputs/perplexity-003-dtc-brands.md": {
+      "checksum": "9cca5925bf6f0848c7090f446a23ec80",
+      "modified": 1763489332.535083,
+      "size": 22704,
+      "category": "projects"
+    },
+    "/root/flourisha/01f_Flourisha_Projects/murphy-bed-research/raw-outputs/gemini-003-budget-alternatives.md": {
+      "checksum": "7a96888ef42d97fb2dd4401d4d126aa7",
+      "modified": 1763489332.536083,
+      "size": 17938,
+      "category": "projects"
+    },
+    "/root/flourisha/01f_Flourisha_Projects/murphy-bed-research/raw-outputs/claude-001-premium-brands.md": {
+      "checksum": "f78821cb633e87c3df15290ae6e876b3",
+      "modified": 1763489332.535083,
+      "size": 16213,
+      "category": "projects"
+    },
+    "/root/flourisha/01f_Flourisha_Projects/murphy-bed-research/raw-outputs/claude-003-retailers.md": {
+      "checksum": "822a5c4670e6a1befa513d7fe160dd92",
+      "modified": 1763489332.535083,
+      "size": 11746,
+      "category": "projects"
+    },
+    "/root/flourisha/01f_Flourisha_Projects/murphy-bed-research/raw-outputs/gemini-001-pricing-analysis.md": {
+      "checksum": "055a75bd977dc2d4d35d6380101c5c03",
+      "modified": 1763489332.536083,
+      "size": 19642,
+      "category": "projects"
+    },
+    "/root/flourisha/01f_Flourisha_Projects/murphy-bed-research/raw-outputs/perplexity-001-wilding-baseline.md": {
+      "checksum": "0b8caa830d26759b80f56bec0d5f259a",
+      "modified": 1763489332.536083,
+      "size": 12802,
+      "category": "projects"
+    },
+    "/root/flourisha/01f_Flourisha_Projects/murphy-bed-research/raw-outputs/claude-002-midrange-brands.md": {
+      "checksum": "92a4a1a48bce5a45255f08d099ee9bd5",
+      "modified": 1763489332.535083,
+      "size": 14344,
+      "category": "projects"
+    },
+    "/root/flourisha/01f_Flourisha_Projects/murphy-bed-research/raw-outputs/perplexity-002-top-competitors.md": {
+      "checksum": "c37dae015fcfd506d126af1cfcad6bbc",
+      "modified": 1763489332.535083,
+      "size": 17215,
+      "category": "projects"
+    },
+    "/root/flourisha/01f_Flourisha_Projects/murphy-bed-research/raw-outputs/gemini-002-custom-vs-prefab.md": {
+      "checksum": "7a7bcdeb95f4e5a116ebf7467f9af869",
+      "modified": 1763489332.536083,
+      "size": 23644,
+      "category": "projects"
+    },
+    "/root/flourisha/01f_Flourisha_Projects/industry-trends-study/SOURCES.md": {
+      "checksum": "b6b9194908b019dc945e1694af50671c",
+      "modified": 1763602894.8575459,
+      "size": 1100,
+      "category": "projects"
+    },
+    "/root/flourisha/01f_Flourisha_Projects/industry-trends-study/README.md": {
+      "checksum": "daabd7096fa313df704a4451101e91d4",
+      "modified": 1763603206.862,
+      "size": 1167,
+      "category": "projects"
+    },
+    "/root/flourisha/01f_Flourisha_Projects/industry-trends-study/FINDINGS.md": {
+      "checksum": "5380ef19fc62328eec3953864dab5a42",
+      "modified": 1763602894.8985453,
+      "size": 1214,
+      "category": "projects"
+    },
+    "/root/flourisha/01f_Flourisha_Projects/industry-trends-study/ANALYSIS.md": {
+      "checksum": "2ca532cc5394571f8ce1422c463ed2fc",
+      "modified": 1763602894.924545,
+      "size": 1397,
+      "category": "projects"
+    },
+    "/root/flourisha/01f_Flourisha_Projects/flourisha-app/FRONTEND_ARCHITECTURE.md": {
+      "checksum": "3c825c7807b33dbad5c08874625e255d",
+      "modified": 1765854934.294574,
+      "size": 24061,
+      "category": "projects"
+    },
+    "/root/flourisha/01f_Flourisha_Projects/flourisha-app/UX/coin_flow_animation.jsx": {
+      "checksum": "aec1bde9f0cf0c7c86319b3e7c5cf047",
+      "modified": 1766080799.833,
+      "size": 9708,
+      "category": "projects"
+    },
+    "/root/flourisha/01f_Flourisha_Projects/flourisha-app/UX/motion_path_final.jsx": {
+      "checksum": "ab0c9e668439d39cfcb3cb30b803a185",
+      "modified": 1766081034.331,
+      "size": 8710,
+      "category": "projects"
+    },
+    "/root/flourisha/01f_Flourisha_Projects/cambria-clearness-committee/Kika Masters - Mastermind Session Summary.md": {
+      "checksum": "223d000e94ef2752c7ef53d8c5784b22",
+      "modified": 1763341142.815362,
+      "size": 38100,
+      "category": "projects"
+    },
+    "/root/flourisha/01f_Flourisha_Projects/cambria-clearness-committee/Patrick McNelly - Mastermind Session Summary.md": {
+      "checksum": "cb53ca8a014e215f0a902498aef81da5",
+      "modified": 1763340832.2765436,
+      "size": 33214,
+      "category": "projects"
+    },
+    "/root/flourisha/01f_Flourisha_Projects/cambria-clearness-committee/Cambria Clearness Committee - Inspirational Summaries.md": {
+      "checksum": "23a455e6757e0b930101918bb7489215",
+      "modified": 1763404922.2360172,
+      "size": 16521,
+      "category": "projects"
+    },
+    "/root/flourisha/01f_Flourisha_Projects/cambria-clearness-committee/Greg Wasmuth - Mastermind Session Summary.md": {
+      "checksum": "d8d2442a520b16559b2f995845ae9900",
+      "modified": 1763403120.8863578,
+      "size": 33610,
+      "category": "projects"
+    },
+    "/root/flourisha/01f_Flourisha_Projects/cambria-clearness-committee/Jon Ray - Mastermind Session Summary.md": {
+      "checksum": "c2a7da12a84ffeb32ded92226cdaf96e",
+      "modified": 1763340544.6235209,
+      "size": 26077,
+      "category": "projects"
+    },
+    "/root/flourisha/01f_Flourisha_Projects/cambria-clearness-committee/Joanna Wasmuth - Mastermind Session Summary.md": {
+      "checksum": "a24a1e2f15cf59ce271a6f0420cbed06",
+      "modified": 1763403385.1961296,
+      "size": 38556,
+      "category": "projects"
+    },
+    "/root/flourisha/01f_Flourisha_Projects/cambria-clearness-committee/original transcripts/processed/Susanna Nov 6 at 9-22 PM.txt": {
+      "checksum": "7a7df7e97ff74a4a203fdbc3ceb9f8a7",
+      "modified": 1763402677.149,
+      "size": 44600,
+      "category": "projects"
+    },
+    "/root/flourisha/01f_Flourisha_Projects/cambria-clearness-committee/original transcripts/processed/Greg  Nov 5 at 6-14 PM.txt": {
+      "checksum": "37ff77a73b5696f5b60d1ef20542e079",
+      "modified": 1763402672.531,
+      "size": 42243,
+      "category": "projects"
+    },
+    "/root/flourisha/01f_Flourisha_Projects/cambria-clearness-committee/original transcripts/processed/Patrick Nov 6 at 6-53 PM.txt": {
+      "checksum": "751fa30760bfe710207e8afb6bf408a6",
+      "modified": 1763340249.508,
+      "size": 39097,
+      "category": "projects"
+    },
+    "/root/flourisha/01f_Flourisha_Projects/cambria-clearness-committee/original transcripts/processed/Jon Ray part 1 Nov 5 at 5-08 PM.txt": {
+      "checksum": "c1913e999cb86665c73590a18c615eaa",
+      "modified": 1763340244.983,
+      "size": 41341,
+      "category": "projects"
+    },
+    "/root/flourisha/01f_Flourisha_Projects/cambria-clearness-committee/original transcripts/processed/Kika session - Nov 6 at 8-05 PM.txt": {
+      "checksum": "2c1ca77c7cb47fb7923fe7181b0bea82",
+      "modified": 1763340252.068,
+      "size": 53493,
+      "category": "projects"
+    },
+    "/root/flourisha/01f_Flourisha_Projects/cambria-clearness-committee/original transcripts/processed/Joanna Nov 5 at 7-44 PM.txt": {
+      "checksum": "e12005b16812740bd2467ee72a45c5e8",
+      "modified": 1763402680.925,
+      "size": 43929,
+      "category": "projects"
+    },
+    "/root/flourisha/01f_Flourisha_Projects/cambria-clearness-committee/markdown output/Kika Masters - Mastermind Session Summary.md": {
+      "checksum": "223d000e94ef2752c7ef53d8c5784b22",
+      "modified": 1763341142.815,
+      "size": 38100,
+      "category": "projects"
+    },
+    "/root/flourisha/01f_Flourisha_Projects/cambria-clearness-committee/markdown output/Patrick McNelly - Mastermind Session Summary.md": {
+      "checksum": "cb53ca8a014e215f0a902498aef81da5",
+      "modified": 1763340832.276,
+      "size": 33214,
+      "category": "projects"
+    },
+    "/root/flourisha/01f_Flourisha_Projects/cambria-clearness-committee/markdown output/Cambria Clearness Committee - Inspirational Summaries.md": {
+      "checksum": "23a455e6757e0b930101918bb7489215",
+      "modified": 1763404922.236,
+      "size": 16521,
+      "category": "projects"
+    },
+    "/root/flourisha/01f_Flourisha_Projects/cambria-clearness-committee/markdown output/Susanna Ray - Mastermind Session Summary.md": {
+      "checksum": "8fd9786ec49f4c77c3c3b10c45b56344",
+      "modified": 1763403645.542,
+      "size": 39418,
+      "category": "projects"
+    },
+    "/root/flourisha/01f_Flourisha_Projects/cambria-clearness-committee/markdown output/Greg Wasmuth - Mastermind Session Summary.md": {
+      "checksum": "d8d2442a520b16559b2f995845ae9900",
+      "modified": 1763403120.886,
+      "size": 33610,
+      "category": "projects"
+    },
+    "/root/flourisha/01f_Flourisha_Projects/cambria-clearness-committee/markdown output/Jon Ray - Mastermind Session Summary.md": {
+      "checksum": "c2a7da12a84ffeb32ded92226cdaf96e",
+      "modified": 1763340544.623,
+      "size": 26077,
+      "category": "projects"
+    },
+    "/root/flourisha/01f_Flourisha_Projects/cambria-clearness-committee/markdown output/Joanna Wasmuth - Mastermind Session Summary.md": {
+      "checksum": "a24a1e2f15cf59ce271a6f0420cbed06",
+      "modified": 1763403385.196,
+      "size": 38556,
+      "category": "projects"
+    },
+    "/root/flourisha/01f_Flourisha_Projects/cambria-clearness-committee/unprocessed/Susanna Nov 6 at 9-22 PM.txt": {
+      "checksum": "7a7df7e97ff74a4a203fdbc3ceb9f8a7",
+      "modified": 1763402677.1497264,
+      "size": 44600,
+      "category": "projects"
+    },
+    "/root/flourisha/01f_Flourisha_Projects/cambria-clearness-committee/unprocessed/Greg  Nov 5 at 6-14 PM.txt": {
+      "checksum": "37ff77a73b5696f5b60d1ef20542e079",
+      "modified": 1763402672.5317817,
+      "size": 42243,
+      "category": "projects"
+    },
+    "/root/flourisha/01f_Flourisha_Projects/cambria-clearness-committee/unprocessed/Patrick Nov 6 at 6-53 PM.txt": {
+      "checksum": "751fa30760bfe710207e8afb6bf408a6",
+      "modified": 1763340249.5081983,
+      "size": 39097,
+      "category": "projects"
+    },
+    "/root/flourisha/01f_Flourisha_Projects/cambria-clearness-committee/unprocessed/Jon Ray part 1 Nov 5 at 5-08 PM.txt": {
+      "checksum": "c1913e999cb86665c73590a18c615eaa",
+      "modified": 1763340244.9832547,
+      "size": 41341,
+      "category": "projects"
+    },
+    "/root/flourisha/01f_Flourisha_Projects/cambria-clearness-committee/unprocessed/Kika session - Nov 6 at 8-05 PM.txt": {
+      "checksum": "2c1ca77c7cb47fb7923fe7181b0bea82",
+      "modified": 1763340252.0681663,
+      "size": 53493,
+      "category": "projects"
+    },
+    "/root/flourisha/01f_Flourisha_Projects/cambria-clearness-committee/unprocessed/Joanna Nov 5 at 7-44 PM.txt": {
+      "checksum": "e12005b16812740bd2467ee72a45c5e8",
+      "modified": 1763402680.925681,
+      "size": 43929,
+      "category": "projects"
+    },
+    "/root/flourisha/01f_Flourisha_Projects/claudecodeopportunity/Cover Letter - Greg Wasmuth.md": {
+      "checksum": "8c9239d71ba4e3fc0337baa843e97b99",
+      "modified": 1763489993.6737423,
+      "size": 10704,
+      "category": "projects"
+    },
+    "/root/flourisha/01f_Flourisha_Projects/claudecodeopportunity/Challenges facing Anthropic and their Claude Code Product.md": {
+      "checksum": "8d373a227cb5122714e1fc6588dce355",
+      "modified": 1763485758.677,
+      "size": 18693,
+      "category": "projects"
+    },
+    "/root/flourisha/01f_Flourisha_Projects/claudecodeopportunity/Resume - Greg Wasmuth - Anthropic Head of Marketing.md": {
+      "checksum": "9af6646aee78f69e77d03ebd1ccd800e",
+      "modified": 1763505174.2931867,
+      "size": 13806,
+      "category": "projects"
+    },
+    "/root/flourisha/01f_Flourisha_Projects/claudecodeopportunity/Bio and Resume of Greg Wasmuth.md": {
+      "checksum": "eb7b3425a7a2632d495854721138c8d7",
+      "modified": 1765387400.9862623,
+      "size": 12207,
+      "category": "projects"
+    },
+    "/root/flourisha/01f_Flourisha_Projects/claudecodeopportunity/Job Description-Head of Marketing, Claude Code.md": {
+      "checksum": "85e563aa1acebc4a37d6d410c476c3b4",
+      "modified": 1763485664.51,
+      "size": 7184,
+      "category": "projects"
+    },
+    "/root/flourisha/01f_Flourisha_Projects/claudecodeopportunity/Why Anthropic - Application Response.md": {
+      "checksum": "b6c618fe17ec4193da0159b04b76bfe9",
+      "modified": 1763508250.3837948,
+      "size": 2353,
+      "category": "projects"
+    },
+    "/root/flourisha/01f_Flourisha_Projects/autodoc/LPAA.40-ADD Conditions to cU and Create Emails.blueprint.json": {
+      "checksum": "6a14df91e6179072854d94065ccf3f91",
+      "modified": 1765834475.171,
+      "size": 479277,
+      "category": "projects"
+    },
+    "/root/flourisha/01f_Flourisha_Projects/autodoc/LPAA.50-EVALUATE Docs against Loan.blueprint.json": {
+      "checksum": "11c00fc24a5a18ec9a61553c3950ca37",
+      "modified": 1765834531.29,
+      "size": 298325,
+      "category": "projects"
+    },
+    "/root/flourisha/01f_Flourisha_Projects/autodoc/LPAA.30-PROCESS ALL Docs with AI Agent.blueprint.json": {
+      "checksum": "b08e6363fd56430f724b7f90ff447076",
+      "modified": 1765834492.551,
+      "size": 236768,
+      "category": "projects"
+    },
+    "/root/flourisha/01f_Flourisha_Projects/autodoc/LPAA.10-Create Loan and Predefined Condns.blueprint.json": {
+      "checksum": "be85f94a50dbc5de9847267821025ab7",
+      "modified": 1765834305.019,
+      "size": 685412,
+      "category": "projects"
+    },
+    "/root/flourisha/01f_Flourisha_Projects/autodoc/LPAA.20-INGEST Docs from Email.blueprint.json": {
+      "checksum": "03cc70d3bf4a2ff000ac712a119042da",
+      "modified": 1765834486.369,
+      "size": 197384,
+      "category": "projects"
+    },
+    "/root/flourisha/01f_Flourisha_Projects/gmail-integration/package.json": {
+      "checksum": "fefa65f195708fe04a914ba1b78deac7",
+      "modified": 1765673329.681,
+      "size": 646,
+      "category": "projects"
+    },
+    "/root/flourisha/01f_Flourisha_Projects/gmail-integration/README.md": {
+      "checksum": "92dcd8a18242e194d9fbdd40aa89a580",
+      "modified": 1765646547.367,
+      "size": 3734,
+      "category": "projects"
+    },
+    "/root/flourisha/01f_Flourisha_Projects/gmail-integration/SPECS.md": {
+      "checksum": "84ac1020543ff51d58b43d43809e947e",
+      "modified": 1765678569.3016398,
+      "size": 11458,
+      "category": "projects"
+    },
+    "/root/flourisha/01f_Flourisha_Projects/gmail-integration/DEPLOYMENT.md": {
+      "checksum": "21ac8df4d03616db3ffe3e9e81a95312",
+      "modified": 1765646614.646,
+      "size": 15226,
+      "category": "projects"
+    },
+    "/root/flourisha/01f_Flourisha_Projects/gmail-integration/TESTING.md": {
+      "checksum": "a6e824e5d8fb3b084626ba454b54983e",
+      "modified": 1765646613.414,
+      "size": 9900,
+      "category": "projects"
+    },
+    "/root/flourisha/01f_Flourisha_Projects/gmail-integration/tsconfig.json": {
+      "checksum": "fbd34a207bfc8dcd1710055a029738e0",
+      "modified": 1765673346.807,
+      "size": 601,
+      "category": "projects"
+    },
+    "/root/flourisha/01f_Flourisha_Projects/gmail-integration/ARCHITECTURE.md": {
+      "checksum": "cc1f10193adcd9997cf6e3d24dacc119",
+      "modified": 1765646549.842,
+      "size": 21091,
+      "category": "projects"
+    },
+    "/root/flourisha/01f_Flourisha_Projects/gmail-integration/docs/oauth-flow-diagram.md": {
+      "checksum": "8e1e3d7d7909e325be3ce54ac48c1e3f",
+      "modified": 1765646737.39,
+      "size": 12323,
+      "category": "projects"
+    },
+    "/root/flourisha/01f_Flourisha_Projects/gmail-integration/docs/gmail-api-setup.md": {
+      "checksum": "99c2b0102f6bd5e4c9849d6b76fa6c79",
+      "modified": 1765646735.907,
+      "size": 8546,
+      "category": "projects"
+    },
+    "/root/flourisha/01f_Flourisha_Projects/gmail-integration/docs/label-strategy.md": {
+      "checksum": "1a91e8e1e573f63e79d6b46a47d03910",
+      "modified": 1765646738.637,
+      "size": 11347,
+      "category": "projects"
+    },
+    "/root/flourisha/01f_Flourisha_Projects/gmail-integration/docs/rag-integration.md": {
+      "checksum": "990297eceb9e108e20ebb9defb759e7d",
+      "modified": 1765646740.019,
+      "size": 18750,
+      "category": "projects"
+    },
+    "/root/flourisha/01f_Flourisha_Projects/docker-sandbox-template/docker-compose.yml": {
+      "checksum": "087524fd58a51e6551452428bb84eb96",
+      "modified": 1764883209.9892163,
+      "size": 444,
+      "category": "projects"
+    },
+    "/root/flourisha/01f_Flourisha_Projects/usa-for-iom/IOM 11-21 Board Meeting Preparation (1).md": {
+      "checksum": "89e0a5f7851c01bfff0e9ee926194700",
+      "modified": 1763753347.934,
+      "size": 4685,
+      "category": "projects"
+    },
+    "/root/flourisha/01f_Flourisha_Projects/usa-for-iom/IOM 11-21 Board Meeting Preparation.md": {
+      "checksum": "e0b43413913137afb2ecd549c96a0029",
+      "modified": 1763748526.81,
+      "size": 26848,
+      "category": "projects"
+    },
+    "/root/flourisha/01f_Flourisha_Projects/usa-for-iom/Strategic plan for USA for iom - Nov 21 at 8_36 AM.md": {
+      "checksum": "64a44917fcf0ab085b9f0ed89adb3af3",
+      "modified": 1763747578.842,
+      "size": 23621,
+      "category": "projects"
+    },
+    "/root/flourisha/01f_Flourisha_Projects/usa-for-iom/Untitled.md": {
+      "checksum": "d5fb8629b6b47ca1d1d71659c66bb60b",
+      "modified": 1763751559.699,
+      "size": 11849,
+      "category": "projects"
+    },
+    "/root/flourisha/01f_Flourisha_Projects/real-estate/Cover Letter.md": {
+      "checksum": "e69058df4ce72e6411906f3b1f07c2dc",
+      "modified": 1764106182.76,
+      "size": 1823,
+      "category": "projects"
+    },
+    "/root/flourisha/02f_Flourisha_Areas/Marketing/FLOURISHA_GTM_STRATEGY.md": {
+      "checksum": "9e3009b0e07adcaec20c4cca597dcf85",
+      "modified": 1765852383.02013,
+      "size": 13870,
+      "category": "areas"
+    },
+    "/root/flourisha/03f_Flourisha_Resources/Project_Templates/README.md": {
+      "checksum": "a9775a11576e3c2ff66f1baa7343e148",
+      "modified": 1763602210.7483125,
+      "size": 1982,
+      "category": "resources"
+    },
+    "/root/flourisha/03f_Flourisha_Resources/Project_Templates/general-project/TASKS.md": {
+      "checksum": "9ac492c80ef93cc5a355e296c6db93ca",
+      "modified": 1763602233.5800197,
+      "size": 328,
+      "category": "resources"
+    },
+    "/root/flourisha/03f_Flourisha_Resources/Project_Templates/general-project/RESOURCES.md": {
+      "checksum": "61aeee53aed0e751b14db58db70cc58e",
+      "modified": 1763602236.1739864,
+      "size": 483,
+      "category": "resources"
+    },
+    "/root/flourisha/03f_Flourisha_Resources/Project_Templates/general-project/README.md": {
+      "checksum": "0ba0ada2ec5ff51b61ab9adaef51bc5e",
+      "modified": 1763602231.3860478,
+      "size": 1221,
+      "category": "resources"
+    },
+    "/root/flourisha/03f_Flourisha_Resources/Project_Templates/general-project/NOTES.md": {
+      "checksum": "8098c71efa0c0a3cc67176c2a06142e7",
+      "modified": 1763602234.966002,
+      "size": 486,
+      "category": "resources"
+    },
+    "/root/flourisha/03f_Flourisha_Resources/Project_Templates/client-project/README.md": {
+      "checksum": "268d9abb6f112d94a8e3e48702ab4df6",
+      "modified": 1763602263.1816404,
+      "size": 1403,
+      "category": "resources"
+    },
+    "/root/flourisha/03f_Flourisha_Resources/Project_Templates/client-project/INVOICES.md": {
+      "checksum": "67996884940beb2bb067a04152858e37",
+      "modified": 1763602265.696608,
+      "size": 980,
+      "category": "resources"
+    },
+    "/root/flourisha/03f_Flourisha_Resources/Project_Templates/client-project/DELIVERABLES.md": {
+      "checksum": "22f476ccab6c2fb81bf4db518525fc06",
+      "modified": 1763602264.998617,
+      "size": 916,
+      "category": "resources"
+    },
+    "/root/flourisha/03f_Flourisha_Resources/Project_Templates/client-project/MEETINGS.md": {
+      "checksum": "e6372aa957b7efb7505624507f4d1ec9",
+      "modified": 1763602264.0946286,
+      "size": 539,
+      "category": "resources"
+    },
+    "/root/flourisha/03f_Flourisha_Resources/Project_Templates/research-project/SOURCES.md": {
+      "checksum": "7c414f7f5b36c892eafcc0fc92923827",
+      "modified": 1763602301.9751432,
+      "size": 1081,
+      "category": "resources"
+    },
+    "/root/flourisha/03f_Flourisha_Resources/Project_Templates/research-project/README.md": {
+      "checksum": "76737a5ada182cbc1bfbf2e3c2d987db",
+      "modified": 1763602300.962156,
+      "size": 1177,
+      "category": "resources"
+    },
+    "/root/flourisha/03f_Flourisha_Resources/Project_Templates/research-project/FINDINGS.md": {
+      "checksum": "3041a27baf75564a2dad8ec989954f02",
+      "modified": 1763602302.8261323,
+      "size": 1203,
+      "category": "resources"
+    },
+    "/root/flourisha/03f_Flourisha_Resources/Project_Templates/research-project/ANALYSIS.md": {
+      "checksum": "8e8a8dc9ceb40c47b65aa0d1d5d20a5b",
+      "modified": 1763602303.691121,
+      "size": 1386,
+      "category": "resources"
+    },
+    "/root/flourisha/03f_Flourisha_Resources/Project_Templates/development-project/README.md": {
+      "checksum": "0592335589cf7a371bcc204f8003953a",
+      "modified": 1763602357.551431,
+      "size": 1774,
+      "category": "resources"
+    },
+    "/root/flourisha/03f_Flourisha_Resources/Project_Templates/development-project/SPECS.md": {
+      "checksum": "dd30907a71ea34a16ed25a1ed66d4b89",
+      "modified": 1763602358.2614217,
+      "size": 1905,
+      "category": "resources"
+    },
+    "/root/flourisha/03f_Flourisha_Resources/Project_Templates/development-project/DEPLOYMENT.md": {
+      "checksum": "8a701fb698e38723f0ec035189cae425",
+      "modified": 1763602387.4040482,
+      "size": 4220,
+      "category": "resources"
+    },
+    "/root/flourisha/03f_Flourisha_Resources/Project_Templates/development-project/TESTING.md": {
+      "checksum": "58595b1295cb85211f36cca57ec00166",
+      "modified": 1763602359.9324002,
+      "size": 2801,
+      "category": "resources"
+    },
+    "/root/flourisha/03f_Flourisha_Resources/Project_Templates/development-project/ARCHITECTURE.md": {
+      "checksum": "f6aabe2d51cf469cfc4fdc6d51facca1",
+      "modified": 1763602359.1294107,
+      "size": 2620,
+      "category": "resources"
+    },
+    "/root/flourisha/03f_Flourisha_Resources/youtube-learnings/2025-12/2025-12-13_long-running-agents-claude-sdk-linear.md": {
+      "checksum": "45cb95687868a470a8762ff9cad1a762",
+      "modified": 1765733957.2711577,
+      "size": 8640,
+      "category": "resources"
+    },
+    "/root/flourisha/03f_Flourisha_Resources/Content_Intelligence/YouTube/2025-11-22_test_video_introduction_to_fastapi_test_con.md": {
+      "checksum": "8345141a48666e53add9b5a97c0f2c6d",
+      "modified": 1763835732.5027788,
+      "size": 811,
+      "category": "resources"
+    }
+  },
+  "project_priorities": {
+    "flourisha-enhancements": {
+      "project": "flourisha-enhancements",
+      "priority_level": "Urgent",
+      "priority_score": 8.0,
+      "factors": {},
+      "deadline": null,
+      "last_activity": "2025-12-15T16:25:24.980092",
+      "activity_level": "Low"
+    },
+    "benefits-package": {
+      "project": "benefits-package",
+      "priority_level": "Normal",
+      "priority_score": 5.0,
+      "factors": {},
+      "deadline": null,
+      "last_activity": "2025-12-19T11:48:07.478438",
+      "activity_level": "High"
+    },
+    "murphy-bed-research": {
+      "project": "murphy-bed-research",
+      "priority_level": "Normal",
+      "priority_score": 5.0,
+      "factors": {},
+      "deadline": null,
+      "last_activity": "2025-11-18T10:08:52.537083",
+      "activity_level": "Low"
+    },
+    "industry-trends-study": {
+      "project": "industry-trends-study",
+      "priority_level": "Normal",
+      "priority_score": 5.0,
+      "factors": {},
+      "deadline": null,
+      "last_activity": "2025-11-19T17:46:46.862000",
+      "activity_level": "Low"
+    },
+    "flourisha-app": {
+      "project": "flourisha-app",
+      "priority_level": "Normal",
+      "priority_score": 5.0,
+      "factors": {},
+      "deadline": null,
+      "last_activity": "2025-12-19T09:44:40.083000",
+      "activity_level": "High"
+    },
+    "cambria-clearness-committee": {
+      "project": "cambria-clearness-committee",
+      "priority_level": "Normal",
+      "priority_score": 5.0,
+      "factors": {},
+      "deadline": null,
+      "last_activity": "2025-11-17T11:18:54.334000",
+      "activity_level": "Low"
+    },
+    "claudecodeopportunity": {
+      "project": "claudecodeopportunity",
+      "priority_level": "Normal",
+      "priority_score": 5.0,
+      "factors": {},
+      "deadline": null,
+      "last_activity": "2025-12-10T09:37:10.686000",
+      "activity_level": "Low"
+    },
+    "autodoc": {
+      "project": "autodoc",
+      "priority_level": "Normal",
+      "priority_score": 5.0,
+      "factors": {},
+      "deadline": null,
+      "last_activity": "2025-12-15T13:35:31.290000",
+      "activity_level": "Low"
+    },
+    "gmail-integration": {
+      "project": "gmail-integration",
+      "priority_level": "Normal",
+      "priority_score": 5.0,
+      "factors": {},
+      "deadline": null,
+      "last_activity": "2025-12-13T18:16:09.301640",
+      "activity_level": "Low"
+    },
+    "docker-sandbox-template": {
+      "project": "docker-sandbox-template",
+      "priority_level": "Normal",
+      "priority_score": 5.0,
+      "factors": {},
+      "deadline": null,
+      "last_activity": "2025-12-04T13:27:52.472023",
+      "activity_level": "Low"
+    },
+    "usa-for-iom": {
+      "project": "usa-for-iom",
+      "priority_level": "Normal",
+      "priority_score": 5.0,
+      "factors": {},
+      "deadline": null,
+      "last_activity": "2025-11-22T09:21:10.819000",
+      "activity_level": "Low"
+    },
+    "Content_Intelligence": {
+      "project": "Content_Intelligence",
+      "priority_level": "Normal",
+      "priority_score": 5.0,
+      "factors": {},
+      "deadline": null,
+      "last_activity": "2025-11-22T10:22:12.503779",
+      "activity_level": "Low"
+    },
+    "real-estate": {
+      "project": "real-estate",
+      "priority_level": "Normal",
+      "priority_score": 5.0,
+      "factors": {},
+      "deadline": null,
+      "last_activity": "2025-11-25T13:29:42.760000",
+      "activity_level": "Low"
+    }
+  }
+}

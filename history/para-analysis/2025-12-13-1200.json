@@ -1,0 +1,250 @@
+{
+  "timestamp": "2025-12-13T12:00:03.351656",
+  "since_last_run": "2025-12-13T08:00:02.748089",
+  "run_interval_hours": 4.0,
+  "changes": {
+    "new_files": [
+      {
+        "path": "/root/flourisha/01f_Flourisha_Projects/gmail-integration/README.md",
+        "category": "projects",
+        "size": 3734,
+        "created": "2025-12-13T09:22:27.367097"
+      },
+      {
+        "path": "/root/flourisha/01f_Flourisha_Projects/gmail-integration/SPECS.md",
+        "category": "projects",
+        "size": 11370,
+        "created": "2025-12-13T09:22:28.572084"
+      },
+      {
+        "path": "/root/flourisha/01f_Flourisha_Projects/gmail-integration/DEPLOYMENT.md",
+        "category": "projects",
+        "size": 15226,
+        "created": "2025-12-13T09:23:34.646340"
+      },
+      {
+        "path": "/root/flourisha/01f_Flourisha_Projects/gmail-integration/TESTING.md",
+        "category": "projects",
+        "size": 9900,
+        "created": "2025-12-13T09:23:33.414354"
+      },
+      {
+        "path": "/root/flourisha/01f_Flourisha_Projects/gmail-integration/ARCHITECTURE.md",
+        "category": "projects",
+        "size": 21091,
+        "created": "2025-12-13T09:22:29.842069"
+      },
+      {
+        "path": "/root/flourisha/01f_Flourisha_Projects/gmail-integration/docs/oauth-flow-diagram.md",
+        "category": "projects",
+        "size": 12323,
+        "created": "2025-12-13T09:25:37.390918"
+      },
+      {
+        "path": "/root/flourisha/01f_Flourisha_Projects/gmail-integration/docs/gmail-api-setup.md",
+        "category": "projects",
+        "size": 8546,
+        "created": "2025-12-13T09:25:35.907935"
+      },
+      {
+        "path": "/root/flourisha/01f_Flourisha_Projects/gmail-integration/docs/label-strategy.md",
+        "category": "projects",
+        "size": 11347,
+        "created": "2025-12-13T09:25:38.637903"
+      },
+      {
+        "path": "/root/flourisha/01f_Flourisha_Projects/gmail-integration/docs/rag-integration.md",
+        "category": "projects",
+        "size": 18750,
+        "created": "2025-12-13T09:25:40.019887"
+      }
+    ],
+    "modified_files": [
+      {
+        "path": "/root/flourisha/01f_Flourisha_Projects/PROJECT_REGISTRY.md",
+        "category": "projects",
+        "size": 3107,
+        "modified": "2025-12-13T09:25:52.391741"
+      }
+    ],
+    "deleted_files": [],
+    "moved_files": []
+  },
+  "project_activity": {
+    "flourisha-enhancements": {
+      "files_changed": 0,
+      "priority": {
+        "project": "flourisha-enhancements",
+        "priority_level": "Urgent",
+        "priority_score": 8.0,
+        "factors": {},
+        "deadline": null,
+        "last_activity": "2025-11-20T12:25:52.241035",
+        "activity_level": "Low"
+      },
+      "activity_level": "Low"
+    },
+    "benefits-package": {
+      "files_changed": 0,
+      "priority": {
+        "project": "benefits-package",
+        "priority_level": "Normal",
+        "priority_score": 5.0,
+        "factors": {},
+        "deadline": null,
+        "last_activity": "2025-12-12T13:39:18.192290",
+        "activity_level": "Urgent"
+      },
+      "activity_level": "Low"
+    },
+    "murphy-bed-research": {
+      "files_changed": 0,
+      "priority": {
+        "project": "murphy-bed-research",
+        "priority_level": "Normal",
+        "priority_score": 5.0,
+        "factors": {},
+        "deadline": null,
+        "last_activity": "2025-11-18T10:08:52.537083",
+        "activity_level": "Low"
+      },
+      "activity_level": "Low"
+    },
+    "industry-trends-study": {
+      "files_changed": 0,
+      "priority": {
+        "project": "industry-trends-study",
+        "priority_level": "Normal",
+        "priority_score": 5.0,
+        "factors": {},
+        "deadline": null,
+        "last_activity": "2025-11-19T17:46:46.862000",
+        "activity_level": "Low"
+      },
+      "activity_level": "Low"
+    },
+    "flourisha-app": {
+      "files_changed": 0,
+      "priority": {
+        "project": "flourisha-app",
+        "priority_level": "Normal",
+        "priority_score": 5.0,
+        "factors": {},
+        "deadline": null,
+        "last_activity": "2025-12-10T14:58:53.445758",
+        "activity_level": "High"
+      },
+      "activity_level": "Low"
+    },
+    "cambria-clearness-committee": {
+      "files_changed": 0,
+      "priority": {
+        "project": "cambria-clearness-committee",
+        "priority_level": "Normal",
+        "priority_score": 5.0,
+        "factors": {},
+        "deadline": null,
+        "last_activity": "2025-11-17T11:18:54.334000",
+        "activity_level": "Low"
+      },
+      "activity_level": "Low"
+    },
+    "claudecodeopportunity": {
+      "files_changed": 0,
+      "priority": {
+        "project": "claudecodeopportunity",
+        "priority_level": "Normal",
+        "priority_score": 5.0,
+        "factors": {},
+        "deadline": null,
+        "last_activity": "2025-12-10T09:37:10.686000",
+        "activity_level": "High"
+      },
+      "activity_level": "Low"
+    },
+    "gmail-integration": {
+      "files_changed": 9,
+      "priority": {
+        "project": "gmail-integration",
+        "priority_level": "Normal",
+        "priority_score": 5.0,
+        "factors": {},
+        "deadline": null,
+        "last_activity": "2025-12-13T09:25:40.019887",
+        "activity_level": "Urgent"
+      },
+      "activity_level": "High"
+    },
+    "docker-sandbox-template": {
+      "files_changed": 0,
+      "priority": {
+        "project": "docker-sandbox-template",
+        "priority_level": "Normal",
+        "priority_score": 5.0,
+        "factors": {},
+        "deadline": null,
+        "last_activity": "2025-12-04T13:27:52.472023",
+        "activity_level": "Low"
+      },
+      "activity_level": "Low"
+    },
+    "usa-for-iom": {
+      "files_changed": 0,
+      "priority": {
+        "project": "usa-for-iom",
+        "priority_level": "Normal",
+        "priority_score": 5.0,
+        "factors": {},
+        "deadline": null,
+        "last_activity": "2025-11-22T09:21:10.819000",
+        "activity_level": "Low"
+      },
+      "activity_level": "Low"
+    },
+    "Content_Intelligence": {
+      "files_changed": 0,
+      "priority": {
+        "project": "Content_Intelligence",
+        "priority_level": "Normal",
+        "priority_score": 5.0,
+        "factors": {},
+        "deadline": null,
+        "last_activity": "2025-11-22T10:22:12.503779",
+        "activity_level": "Low"
+      },
+      "activity_level": "Low"
+    },
+    "real-estate": {
+      "files_changed": 0,
+      "priority": {
+        "project": "real-estate",
+        "priority_level": "Normal",
+        "priority_score": 5.0,
+        "factors": {},
+        "deadline": null,
+        "last_activity": "2025-11-25T13:29:42.760000",
+        "activity_level": "Low"
+      },
+      "activity_level": "Low"
+    }
+  },
+  "priority_changes": [],
+  "cross_references": [],
+  "summary": {
+    "total_files_tracked": 94,
+    "total_changes": 10,
+    "active_projects": 1,
+    "urgent_projects": [
+      "flourisha-enhancements"
+    ]
+  },
+  "metadata": {
+    "analyzer_version": "1.0.0",
+    "para_folders": {
+      "projects": "/root/flourisha/01f_Flourisha_Projects",
+      "areas": "/root/flourisha/02f_Flourisha_Areas",
+      "resources": "/root/flourisha/03f_Flourisha_Resources",
+      "archives": "/root/flourisha/04f_Flourisha_Archives"
+    }
+  }
+}

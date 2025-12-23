@@ -1,0 +1,175 @@
+{
+  "timestamp": "2025-12-10T12:00:05.195169",
+  "since_last_run": "2025-12-10T08:00:05.029776",
+  "run_interval_hours": 4.0,
+  "changes": {
+    "new_files": [],
+    "modified_files": [],
+    "deleted_files": [],
+    "moved_files": []
+  },
+  "project_activity": {
+    "flourisha-enhancements": {
+      "files_changed": 0,
+      "priority": {
+        "project": "flourisha-enhancements",
+        "priority_level": "Urgent",
+        "priority_score": 8.0,
+        "factors": {},
+        "deadline": null,
+        "last_activity": "2025-11-20T21:25:52.241035",
+        "activity_level": "Low"
+      },
+      "activity_level": "Low"
+    },
+    "benefits-package": {
+      "files_changed": 0,
+      "priority": {
+        "project": "benefits-package",
+        "priority_level": "Normal",
+        "priority_score": 5.0,
+        "factors": {},
+        "deadline": null,
+        "last_activity": "2025-11-24T20:03:22.473000",
+        "activity_level": "Low"
+      },
+      "activity_level": "Low"
+    },
+    "murphy-bed-research": {
+      "files_changed": 0,
+      "priority": {
+        "project": "murphy-bed-research",
+        "priority_level": "Normal",
+        "priority_score": 5.0,
+        "factors": {},
+        "deadline": null,
+        "last_activity": "2025-11-18T19:08:52.537083",
+        "activity_level": "Low"
+      },
+      "activity_level": "Low"
+    },
+    "industry-trends-study": {
+      "files_changed": 0,
+      "priority": {
+        "project": "industry-trends-study",
+        "priority_level": "Normal",
+        "priority_score": 5.0,
+        "factors": {},
+        "deadline": null,
+        "last_activity": "2025-11-20T02:46:46.862000",
+        "activity_level": "Low"
+      },
+      "activity_level": "Low"
+    },
+    "flourisha-app": {
+      "files_changed": 0,
+      "priority": {
+        "project": "flourisha-app",
+        "priority_level": "Normal",
+        "priority_score": 5.0,
+        "factors": {},
+        "deadline": null,
+        "last_activity": null,
+        "activity_level": "Low"
+      },
+      "activity_level": "Low"
+    },
+    "cambria-clearness-committee": {
+      "files_changed": 0,
+      "priority": {
+        "project": "cambria-clearness-committee",
+        "priority_level": "Normal",
+        "priority_score": 5.0,
+        "factors": {},
+        "deadline": null,
+        "last_activity": "2025-11-17T20:18:54.334000",
+        "activity_level": "Low"
+      },
+      "activity_level": "Low"
+    },
+    "claudecodeopportunity": {
+      "files_changed": 0,
+      "priority": {
+        "project": "claudecodeopportunity",
+        "priority_level": "Normal",
+        "priority_score": 5.0,
+        "factors": {},
+        "deadline": null,
+        "last_activity": "2025-11-19T00:24:10.383795",
+        "activity_level": "Low"
+      },
+      "activity_level": "Low"
+    },
+    "docker-sandbox-template": {
+      "files_changed": 0,
+      "priority": {
+        "project": "docker-sandbox-template",
+        "priority_level": "Normal",
+        "priority_score": 5.0,
+        "factors": {},
+        "deadline": null,
+        "last_activity": "2025-12-04T22:27:52.472023",
+        "activity_level": "High"
+      },
+      "activity_level": "Low"
+    },
+    "usa-for-iom": {
+      "files_changed": 0,
+      "priority": {
+        "project": "usa-for-iom",
+        "priority_level": "Normal",
+        "priority_score": 5.0,
+        "factors": {},
+        "deadline": null,
+        "last_activity": "2025-11-22T18:21:10.819000",
+        "activity_level": "Low"
+      },
+      "activity_level": "Low"
+    },
+    "Content_Intelligence": {
+      "files_changed": 0,
+      "priority": {
+        "project": "Content_Intelligence",
+        "priority_level": "Normal",
+        "priority_score": 5.0,
+        "factors": {},
+        "deadline": null,
+        "last_activity": "2025-11-22T19:22:12.503779",
+        "activity_level": "Low"
+      },
+      "activity_level": "Low"
+    },
+    "real-estate": {
+      "files_changed": 0,
+      "priority": {
+        "project": "real-estate",
+        "priority_level": "Normal",
+        "priority_score": 5.0,
+        "factors": {},
+        "deadline": null,
+        "last_activity": "2025-11-25T22:29:42.760000",
+        "activity_level": "Low"
+      },
+      "activity_level": "Low"
+    }
+  },
+  "priority_changes": [],
+  "cross_references": [],
+  "summary": {
+    "total_files_tracked": 84,
+    "total_changes": 0,
+    "active_projects": 0,
+    "urgent_projects": [
+      "flourisha-enhancements"
+    ]
+  },
+  "metadata": {
+    "analyzer_version": "1.0.0",
+    "para_folders": {
+      "projects": "/root/flourisha/01f_Flourisha_Projects",
+      "areas": "/root/flourisha/02f_Flourisha_Areas",
+      "resources": "/root/flourisha/03f_Flourisha_Resources",
+      "archives": "/root/flourisha/04f_Flourisha_Archives"
+    }
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "protocolVersion": "0.1.0",
+  "provider": {
+    "name": "Flourisha AI Brain",
+    "url": "https://flourisha.local",
+    "organization": "Personal AI Infrastructure"
+  },
+  "agent": {
+    "id": "research",
+    "name": "Research Orchestration",
+    "version": "1.0.0",
+    "description": "Multi-source comprehensive research using perplexity-researcher, claude-researcher, and gemini-researcher agents. Three modes: Quick (3 agents), Standard (9 agents), Extensive (24 agents).",
+    "url": "file:///root/flourisha/00_AI_Brain/skills/research"
+  },
+  "capabilities": {
+    "streaming": true,
+    "pushNotifications": true,
+    "stateTransitionHistory": true,
+    "extensions": ["multi-agent-orchestration", "parallel-execution"]
+  },
+  "skills": [
+    {
+      "id": "multi-source-research",
+      "description": "Orchestrate parallel research across multiple specialized agents for comprehensive findings",
+      "tags": ["research", "orchestration", "parallel", "multi-source", "comprehensive"],
+      "examples": [
+        "Do research on AI agent frameworks",
+        "Quick research on latest web development trends",
+        "Extensive research on cloud infrastructure options"
+      ],
+      "inputModes": {
+        "text/plain": true,
+        "application/json": true
+      },
+      "outputModes": {
+        "text/markdown": true,
+        "application/json": true
+      },
+      "securitySchemes": []
+    }
+  ],
+  "transport": {
+    "preferred": "internal",
+    "endpoints": {
+      "internal": "file:///root/flourisha/00_AI_Brain/skills/research"
+    }
+  },
+  "securitySchemes": {},
+  "metadata": {
+    "type": "skill",
+    "modes": {
+      "quick": "3 agents - Fast basic research",
+      "standard": "9 agents - Comprehensive research",
+      "extensive": "24 agents with be-creative skill"
+    },
+    "vendor": "multi"
+  }
+}

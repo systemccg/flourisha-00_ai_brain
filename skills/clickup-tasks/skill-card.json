@@ -1,0 +1,65 @@
+{
+  "protocolVersion": "0.1.0",
+  "provider": {
+    "name": "Flourisha AI Brain",
+    "url": "https://leadingai.info"
+  },
+  "agent": {
+    "id": "clickup-tasks",
+    "name": "ClickUp Task Management",
+    "description": "Manage coding projects with ClickUp for task tracking. Supports quick operations (check tasks, update status) and autonomous coding mode (multi-session project development).",
+    "version": "1.0.0"
+  },
+  "capabilities": {
+    "streaming": false,
+    "stateManagement": true,
+    "pushNotifications": false
+  },
+  "skills": [
+    {
+      "id": "check-tasks",
+      "description": "Check task progress and status in ClickUp",
+      "triggers": ["check clickup", "task progress", "what tasks"],
+      "inputRequired": false
+    },
+    {
+      "id": "update-task",
+      "description": "Update task status, priority, or add comments",
+      "triggers": ["update task", "mark complete", "change status"],
+      "inputRequired": true
+    },
+    {
+      "id": "create-project",
+      "description": "Initialize a new coding project with ClickUp tasks",
+      "triggers": ["create project", "new project tasks", "setup clickup"],
+      "inputRequired": true
+    },
+    {
+      "id": "autonomous-coding",
+      "description": "Run autonomous coding sessions with ClickUp task management",
+      "triggers": ["work autonomously", "build long-term", "autonomous coding"],
+      "inputRequired": true
+    }
+  ],
+  "transport": {
+    "preferred": "internal",
+    "supported": ["internal"]
+  },
+  "authentication": {
+    "required": true,
+    "method": "api_key",
+    "envVars": ["CLICKUP_API_KEY", "CLICKUP_TEAM_ID"]
+  },
+  "dependencies": {
+    "mcpServers": ["@taazkareem/clickup-mcp-server"],
+    "skills": [],
+    "external": []
+  },
+  "metadata": {
+    "type": "skill",
+    "category": "project-management",
+    "tags": ["clickup", "tasks", "autonomous", "coding", "project-management"],
+    "created": "2025-12-08",
+    "author": "Flourisha"
+  }
+}

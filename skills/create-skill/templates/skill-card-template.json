@@ -1,0 +1,22 @@
+{
+  "name": "skill-name",
+  "description": "Clear description of what skill does and when to use it. Should match SKILL.md frontmatter.",
+  "version": "1.0.0",
+  "triggers": [
+    "user phrase that activates this skill",
+    "another trigger phrase",
+    "use this skill when..."
+  ],
+  "capabilities": [
+    "primary-capability",
+    "secondary-capability"
+  ],
+  "requires": {
+    "tools": ["Bash", "Read", "Write"],
+    "mcpServers": ["optional-mcp-server"],
+    "skills": ["optional-dependent-skill"]
+  },
+  "tags": ["tag1", "tag2", "category"],
+  "author": "Flourisha AI Brain",
+  "lastUpdated": "2025-11-20"
+}

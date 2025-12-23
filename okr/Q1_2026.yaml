@@ -1,0 +1,214 @@
+# Flourisha Q1 2026 OKRs
+# Quarterly Objectives and Key Results aligned with 4-department operating system
+# Period: January 1 - March 31, 2026
+
+quarter: Q1_2026
+start_date: 2026-01-01
+end_date: 2026-03-31
+owner: Greg Wasmuth
+
+objectives:
+  # ============================================================================
+  # Objective 1: Strategic Command - Establish Automated Operating Rhythm
+  # ============================================================================
+  - id: obj_1_strategic_command
+    title: "Establish automated operating rhythm"
+    description: |
+      Build foundational operating system with daily roadmaps, weekly OKR reviews,
+      and consistent productivity measurement. Establish baseline habits for the
+      Strategic Command layer to coordinate all other departments effectively.
+    owner: Strategic Command
+    department: strategic_command
+    target_completion: 2026-03-31
+
+    key_results:
+      - id: kr_1_1_daily_roadmap
+        title: "Maintain 90%+ daily roadmap usage"
+        description: "Generate and review morning roadmap at least 6 days per week"
+        target: 90.0
+        unit: "percent"
+        current: 0.0
+        measurement_method: "daily_roadmap_completion_rate"
+
+      - id: kr_1_2_productivity_score
+        title: "Average productivity score ≥ 7.5/10"
+        description: "Maintain high productivity through consistent daily execution"
+        target: 7.5
+        unit: "score"
+        current: 0.0
+        measurement_method: "weekly_avg_productivity_score"
+
+      - id: kr_1_3_okr_reviews
+        title: "Complete weekly OKR reviews 95% of weeks"
+        description: "Review OKR progress and adjust priorities every week"
+        target: 95.0
+        unit: "percent"
+        current: 0.0
+        measurement_method: "weekly_review_completion_rate"
+
+  # ============================================================================
+  # Objective 2: Knowledge Intelligence - Expand Relationship Intelligence
+  # ============================================================================
+  - id: obj_2_knowledge_intelligence
+    title: "Expand knowledge graph and relationship intelligence"
+    description: |
+      Profile all email contacts in knowledge graph, deploy email response agent
+      to assist with replies, and detect relationship patterns across professional
+      network. Build the Knowledge Intelligence foundation for connection insights.
+    owner: Knowledge Intelligence
+    department: knowledge_intelligence
+    target_completion: 2026-03-31
+
+    key_results:
+      - id: kr_2_1_contact_profiling
+        title: "Profile 100% of email contacts"
+        description: "Create knowledge graph profiles for all email contacts with role, company, interaction history"
+        target: 100.0
+        unit: "percent"
+        current: 0.0
+        measurement_method: "contact_profile_coverage"
+
+      - id: kr_2_2_email_agent
+        title: "Email response agent assists 80% of replies"
+        description: "Deploy email agent to draft or suggest responses for majority of emails"
+        target: 80.0
+        unit: "percent"
+        current: 0.0
+        measurement_method: "email_agent_usage_rate"
+
+      - id: kr_2_3_pattern_detection
+        title: "Relationship patterns detected in 50+ connections"
+        description: "Identify clusters, influence paths, and communication patterns across network"
+        target: 50.0
+        unit: "connections"
+        current: 0.0
+        measurement_method: "pattern_analysis_coverage"
+
+  # ============================================================================
+  # Objective 3: Execution Agents - Deploy Specialized Task Automation
+  # ============================================================================
+  - id: obj_3_execution_agents
+    title: "Deploy specialized execution agents for complex tasks"
+    description: |
+      Build and deploy specialized agents for project management, code review,
+      research synthesis, and content creation. Establish the Execution Agents
+      layer to handle complex multi-step workflows autonomously.
+    owner: Execution Agents
+    department: execution_agents
+    target_completion: 2026-03-31
+
+    key_results:
+      - id: kr_3_1_deploy_agents
+        title: "Deploy 5+ specialized execution agents"
+        description: "Create and deploy agents for: project mgmt, code review, research, content, data analysis"
+        target: 5.0
+        unit: "agents"
+        current: 0.0
+        measurement_method: "deployed_agent_count"
+
+      - id: kr_3_2_task_automation
+        title: "Automate 40% of recurring complex tasks"
+        description: "Identify and automate multi-step workflows that currently require manual intervention"
+        target: 40.0
+        unit: "percent"
+        current: 0.0
+        measurement_method: "task_automation_rate"
+
+      - id: kr_3_3_workflow_executions
+        title: "Successfully execute 100+ automated workflows"
+        description: "Demonstrate agent reliability through successful workflow completions"
+        target: 100.0
+        unit: "executions"
+        current: 0.0
+        measurement_method: "successful_workflow_count"
+
+  # ============================================================================
+  # Objective 4: System Evolution - Establish Temporal Agent Factory
+  # ============================================================================
+  - id: obj_4_system_evolution
+    title: "Establish temporal agent factory and continuous improvement"
+    description: |
+      Deploy temporal agents for specialized short-term needs, promote successful
+      agents to permanent roles, and capture learnings to evolve the system.
+      Build the System Evolution layer for continuous adaptation and improvement.
+    owner: System Evolution
+    department: system_evolution
+    target_completion: 2026-03-31
+
+    key_results:
+      - id: kr_4_1_temporal_agents
+        title: "Deploy 10+ temporal agents"
+        description: "Create on-demand agents for specific projects or time-bound needs"
+        target: 10.0
+        unit: "agents"
+        current: 0.0
+        measurement_method: "temporal_agent_deployments"
+
+      - id: kr_4_2_promotions
+        title: "2+ agents promoted to permanent"
+        description: "Identify high-value temporal agents and promote to permanent specialized roles"
+        target: 2.0
+        unit: "agents"
+        current: 0.0
+        measurement_method: "agent_promotions"
+
+      - id: kr_4_3_learnings
+        title: "Capture 50+ agent learnings and improvements"
+        description: "Document patterns, failures, and improvements from agent operations"
+        target: 50.0
+        unit: "learnings"
+        current: 0.0
+        measurement_method: "documented_learnings"
+
+# ============================================================================
+# Metadata and Configuration
+# ============================================================================
+metadata:
+  review_frequency: weekly
+  review_day: friday
+  update_method: manual  # Future: automated via agent
+  tracking_table: okr_tracking  # Supabase table (to be created)
+
+  # Integration points
+  integrations:
+    - morning_report: true
+    - weekly_review: true
+    - daily_roadmap: true
+    - productivity_tracking: true
+
+  # Success criteria for quarter
+  success_criteria:
+    - "All objectives at 70%+ completion"
+    - "At least 2 objectives at 90%+ completion"
+    - "No objective below 50% completion"
+    - "Weekly review completion rate above 90%"
+
+  # Risk factors to monitor
+  risks:
+    - name: "Inconsistent daily engagement"
+      mitigation: "Automated morning reports and reminders"
+
+    - name: "Agent deployment complexity"
+      mitigation: "Start with simple agents, iterate based on learnings"
+
+    - name: "Time constraints from other commitments"
+      mitigation: "Focus on 'The One Thing' daily to ensure consistent progress"
+
+# ============================================================================
+# Notes and Context
+# ============================================================================
+notes: |
+  This is the foundational quarter for Flourisha AI Brain Phase 1.
+
+  The goal is to establish the basic operating rhythm across all 4 departments:
+
+  1. Strategic Command: Daily roadmaps and weekly reviews
+  2. Knowledge Intelligence: Email and contact intelligence
+  3. Execution Agents: Task automation and workflows
+  4. System Evolution: Temporal agent experimentation
+
+  Success means building sustainable habits and infrastructure that will
+  compound in future quarters. Focus on consistency over perfection.
+
+  Measurement is weekly with progress updates persisted to Supabase for
+  historical trending and pattern analysis.

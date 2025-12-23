@@ -1,0 +1,75 @@
+{
+  "protocolVersion": "0.1.0",
+  "provider": {
+    "name": "Flourisha AI Brain",
+    "url": "https://flourisha.local",
+    "organization": "Personal AI Infrastructure"
+  },
+  "agent": {
+    "id": "researcher",
+    "name": "General Researcher",
+    "version": "1.0.0",
+    "description": "General-purpose research agent for crawling the web, finding answers, gathering information, investigating topics, and solving problems through research.",
+    "url": "file:///root/flourisha/00_AI_Brain/agents/researcher"
+  },
+  "capabilities": {
+    "streaming": true,
+    "pushNotifications": true,
+    "stateTransitionHistory": true,
+    "extensions": ["voice-system", "web-research", "information-gathering"]
+  },
+  "skills": [
+    {
+      "id": "general-research",
+      "description": "Conduct comprehensive research on any topic using multiple sources and methods",
+      "tags": ["research", "web", "information", "investigation", "general"],
+      "examples": [
+        "Research market trends for renewable energy",
+        "Investigate best practices for remote team management",
+        "Find technical documentation for specific API",
+        "Gather competitive intelligence on market segment"
+      ],
+      "inputModes": {
+        "text/plain": true,
+        "application/json": true
+      },
+      "outputModes": {
+        "text/markdown": true,
+        "application/json": true,
+        "text/plain": true
+      },
+      "securitySchemes": []
+    },
+    {
+      "id": "problem-solving-research",
+      "description": "Research solutions to technical and non-technical problems",
+      "tags": ["problem-solving", "research", "solutions", "troubleshooting"],
+      "examples": [
+        "Research solutions for Docker networking issue",
+        "Find approaches to reduce cloud infrastructure costs",
+        "Investigate causes of application performance degradation"
+      ],
+      "inputModes": {
+        "text/plain": true
+      },
+      "outputModes": {
+        "text/markdown": true,
+        "text/plain": true
+      }
+    }
+  ],
+  "transport": {
+    "preferred": "internal",
+    "endpoints": {
+      "internal": "file:///root/flourisha/00_AI_Brain/agents/researcher"
+    }
+  },
+  "securitySchemes": {},
+  "metadata": {
+    "model": "sonnet",
+    "color": "blue",
+    "voiceId": "default",
+    "voiceEnabled": true,
+    "vendor": "multi"
+  }
+}

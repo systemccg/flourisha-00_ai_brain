@@ -1,0 +1,57 @@
+{
+  "protocolVersion": "0.1.0",
+  "provider": {
+    "name": "Flourisha AI Brain",
+    "url": "https://flourisha.local",
+    "organization": "Personal AI Infrastructure"
+  },
+  "agent": {
+    "id": "claude-researcher",
+    "name": "Claude Researcher",
+    "version": "1.0.0",
+    "description": "Web research using Claude's WebSearch capabilities with intelligent multi-query decomposition and parallel execution.",
+    "url": "file:///root/flourisha/00_AI_Brain/agents/claude-researcher"
+  },
+  "capabilities": {
+    "streaming": true,
+    "pushNotifications": true,
+    "stateTransitionHistory": true,
+    "extensions": ["voice-system", "websearch", "parallel-queries"]
+  },
+  "skills": [
+    {
+      "id": "websearch-research",
+      "description": "Decompose research queries and execute parallel web searches using Claude WebSearch",
+      "tags": ["research", "websearch", "claude", "parallel", "web"],
+      "examples": [
+        "Research latest AI developments in 2025",
+        "Compare cloud infrastructure providers",
+        "Find best practices for API security"
+      ],
+      "inputModes": {
+        "text/plain": true,
+        "application/json": true
+      },
+      "outputModes": {
+        "text/markdown": true,
+        "application/json": true,
+        "text/plain": true
+      },
+      "securitySchemes": []
+    }
+  ],
+  "transport": {
+    "preferred": "internal",
+    "endpoints": {
+      "internal": "file:///root/flourisha/00_AI_Brain/agents/claude-researcher"
+    }
+  },
+  "securitySchemes": {},
+  "metadata": {
+    "model": "sonnet",
+    "color": "yellow",
+    "voiceId": "default",
+    "voiceEnabled": true,
+    "vendor": "multi"
+  }
+}

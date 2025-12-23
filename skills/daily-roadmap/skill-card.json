@@ -1,0 +1,33 @@
+{
+  "name": "daily-roadmap",
+  "description": "AI-powered morning planning with 2-minute execution that synthesizes session history and projects into prioritized daily roadmaps",
+  "version": "1.0.0",
+  "triggers": [
+    "daily roadmap",
+    "start my day",
+    "morning planning",
+    "what should I focus on today",
+    "refocus",
+    "what should I work on"
+  ],
+  "capabilities": [
+    "context-synthesis",
+    "priority-generation",
+    "session-continuity",
+    "strategic-alignment"
+  ],
+  "requires": {
+    "tools": ["Read", "Write", "Glob", "Grep", "Bash"],
+    "skills": ["CORE"]
+  },
+  "outputs": {
+    "roadmap": "${PAI_DIR}/history/roadmaps/YYYY-MM-DD.md"
+  },
+  "inputs": {
+    "sessions": "${PAI_DIR}/history/sessions/",
+    "projects": "/root/flourisha/01f_Flourisha_Projects/PROJECT_REGISTRY.md"
+  },
+  "tags": ["productivity", "planning", "daily-routine", "morning", "prioritization"],
+  "author": "Flourisha AI Brain",
+  "lastUpdated": "2025-12-05"
+}

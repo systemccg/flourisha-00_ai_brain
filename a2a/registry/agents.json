@@ -1,0 +1,96 @@
+{
+  "protocolVersion": "0.1.0",
+  "registryVersion": "1.0.0",
+  "updated": "2025-11-19T20:05:00Z",
+  "location": "file:///root/flourisha/00_AI_Brain/agents",
+  "description": "Master registry of all Flourisha AI Brain agents following A2A protocol",
+  "agents": [
+    {
+      "id": "gemini-researcher",
+      "name": "Gemini Researcher",
+      "cardUrl": "file:///root/flourisha/00_AI_Brain/agents/gemini-researcher/agent-card.json",
+      "agentPath": "file:///root/flourisha/00_AI_Brain/agents/gemini-researcher/AGENT.md",
+      "tags": ["research", "parallel", "gemini", "synthesis", "multi-query"],
+      "vendor": "multi",
+      "category": "research"
+    },
+    {
+      "id": "perplexity-researcher",
+      "name": "Perplexity Researcher",
+      "cardUrl": "file:///root/flourisha/00_AI_Brain/agents/perplexity-researcher/agent-card.json",
+      "agentPath": "file:///root/flourisha/00_AI_Brain/agents/perplexity-researcher/AGENT.md",
+      "tags": ["research", "web", "perplexity", "current-events"],
+      "vendor": "multi",
+      "category": "research"
+    },
+    {
+      "id": "claude-researcher",
+      "name": "Claude Researcher",
+      "cardUrl": "file:///root/flourisha/00_AI_Brain/agents/claude-researcher/agent-card.json",
+      "agentPath": "file:///root/flourisha/00_AI_Brain/agents/claude-researcher/AGENT.md",
+      "tags": ["research", "websearch", "claude", "parallel"],
+      "vendor": "multi",
+      "category": "research"
+    },
+    {
+      "id": "researcher",
+      "name": "General Researcher",
+      "cardUrl": "file:///root/flourisha/00_AI_Brain/agents/researcher/agent-card.json",
+      "agentPath": "file:///root/flourisha/00_AI_Brain/agents/researcher/AGENT.md",
+      "tags": ["research", "web", "general", "problem-solving"],
+      "vendor": "multi",
+      "category": "research"
+    },
+    {
+      "id": "architect",
+      "name": "Software Architect",
+      "cardUrl": "file:///root/flourisha/00_AI_Brain/agents/architect/agent-card.json",
+      "agentPath": "file:///root/flourisha/00_AI_Brain/agents/architect/AGENT.md",
+      "tags": ["architecture", "prd", "design", "planning", "specifications"],
+      "vendor": "multi",
+      "category": "development"
+    },
+    {
+      "id": "engineer",
+      "name": "Software Engineer",
+      "cardUrl": "file:///root/flourisha/00_AI_Brain/agents/engineer/agent-card.json",
+      "agentPath": "file:///root/flourisha/00_AI_Brain/agents/engineer/AGENT.md",
+      "tags": ["engineering", "implementation", "testing", "debugging"],
+      "vendor": "multi",
+      "category": "development"
+    },
+    {
+      "id": "designer",
+      "name": "Product Designer",
+      "cardUrl": "file:///root/flourisha/00_AI_Brain/agents/designer/agent-card.json",
+      "agentPath": "file:///root/flourisha/00_AI_Brain/agents/designer/AGENT.md",
+      "tags": ["design", "ux", "ui", "accessibility"],
+      "vendor": "multi",
+      "category": "development"
+    },
+    {
+      "id": "pentester",
+      "name": "Penetration Testing Specialist",
+      "cardUrl": "file:///root/flourisha/00_AI_Brain/agents/pentester/agent-card.json",
+      "agentPath": "file:///root/flourisha/00_AI_Brain/agents/pentester/AGENT.md",
+      "tags": ["security", "pentesting", "vulnerabilities", "audit"],
+      "vendor": "multi",
+      "category": "security",
+      "authorizationRequired": true
+    }
+  ],
+  "categories": {
+    "research": {
+      "description": "Research agents for web crawling, information gathering, and investigation",
+      "agents": ["gemini-researcher", "perplexity-researcher", "claude-researcher", "researcher"]
+    },
+    "development": {
+      "description": "Development agents for architecture, engineering, and design",
+      "agents": ["architect", "engineer", "designer"]
+    },
+    "security": {
+      "description": "Security testing and vulnerability assessment agents",
+      "agents": ["pentester"]
+    }
+  }
+}

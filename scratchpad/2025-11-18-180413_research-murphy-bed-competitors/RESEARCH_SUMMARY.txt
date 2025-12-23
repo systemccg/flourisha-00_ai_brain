@@ -1,0 +1,95 @@
+KING SIZE MURPHY BED RESEARCH - EXECUTIVE SUMMARY
+================================================
+
+Research Date: November 18, 2025
+Status: COMPLETE
+Output File: perplexity-002-top-competitors.md
+
+KEY FINDINGS:
+
+TOP MANUFACTURERS:
+================
+
+1. PREMIUM TIER ($3,500-$15,000+)
+   - Wilding Wallbeds: Studio Series, real wood, lifetime warranty, $3,500-$6,000+
+   - Murphy Wall-Beds Inc.: Market leader, most customization, $3,500-$15,000+
+   - Create-A-Bed®: Patented technology, premium mattresses, $4,000+
+
+2. MID-RANGE TIER ($1,200-$4,500)
+   - BredaBeds: 30,000 configurations, $2,500-$4,500, currently 20% off
+   - Murphy Bed Depot: Best value, $1,229-$3,399, multiple model lines
+   - Murphy Wall-Beds Inc. (prefab): $3,500-$6,000
+
+3. BUDGET TIER ($500-$2,500)
+   - Amazon: Variable quality, $500-$6,000 range, extensive selection
+   - Costco: Limited king availability, $1,650-$2,500 (queen focus)
+   - Budget brands: Murphy Nook, UrbanSpace, ComfortLift, ModernEdge, SpaceSaver, FoldFlex
+
+STANDARD KING SIZE SPECS:
+========================
+- Width: 81-81.5 inches
+- Height: 87-88.5 inches
+- Projection: 89-90 inches
+- Ceiling: Minimum 8 feet required
+- Mattress: 11-13 inches thick max
+- Weight Capacity: 2,000 lbs typical
+
+MARKET HIGHLIGHTS:
+==================
+- King size is challenging (25% heavier than queen)
+- Real wood preferred over particle board
+- Spring lift mechanisms most reliable
+- Customization options extensive (30,000+ configs available)
+- Installation: $200-$1,200 depending on complexity
+- Shipping: Mostly free or subsidized
+- Delivery timeframe: 7-21 days
+
+WHERE TO BUY:
+=============
+Direct Manufacturer:
+- Wilding Wallbeds: wallbedsbywilding.com
+- Murphy Wall-Beds Inc: murphybeds.com
+- BredaBeds: bredabeds.com
+- Murphy Bed Depot: murphybeddepot.com
+- Create-A-Bed: createabed.com
+
+Retail:
+- Costco: costco.com (membership required)
+- Amazon: amazon.com
+- Wayfair: wayfair.com
+- Houzz: houzz.com
+
+BRANDS NOT OFFERING KING SIZE:
+==============================
+- Lori Beds: Queen and Twin only (high quality, but no king)
+
+TRENDING STYLES 2025:
+====================
+- Arcadia Bed (arched panels)
+- Cape Cod (minimalist elevated design)
+- Integrated storage with hutches/desks
+- Sustainable materials
+- Smart features (USB ports, outlets)
+
+RECOMMENDATION MATRIX:
+======================
+Premium Quality:          → Wilding Wallbeds
+Best Value:             → Murphy Bed Depot
+Most Customization:     → BredaBeds or Murphy Wall-Beds Inc.
+Budget-Friendly:        → Amazon (vetted sellers) or Murphy Bed Depot (sale prices)
+Innovation/Tech:        → Create-A-Bed®
+Market Leadership:      → Murphy Wall-Beds Inc.
+
+FILE LOCATION:
+==============
+/root/.claude/scratchpad/2025-11-18-180413_research-murphy-bed-competitors/raw-outputs/perplexity-002-top-competitors.md
+
+This comprehensive 17KB report contains:
+- 5 major manufacturers with detailed specs
+- Budget tier overview with 6+ brands
+- Complete comparison table
+- Pricing summaries by category
+- Installation and assembly guidance
+- 2025 market trends and insights
+- Use-case recommendations
+- Important considerations for king size beds

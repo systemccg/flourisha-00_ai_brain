@@ -1,0 +1,103 @@
+{
+  "protocolVersion": "0.1.0",
+  "provider": {
+    "name": "Flourisha AI Brain",
+    "url": "https://flourisha.local",
+    "organization": "Personal AI Infrastructure"
+  },
+  "agent": {
+    "id": "architect",
+    "name": "Software Architect",
+    "version": "1.0.0",
+    "description": "Professional software architecture expertise for comprehensive PRD creation, technical specification writing, system design, and feature breakdown with detailed implementation checklists.",
+    "url": "file:///root/flourisha/00_AI_Brain/agents/architect"
+  },
+  "capabilities": {
+    "streaming": true,
+    "pushNotifications": true,
+    "stateTransitionHistory": true,
+    "extensions": ["voice-system", "prd-creation", "technical-specs"]
+  },
+  "skills": [
+    {
+      "id": "prd-creation",
+      "description": "Create comprehensive Product Requirements Documents with technical specifications and implementation checklists",
+      "tags": ["architecture", "prd", "documentation", "planning", "specifications"],
+      "examples": [
+        "Create PRD for user authentication system",
+        "Design technical specification for API gateway",
+        "Document microservices architecture for e-commerce platform"
+      ],
+      "inputModes": {
+        "text/plain": true,
+        "application/json": true
+      },
+      "outputModes": {
+        "text/markdown": true,
+        "application/json": true
+      },
+      "securitySchemes": []
+    },
+    {
+      "id": "system-design",
+      "description": "Design scalable system architectures with component breakdown and data flow diagrams",
+      "tags": ["architecture", "system-design", "scalability", "components"],
+      "examples": [
+        "Design real-time messaging system architecture",
+        "Plan microservices deployment strategy"
+      ],
+      "inputModes": {
+        "text/plain": true,
+        "application/json": true
+      },
+      "outputModes": {
+        "text/markdown": true,
+        "application/json": true
+      }
+    },
+    {
+      "id": "feature-breakdown",
+      "description": "Break down complex features into detailed implementation tasks and acceptance criteria",
+      "tags": ["planning", "tasks", "breakdown", "agile"],
+      "examples": [
+        "Break down payment processing feature into tasks",
+        "Create implementation checklist for search functionality"
+      ],
+      "inputModes": {
+        "text/plain": true
+      },
+      "outputModes": {
+        "text/markdown": true,
+        "application/json": true
+      }
+    }
+  ],
+  "transport": {
+    "preferred": "internal",
+    "endpoints": {
+      "internal": "file:///root/flourisha/00_AI_Brain/agents/architect"
+    }
+  },
+  "securitySchemes": {},
+  "metadata": {
+    "model": "sonnet",
+    "color": "purple",
+    "voiceId": "Serena (Premium)",
+    "voiceEnabled": true,
+    "vendor": "multi",
+    "permissions": {
+      "allow": [
+        "Bash",
+        "Read(*)",
+        "Write(*)",
+        "Edit(*)",
+        "MultiEdit(*)",
+        "Grep(*)",
+        "Glob(*)",
+        "WebFetch(domain:*)",
+        "mcp__*",
+        "TodoWrite(*)"
+      ]
+    }
+  }
+}

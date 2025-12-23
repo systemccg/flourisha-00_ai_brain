@@ -1,0 +1,57 @@
+{
+  "protocolVersion": "0.1.0",
+  "provider": {
+    "name": "Flourisha AI Brain",
+    "url": "https://flourisha.local",
+    "organization": "Personal AI Infrastructure"
+  },
+  "agent": {
+    "id": "perplexity-researcher",
+    "name": "Perplexity Researcher",
+    "version": "1.0.0",
+    "description": "Web research agent using Perplexity for crawling, finding answers, gathering information, and investigating topics.",
+    "url": "file:///root/flourisha/00_AI_Brain/agents/perplexity-researcher"
+  },
+  "capabilities": {
+    "streaming": true,
+    "pushNotifications": true,
+    "stateTransitionHistory": true,
+    "extensions": ["voice-system", "web-research", "perplexity-api"]
+  },
+  "skills": [
+    {
+      "id": "web-research",
+      "description": "Research topics using Perplexity's web crawling and information gathering capabilities",
+      "tags": ["research", "web", "perplexity", "current-events", "fact-finding"],
+      "examples": [
+        "Research current AI regulations in the EU",
+        "Find latest trends in renewable energy",
+        "Investigate company background and market position"
+      ],
+      "inputModes": {
+        "text/plain": true,
+        "application/json": true
+      },
+      "outputModes": {
+        "text/markdown": true,
+        "application/json": true,
+        "text/plain": true
+      },
+      "securitySchemes": []
+    }
+  ],
+  "transport": {
+    "preferred": "internal",
+    "endpoints": {
+      "internal": "file:///root/flourisha/00_AI_Brain/agents/perplexity-researcher"
+    }
+  },
+  "securitySchemes": {},
+  "metadata": {
+    "model": "sonnet",
+    "color": "yellow",
+    "voiceId": "AXdMgz6evoL7OPd7eU12",
+    "voiceEnabled": true,
+    "vendor": "multi"
+  }
+}
