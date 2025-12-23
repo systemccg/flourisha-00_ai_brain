@@ -44,10 +44,17 @@ class YouTubeChannelManager:
 
     def __init__(self, credentials_dir: Optional[Path] = None):
         """Initialize the channel manager."""
-        self.credentials_dir = credentials_dir or Path('/root/flourisha/00_AI_Brain/credentials')
-        self.oauth_file = self.credentials_dir / 'youtube_oauth.json'
+        # Use environment variable if provided, otherwise use default
+        env_creds_path = os.getenv('YOUTUBE_OAUTH_CREDENTIALS_PATH')
+        env_tokens_dir = os.getenv('YOUTUBE_TOKENS_DIR')
+
+        self.credentials_dir = (
+            Path(env_creds_path).parent if env_creds_path
+            else credentials_dir or Path('/root/flourisha/00_AI_Brain/credentials')
+        )
+        self.oauth_file = Path(env_creds_path) if env_creds_path else self.credentials_dir / 'youtube_oauth.json'
         self.channels_file = self.credentials_dir / 'youtube_channels.json'
-        self.tokens_dir = self.credentials_dir / 'youtube_tokens'
+        self.tokens_dir = Path(env_tokens_dir) if env_tokens_dir else self.credentials_dir / 'youtube_tokens'
 
         # Ensure directories exist
         self.tokens_dir.mkdir(parents=True, exist_ok=True)

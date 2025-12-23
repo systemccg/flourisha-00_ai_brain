@@ -9,6 +9,7 @@ from youtube_transcript_api import YouTubeTranscriptApi
 from dotenv import load_dotenv
 
 load_dotenv('/root/.claude/.env')
+load_dotenv('/root/flourisha/00_AI_Brain/.env')
 
 
 class YouTubeService:
@@ -16,9 +17,11 @@ class YouTubeService:
 
     def __init__(self):
         """Initialize YouTube service"""
-        # Note: YouTube credentials should be per-user OAuth tokens
-        # For now, we'll use the credentials from .env for testing
-        self.credentials_path = "/root/flourisha/00_AI_Brain/credentials/youtube_oauth.json"
+        # Load credentials path from environment or use default
+        self.credentials_path = os.getenv(
+            'YOUTUBE_OAUTH_CREDENTIALS_PATH',
+            '/root/flourisha/00_AI_Brain/credentials/youtube_oauth.json'
+        )
 
     def _get_youtube_client(self, access_token: Optional[str] = None):
         """

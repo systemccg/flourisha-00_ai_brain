@@ -9,21 +9,27 @@ import json
 import csv
 from datetime import datetime
 from pathlib import Path
+from dotenv import load_dotenv
 
 from google.auth.transport.requests import Request
 from google.oauth2.credentials import Credentials
 from google_auth_oauthlib.flow import InstalledAppFlow
 from googleapiclient.discovery import build
 
+# Load environment variables
+load_dotenv('/root/flourisha/00_AI_Brain/.env')
+
 # YouTube API scopes
 # Using force-ssl to access brand accounts and managed channels
 SCOPES = ['https://www.googleapis.com/auth/youtube.force-ssl']
 
-# Paths
+# Paths - use environment variables with fallbacks
 AI_BRAIN = Path('/root/flourisha/00_AI_Brain')
-CREDENTIALS_FILE = AI_BRAIN / 'credentials' / 'youtube_oauth.json'
-TOKEN_FILE = AI_BRAIN / 'credentials' / 'youtube_token.json'
+YOUTUBE_OAUTH_PATH = os.getenv('YOUTUBE_OAUTH_CREDENTIALS_PATH', AI_BRAIN / 'credentials' / 'youtube_oauth.json')
+YOUTUBE_TOKENS_DIR = os.getenv('YOUTUBE_TOKENS_DIR', AI_BRAIN / 'credentials' / 'youtube_tokens')
+TOKEN_FILE = Path(YOUTUBE_TOKENS_DIR) / 'youtube_token.json'
 OUTPUT_DIR = AI_BRAIN / 'outputs' / 'youtube_exports'
+CREDENTIALS_FILE = Path(YOUTUBE_OAUTH_PATH)
 
 
 def get_authenticated_service():
