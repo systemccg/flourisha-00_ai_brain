@@ -129,6 +129,8 @@ async def get_me(
 
 # Router imports
 from routers.search import router as search_router
+from routers.clickup import router as clickup_router
 
 # Include routers
 app.include_router(search_router)
+app.include_router(clickup_router)
