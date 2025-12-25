@@ -1,0 +1,102 @@
+# Flourisha API - Autonomous Development Specification
+
+## Document Loading Order
+
+**CRITICAL: Use tiered loading to minimize context usage.**
+
+### Tier 1: ALWAYS Load First (~400 tokens)
+```
+/root/flourisha/00_AI_Brain/documentation/AGENT_WORK_INDEX.md
+```
+This is YOUR ROUTING DOCUMENT. It contains:
+- File ownership map (where you can/cannot modify)
+- Build order with dependencies
+- Priority tasks with exact file locations
+- Service wrapping pattern
+- Session handoff protocol
+
+### Tier 2: Load When Needed
+| Document | When to Load |
+|----------|--------------|
+| `SYSTEM_SPEC.md` | Architecture context, module details |
+| `AUTONOMOUS_TASK_SPEC.md` | Detailed acceptance criteria |
+| Specific subdoc | When implementing that feature |
+
+### Tier 3: Reference Only
+| Document | Purpose |
+|----------|---------|
+| `FRONTEND_FEATURE_REGISTRY.md` | UI integration specs |
+| `database/*.md` | Schema details |
+| `services/*.md` | Service implementation details |
+
+**DO NOT load all documents at once. This wastes context.**
+
+---
+
+## Your Role
+
+You are a coding agent building the Flourisha API backend. Your job is to:
+1. **Read AGENT_WORK_INDEX.md first** - your routing document
+2. **Wrap existing services** - DON'T rewrite, wrap in API endpoints
+3. **Update ClickUp** - single source of truth for task status
+4. **Stay in your lane** - only modify files in `api/` directory
+
+---
+
+## Key Locations
+
+| Path | Purpose | Agent Action |
+|------|---------|--------------|
+| `/root/flourisha/00_AI_Brain/api/` | FastAPI backend | BUILD HERE |
+| `/root/flourisha/00_AI_Brain/services/` | Existing Python services | WRAP ONLY |
+| `/root/flourisha/00_AI_Brain/documentation/` | System docs | READ ONLY |
+| `/root/.claude/skills/` | PAI Skills | READ ONLY |
+
+---
+
+## ClickUp Integration
+
+| Item | Value |
+|------|-------|
+| Space ID | `14700061` |
+| List ID | `901112685055` |
+| META Task | `868grh6hr` |
+
+**Single Source of Truth:** ClickUp task status
+**Never update:** Markdown document status
+
+---
+
+## Environment
+
+Required variables in `~/.claude/.env`:
+- SUPABASE_URL, SUPABASE_SERVICE_KEY
+- NEO4J_URI, NEO4J_USER, NEO4J_PASSWORD
+- OPENAI_API_KEY, ANTHROPIC_API_KEY
+- CLICKUP_API_KEY, CLICKUP_TEAM_ID
+
+---
+
+## Quick Start
+
+1. Read `/root/flourisha/00_AI_Brain/documentation/AGENT_WORK_INDEX.md`
+2. Check ClickUp for next priority task
+3. Claim task in ClickUp (set "In Progress")
+4. Load relevant subdoc if needed
+5. Implement in `api/` directory
+6. Test endpoint
+7. Complete in ClickUp with comment
+8. Next task
+
+---
+
+## Notes
+
+- **Timezone:** Pacific Time (PST/PDT)
+- **Package Managers:** uv for Python (NOT pip)
+- **Don't Reimplement:** Wrap existing services
+- **Don't Update Markdown:** ClickUp is the source of truth
+
+---
+
+*Start with AGENT_WORK_INDEX.md. Everything else loads on-demand.*
