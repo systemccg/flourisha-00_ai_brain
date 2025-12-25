@@ -14,6 +14,21 @@ from clickup_api import ClickUpClient
 client = ClickUpClient()
 ```
 
+### STEP 0: VERIFY GIT REMOTE (CRITICAL)
+
+```bash
+git remote -v
+```
+
+**If no remote is configured, STOP and alert the user.** Without a remote:
+- Commits cannot be pushed to GitHub
+- Work will be lost if the server fails
+- There's no way to revert to previous versions
+
+Do NOT proceed without a working git remote.
+
+---
+
 ### STEP 1: GET YOUR BEARINGS (MANDATORY)
 
 Start by orienting yourself:
@@ -186,9 +201,10 @@ After thorough verification:
 - No console errors
 - Code committed to git
 
-### STEP 10: COMMIT YOUR PROGRESS
+### STEP 10: COMMIT AND PUSH (MANDATORY)
 
-Make a descriptive git commit:
+**CRITICAL:** Always push immediately. Commits without push are lost if server fails.
+
 ```bash
 git add .
 git commit -m "Implement [feature name]
@@ -197,7 +213,12 @@ git commit -m "Implement [feature name]
 - Tested with browser automation
 - ClickUp task: [task identifier]
 "
+
+# PUSH IMMEDIATELY - this is your safety net
+git push
 ```
+
+**If push fails:** Stop and fix the issue. Do not continue without pushing.
 
 ### STEP 11: UPDATE META TASK
 
