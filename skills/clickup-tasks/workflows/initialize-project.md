@@ -3,8 +3,16 @@
 You are the FIRST agent in a long-running autonomous development process.
 Your job is to set up the foundation for all future coding agents.
 
-You have access to ClickUp for project management via MCP tools. All work tracking
+You have access to ClickUp for project management via Python API. All work tracking
 happens in ClickUp - this is your source of truth for what needs to be built.
+
+**ClickUp Client:**
+```python
+import sys
+sys.path.insert(0, "/root/flourisha/00_AI_Brain/skills/clickup-tasks/reference")
+from clickup_api import ClickUpClient
+client = ClickUpClient()
+```
 
 ### FIRST: Read the Project Specification
 
@@ -17,32 +25,43 @@ before proceeding.
 Before creating tasks, you need to set up ClickUp:
 
 1. **Explore your workspace:**
-   Use `mcp__clickup__get_workspace_hierarchy` to see available Spaces, Folders, and Lists.
-   Note the Space ID where you'll create your project.
+   ```python
+   spaces = client.get_spaces()
+   # Note the Space ID where you'll create your project
+   ```
 
 2. **Create a List for this project:**
-   Use `mcp__clickup__create_list` to create a new List:
-   - `spaceName` or `spaceId`: The Space where you'll work
-   - `name`: Use the project name from app_spec.txt (e.g., "Claude.ai Clone")
-
-   Save the returned list ID - you'll use it when creating tasks.
-
-   Alternatively, create a Folder first with `mcp__clickup__create_folder`, then
-   a List inside it with `mcp__clickup__create_list_in_folder`.
+   ```python
+   # Create list in folder (Flourisha folder ID: 90117368142)
+   result = client.create_list(
+       folder_id="90117368142",
+       name="Project Name from app_spec.txt"
+   )
+   list_id = result["id"]  # Save for creating tasks
+   ```
 
 ### CRITICAL TASK: Create ClickUp Tasks
 
 Based on `app_spec.txt`, create ClickUp tasks for each feature using the
-`mcp__clickup__create_task` tool. Create 50 detailed tasks that
+Python API client. Create 50 detailed tasks that
 comprehensively cover all features in the spec.
 
 **For each feature, create a task with:**
 
-```
-name: Brief feature name (e.g., "Auth - User login flow")
-listName: [Use the list name you created]
-description: Markdown with feature details and test steps (see template below)
-priority: 1-4 based on importance (1=urgent/foundational, 4=low/polish)
+```python
+from clickup_api import format_task_description
+
+task = client.create_task(
+    list_id=list_id,
+    name="Auth - User login flow",
+    markdown_description=format_task_description(
+        description="User authentication flow",
+        category="functional",
+        test_steps=["Navigate to login", "Enter credentials", "Verify redirect"],
+        acceptance_criteria=["Login works", "Session persists"]
+    ),
+    priority=2  # 1=urgent, 2=high, 3=normal, 4=low
+)
 ```
 
 **Task Description Template:**
@@ -80,7 +99,14 @@ priority: 1-4 based on importance (1=urgent/foundational, 4=low/polish)
 - Priority 4 (Low): Polish, nice-to-haves, edge cases
 
 **BULK CREATION TIP:**
-Use `mcp__clickup__create_bulk_tasks` to create multiple tasks at once for efficiency.
+```python
+tasks = [
+    {"name": "Task 1", "markdown_description": "...", "priority": 1},
+    {"name": "Task 2", "markdown_description": "...", "priority": 2},
+    # ... up to 50 tasks
+]
+client.create_bulk_tasks(list_id, tasks)
+```
 
 **CRITICAL INSTRUCTION:**
 Once created, tasks can ONLY have their status changed (to do → in progress → complete).
@@ -163,11 +189,20 @@ This file tells future sessions that ClickUp has been set up.
 
 If you have time remaining in this session, you may begin implementing
 the highest-priority features. Remember:
-- Use `mcp__clickup__get_tasks` to find tasks with status "to do" and priority 1
-- Use `mcp__clickup__update_task` to set status to "in progress"
+```python
+# Find highest priority tasks
+tasks = client.get_list_tasks(list_id, statuses=["--"])
+tasks.sort(key=lambda t: t.get("priority", {}).get("orderindex", 99))
+
+# Claim task
+client.update_task(task_id, status="in progress")
+
+# After implementation, add notes and mark complete
+client.add_comment(task_id, "Implementation notes...")
+client.update_task(task_id, status="done")
+```
 - Work on ONE feature at a time
-- Test thoroughly before marking status as "complete"
-- Add a comment to the task with implementation notes using `mcp__clickup__create_task_comment`
+- Test thoroughly before marking status as "done"
 - Commit your progress before session ends
 
 ### ENDING THIS SESSION

@@ -180,18 +180,22 @@ to do  →  in progress  →  complete
                 └────────────┘ (if regression found)
 ```
 
-### MCP Tools Available
+### ClickUp Python API
 
-| Tool | Purpose |
-|------|---------|
-| `mcp__clickup__get_workspace_hierarchy` | List spaces, folders, lists |
-| `mcp__clickup__create_list` | Create new list |
-| `mcp__clickup__get_tasks` | Get tasks from list |
-| `mcp__clickup__create_task` | Create single task |
-| `mcp__clickup__create_bulk_tasks` | Create multiple tasks |
-| `mcp__clickup__update_task` | Change task status |
-| `mcp__clickup__create_task_comment` | Add implementation notes |
-| `mcp__clickup__get_task_comments` | Read session history |
+Uses direct REST API calls via `clickup_api.py` - no MCP server required.
+
+**Client Location:** `/root/flourisha/00_AI_Brain/skills/clickup-tasks/reference/clickup_api.py`
+
+| Method | Purpose |
+|--------|---------|
+| `client.get_spaces()` | List spaces in workspace |
+| `client.create_list(folder_id, name)` | Create new list |
+| `client.get_list_tasks(list_id)` | Get tasks from list |
+| `client.create_task(list_id, name, ...)` | Create single task |
+| `client.create_bulk_tasks(list_id, tasks)` | Create multiple tasks |
+| `client.update_task(task_id, status=...)` | Change task status |
+| `client.add_comment(task_id, text)` | Add implementation notes |
+| `client.get_comments(task_id)` | Read session history |
 
 ---
 

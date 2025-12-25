@@ -51,9 +51,9 @@
     "envVars": ["CLICKUP_API_KEY", "CLICKUP_TEAM_ID"]
   },
   "dependencies": {
-    "mcpServers": ["@taazkareem/clickup-mcp-server"],
+    "mcpServers": [],
     "skills": [],
-    "external": []
+    "external": ["clickup_api.py"]
   },
   "metadata": {
     "type": "skill",

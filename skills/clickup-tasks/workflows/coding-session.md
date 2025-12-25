@@ -3,8 +3,16 @@
 You are continuing work on a long-running autonomous development task.
 This is a FRESH context window - you have no memory of previous sessions.
 
-You have access to ClickUp for project management via MCP tools. ClickUp is your
+You have access to ClickUp for project management via Python API. ClickUp is your
 single source of truth for what needs to be built and what's been completed.
+
+**ClickUp Client:**
+```python
+import sys
+sys.path.insert(0, "/root/flourisha/00_AI_Brain/skills/clickup-tasks/reference")
+from clickup_api import ClickUpClient
+client = ClickUpClient()
+```
 
 ### STEP 1: GET YOUR BEARINGS (MANDATORY)
 
@@ -36,15 +44,18 @@ Query ClickUp to understand current project state. The `.clickup_project.json` f
 contains the `list_id` and `space_id` you should use for all ClickUp queries.
 
 1. **Find the META task** for session context:
-   Use `mcp__clickup__get_tasks` with the list ID from `.clickup_project.json`
-   and look for "[META] Project Progress Tracker".
-   Read the task description and comments (via `mcp__clickup__get_task_comments`) for context from previous sessions.
+   ```python
+   tasks = client.get_list_tasks(list_id)
+   meta_task = next((t for t in tasks if "[META]" in t["name"]), None)
+   comments = client.get_comments(meta_task["id"])
+   ```
+   Look for "[META] Project Progress Tracker" and read comments for context from previous sessions.
 
 2. **Count progress:**
-   Use `mcp__clickup__get_tasks` with the list ID to get all tasks, then count:
-   - Tasks with status "complete" = completed
-   - Tasks with status "to do" = remaining
-   - Tasks with status "in progress" = currently being worked on
+   ```python
+   counts = client.get_task_counts_by_status(list_id)
+   # Returns: {'done': 10, 'in progress': 2, '--': 5}
+   ```
 
 3. **Check for in-progress work:**
    If any task is "in progress", that should be your first priority.
@@ -67,7 +78,7 @@ Otherwise, start servers manually and document the process.
 The previous session may have introduced bugs. Before implementing anything
 new, you MUST run verification tests.
 
-Use `mcp__clickup__get_tasks` with the list ID and filter for status "complete" to find 1-2
+Use `client.get_list_tasks(list_id, statuses=["done"])` to find 1-2
 completed features that are core to the app's functionality.
 
 Test these through the browser using Puppeteer:
@@ -76,8 +87,8 @@ Test these through the browser using Puppeteer:
 - Take screenshots to confirm
 
 **If you find ANY issues (functional or visual):**
-- Use `mcp__clickup__update_task` to set status back to "in progress"
-- Add a comment explaining what broke using `mcp__clickup__create_task_comment`
+- Use `client.update_task(task_id, status="in progress")` to set status back
+- Add a comment explaining what broke: `client.add_comment(task_id, "explanation")`
 - Fix the issue BEFORE moving to new features
 - This includes UI bugs like:
   * White-on-white text or poor contrast
@@ -90,17 +101,23 @@ Test these through the browser using Puppeteer:
 
 ### STEP 5: SELECT NEXT TASK TO WORK ON
 
-Use `mcp__clickup__get_tasks` with the list ID from `.clickup_project.json`:
-- Filter by `status`: "to do"
-- Sort by priority (1=urgent is highest)
-- `limit`: 5
+```python
+# Get tasks with "to do" status (shown as "--" in API)
+tasks = client.get_list_tasks(list_id, statuses=["--"])
+# Sort by priority (1=urgent is highest)
+tasks.sort(key=lambda t: t.get("priority", {}).get("orderindex", 99))
+# Review top 5
+top_tasks = tasks[:5]
+```
 
 Review the highest-priority unstarted tasks and select ONE to work on.
 
 ### STEP 6: CLAIM THE TASK
 
-Before starting work, use `mcp__clickup__update_task` to:
-- Set the task's `status` to "in progress"
+Before starting work:
+```python
+client.update_task(task_id, status="in progress")
+```
 
 This signals to any other agents (or humans watching) that this task is being worked on.
 
@@ -139,9 +156,9 @@ Use browser automation tools:
 
 After thorough verification:
 
-1. **Add implementation comment** using `mcp__clickup__create_task_comment`:
-   ```markdown
-   ## Implementation Complete
+1. **Add implementation comment:**
+   ```python
+   comment = """## Implementation Complete
 
    ### Changes Made
    - [List of files changed]
@@ -154,10 +171,14 @@ After thorough verification:
 
    ### Git Commit
    [commit hash and message]
+   """
+   client.add_comment(task_id, comment)
    ```
 
-2. **Update status** using `mcp__clickup__update_task`:
-   - Set `status` to "complete"
+2. **Update status:**
+   ```python
+   client.update_task(task_id, status="done")
+   ```
 
 **ONLY update status to Complete AFTER:**
 - All test steps in the task description pass

@@ -17,12 +17,14 @@ Handle ideas from the Idea Scratchpad list, including YouTube video analysis.
 
 ### 1. Fetch Idea Scratchpad Tasks
 
-```
-List ID: 901112609506
+```python
+# List ID: 901112609506
+import sys
+sys.path.insert(0, "/root/flourisha/00_AI_Brain/skills/clickup-tasks/reference")
+from clickup_api import ClickUpClient
 
-mcp__clickup__get_tasks with:
-- list_id: 901112609506
-- statuses: ["--", "in progress"]
+client = ClickUpClient()
+tasks = client.get_list_tasks("901112609506", statuses=["--", "in progress"])
 ```
 
 ### 2. Triage Each Idea
