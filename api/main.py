@@ -1,0 +1,134 @@
+"""
+Flourisha API - Main Application
+
+FastAPI backend for the Flourisha AI Brain system.
+Provides REST endpoints for content processing, knowledge management,
+and productivity tools.
+
+Run with: uv run uvicorn main:app --port 8000 --reload
+"""
+from datetime import datetime
+from zoneinfo import ZoneInfo
+
+from fastapi import FastAPI, Request, Depends
+from fastapi.middleware.cors import CORSMiddleware
+from fastapi.exceptions import RequestValidationError
+from starlette.exceptions import HTTPException as StarletteHTTPException
+
+from models.response import APIResponse, HealthStatus, ResponseMeta
+from middleware.timing import TimingMiddleware
+from middleware.exceptions import (
+    http_exception_handler,
+    validation_exception_handler,
+    generic_exception_handler,
+)
+from middleware.auth import get_current_user, get_optional_user, UserContext
+from config import get_settings, validate_startup_config, Settings
+
+
+# Load settings from environment
+settings = get_settings()
+
+# Create FastAPI app
+app = FastAPI(
+    title="Flourisha API",
+    description="REST API for Flourisha AI Brain - Knowledge management, content processing, and productivity tools",
+    version=settings.api_version,
+    docs_url="/docs",
+    redoc_url="/redoc",
+    openapi_url="/openapi.json",
+)
+
+# Exception handlers - consistent APIResponse format for all errors
+app.add_exception_handler(StarletteHTTPException, http_exception_handler)
+app.add_exception_handler(RequestValidationError, validation_exception_handler)
+app.add_exception_handler(Exception, generic_exception_handler)
+
+# Request timing middleware - adds request_id and timing
+app.add_middleware(TimingMiddleware)
+
+# CORS Configuration - from settings
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=settings.cors_origins_list,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+
+@app.on_event("startup")
+async def startup_event():
+    """Validate configuration on startup."""
+    validate_startup_config()
+
+
+@app.get("/api/health", response_model=APIResponse[HealthStatus], tags=["System"])
+async def health_check(request: Request) -> APIResponse[HealthStatus]:
+    """
+    Health check endpoint.
+
+    Returns current server status, API version, and timestamp.
+    Used by monitoring systems and frontend health checks.
+    """
+    # Use Pacific time as per PAI conventions
+    pacific = ZoneInfo("America/Los_Angeles")
+    now = datetime.now(pacific)
+
+    # Get timing metadata from middleware
+    meta_dict = request.state.get_meta()
+
+    return APIResponse(
+        success=True,
+        data=HealthStatus(
+            status="healthy",
+            version=settings.api_version,
+            timestamp=now.isoformat(),
+        ),
+        meta=ResponseMeta(**meta_dict),
+    )
+
+
+@app.get("/", tags=["System"])
+async def root():
+    """Root endpoint - redirects to docs."""
+    return {
+        "message": "Flourisha API",
+        "docs": "/docs",
+        "health": "/api/health",
+    }
+
+
+@app.get("/api/me", tags=["Auth"])
+async def get_me(
+    request: Request,
+    user: UserContext = Depends(get_current_user),
+) -> APIResponse[dict]:
+    """
+    Get current authenticated user info.
+
+    Requires: Valid Firebase JWT in Authorization header
+
+    Returns user profile extracted from JWT claims.
+    """
+    meta_dict = request.state.get_meta()
+
+    return APIResponse(
+        success=True,
+        data={
+            "uid": user.uid,
+            "email": user.email,
+            "name": user.name,
+            "email_verified": user.email_verified,
+            "tenant_id": user.tenant_id,
+            "roles": user.roles,
+        },
+        meta=ResponseMeta(**meta_dict),
+    )
+
+
+# Router imports
+from routers.search import router as search_router
+
+# Include routers
+app.include_router(search_router)
