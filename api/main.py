@@ -133,6 +133,7 @@ from routers.clickup import router as clickup_router
 from routers.youtube import router as youtube_router
 from routers.webhooks import router as webhooks_router
 from routers.documents import router as documents_router
+from routers.ingestion import router as ingestion_router
 
 # Include routers
 app.include_router(search_router)
@@ -140,3 +141,4 @@ app.include_router(clickup_router)
 app.include_router(youtube_router)
 app.include_router(webhooks_router)
 app.include_router(documents_router)
+app.include_router(ingestion_router)
