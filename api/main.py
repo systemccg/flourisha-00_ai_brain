@@ -137,6 +137,7 @@ from routers.ingestion import router as ingestion_router
 from routers.reports import router as reports_router
 from routers.graph import router as graph_router
 from routers.okrs import router as okrs_router
+from routers.energy import router as energy_router
 
 # Include routers
 app.include_router(search_router)
@@ -148,3 +149,4 @@ app.include_router(ingestion_router)
 app.include_router(reports_router)
 app.include_router(graph_router)
 app.include_router(okrs_router)
+app.include_router(energy_router)
