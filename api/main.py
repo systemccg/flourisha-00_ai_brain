@@ -135,6 +135,7 @@ from routers.webhooks import router as webhooks_router
 from routers.documents import router as documents_router
 from routers.ingestion import router as ingestion_router
 from routers.reports import router as reports_router
+from routers.graph import router as graph_router
 
 # Include routers
 app.include_router(search_router)
@@ -144,3 +145,4 @@ app.include_router(webhooks_router)
 app.include_router(documents_router)
 app.include_router(ingestion_router)
 app.include_router(reports_router)
+app.include_router(graph_router)
