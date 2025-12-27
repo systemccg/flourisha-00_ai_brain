@@ -144,6 +144,10 @@ from routers.queue import router as queue_router
 from routers.feedback import router as feedback_router
 from routers.context_card import router as context_card_router
 from routers.gmail import router as gmail_router
+from routers.voice import router as voice_router
+from routers.roadmap import router as roadmap_router
+from routers.health_dashboard import router as health_dashboard_router
+from routers.sync import router as sync_router
 
 # Include routers
 app.include_router(search_router)
@@ -162,3 +166,7 @@ app.include_router(queue_router)
 app.include_router(feedback_router)
 app.include_router(context_card_router)
 app.include_router(gmail_router)
+app.include_router(voice_router)
+app.include_router(roadmap_router)
+app.include_router(health_dashboard_router)
+app.include_router(sync_router)
