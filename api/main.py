@@ -151,6 +151,7 @@ from routers.sync import router as sync_router
 from routers.transcript import router as transcript_router
 from routers.a2a import router as a2a_router
 from routers.workspace import router as workspace_router
+from routers.invitations import router as invitations_router
 
 # Include routers
 app.include_router(search_router)
@@ -176,3 +177,4 @@ app.include_router(sync_router)
 app.include_router(transcript_router)
 app.include_router(a2a_router)
 app.include_router(workspace_router)
+app.include_router(invitations_router)
