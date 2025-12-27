@@ -145,3 +145,78 @@ class WorkspaceDeleteResponse(BaseModel):
     deleted_workspace_id: str = Field(..., description="ID of deleted workspace")
     fallback_workspace_id: Optional[str] = Field(None, description="New active workspace after deletion")
     message: str = Field(..., description="Confirmation message")
+
+
+# === Member Management Models ===
+
+class MemberAdd(BaseModel):
+    """Request model for adding a member to a workspace."""
+    user_id: Optional[str] = Field(None, description="User's Firebase UID (if known)")
+    email: str = Field(..., description="User's email address")
+    role: WorkspaceRole = Field(default=WorkspaceRole.MEMBER, description="Role to assign")
+
+    model_config = {
+        "json_schema_extra": {
+            "example": {
+                "email": "newmember@example.com",
+                "role": "member"
+            }
+        }
+    }
+
+
+class MemberUpdate(BaseModel):
+    """Request model for updating a member's role."""
+    role: WorkspaceRole = Field(..., description="New role for the member")
+
+    model_config = {
+        "json_schema_extra": {
+            "example": {
+                "role": "admin"
+            }
+        }
+    }
+
+
+class WorkspaceMember(BaseModel):
+    """Full member information including profile details."""
+    user_id: str = Field(..., description="User's Firebase UID")
+    email: Optional[str] = Field(None, description="User's email")
+    name: Optional[str] = Field(None, description="User's display name")
+    role: WorkspaceRole = Field(..., description="Role in workspace")
+    joined_at: Optional[str] = Field(None, description="When user joined workspace")
+    last_active: Optional[str] = Field(None, description="Last activity timestamp")
+
+    model_config = {
+        "json_schema_extra": {
+            "example": {
+                "user_id": "firebase_uid_123",
+                "email": "member@example.com",
+                "name": "John Doe",
+                "role": "member",
+                "joined_at": "2025-12-24T10:00:00-08:00",
+                "last_active": "2025-12-27T14:30:00-08:00"
+            }
+        }
+    }
+
+
+class MemberListResponse(BaseModel):
+    """Response for listing workspace members."""
+    members: List[WorkspaceMember] = Field(..., description="List of members")
+    total: int = Field(..., description="Total member count")
+    workspace_id: str = Field(..., description="Workspace ID")
+
+
+class MemberAddResponse(BaseModel):
+    """Response after adding a member."""
+    member: WorkspaceMember = Field(..., description="Added member details")
+    workspace_id: str = Field(..., description="Workspace ID")
+    message: str = Field(..., description="Confirmation message")
+
+
+class MemberRemoveResponse(BaseModel):
+    """Response after removing a member."""
+    removed_user_id: str = Field(..., description="ID of removed user")
+    workspace_id: str = Field(..., description="Workspace ID")
+    message: str = Field(..., description="Confirmation message")

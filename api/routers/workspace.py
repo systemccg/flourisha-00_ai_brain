@@ -32,6 +32,12 @@ from models.workspace import (
     WorkspaceRole,
     WorkspacePlan,
     WorkspaceMemberInfo,
+    MemberAdd,
+    MemberUpdate,
+    WorkspaceMember,
+    MemberListResponse,
+    MemberAddResponse,
+    MemberRemoveResponse,
 )
 from middleware.auth import get_current_user, UserContext, require_roles
 from config import get_settings
@@ -745,6 +751,422 @@ async def delete_workspace(
         raise
     except Exception as e:
         logger.error(f"Error deleting workspace {workspace_id}: {e}")
+        return APIResponse(
+            success=False,
+            error=str(e),
+            meta=ResponseMeta(**meta_dict),
+        )
+
+
+# === Member Management Helper Functions ===
+
+async def get_workspace_members(workspace_id: str, supabase) -> List[dict]:
+    """Get all members of a workspace with their profile info."""
+    try:
+        result = supabase.table("tenant_users").select(
+            "user_id, role, created_at, users(id, email, display_name)"
+        ).eq("tenant_id", workspace_id).execute()
+        return result.data or []
+    except Exception as e:
+        logger.error(f"Error fetching workspace members: {e}")
+        return []
+
+
+async def get_user_by_email(email: str, supabase) -> Optional[dict]:
+    """Find a user by their email address."""
+    try:
+        result = supabase.table("users").select(
+            "id, email, display_name"
+        ).eq("email", email).single().execute()
+        return result.data
+    except Exception:
+        return None
+
+
+async def get_user_by_id(user_id: str, supabase) -> Optional[dict]:
+    """Get user by their ID."""
+    try:
+        result = supabase.table("users").select(
+            "id, email, display_name"
+        ).eq("id", user_id).single().execute()
+        return result.data
+    except Exception:
+        return None
+
+
+async def is_user_in_workspace(user_id: str, workspace_id: str, supabase) -> bool:
+    """Check if a user is already a member of a workspace."""
+    try:
+        result = supabase.table("tenant_users").select("user_id").eq(
+            "tenant_id", workspace_id
+        ).eq("user_id", user_id).single().execute()
+        return result.data is not None
+    except Exception:
+        return False
+
+
+async def count_workspace_owners(workspace_id: str, supabase) -> int:
+    """Count the number of owners in a workspace."""
+    try:
+        result = supabase.table("tenant_users").select(
+            "user_id", count="exact"
+        ).eq("tenant_id", workspace_id).eq("role", "owner").execute()
+        return result.count or 0
+    except Exception:
+        return 0
+
+
+def member_record_to_model(record: dict) -> WorkspaceMember:
+    """Convert a tenant_users record to WorkspaceMember model."""
+    user_data = record.get("users", {}) or {}
+    return WorkspaceMember(
+        user_id=record.get("user_id", ""),
+        email=user_data.get("email"),
+        name=user_data.get("display_name"),
+        role=WorkspaceRole(record.get("role", "member")),
+        joined_at=record.get("created_at"),
+        last_active=None,  # Could add activity tracking later
+    )
+
+
+# === Member Management Endpoints ===
+
+@router.get("/{workspace_id}/members", response_model=APIResponse[MemberListResponse])
+async def list_workspace_members(
+    workspace_id: str,
+    request: Request,
+    user: UserContext = Depends(get_current_user),
+) -> APIResponse[MemberListResponse]:
+    """
+    List all members of a workspace.
+
+    Returns each member with their role (owner, admin, member, viewer).
+    User must be a member of the workspace to view the member list.
+    """
+    supabase = get_supabase()
+    meta_dict = request.state.get_meta()
+
+    try:
+        # Verify user has access to workspace
+        role = await get_user_role_in_workspace(user.uid, workspace_id, supabase)
+        if not role:
+            raise HTTPException(
+                status_code=status.HTTP_403_FORBIDDEN,
+                detail="You don't have access to this workspace"
+            )
+
+        # Get all members
+        member_records = await get_workspace_members(workspace_id, supabase)
+        members = [member_record_to_model(r) for r in member_records]
+
+        return APIResponse(
+            success=True,
+            data=MemberListResponse(
+                members=members,
+                total=len(members),
+                workspace_id=workspace_id,
+            ),
+            meta=ResponseMeta(**meta_dict),
+        )
+
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Error listing members for workspace {workspace_id}: {e}")
+        return APIResponse(
+            success=False,
+            error=str(e),
+            meta=ResponseMeta(**meta_dict),
+        )
+
+
+@router.post("/{workspace_id}/members", response_model=APIResponse[MemberAddResponse], status_code=status.HTTP_201_CREATED)
+async def add_workspace_member(
+    workspace_id: str,
+    member_data: MemberAdd,
+    request: Request,
+    user: UserContext = Depends(get_current_user),
+) -> APIResponse[MemberAddResponse]:
+    """
+    Add a member to a workspace.
+
+    Validates that the user exists before adding.
+    Only owners and admins can add new members.
+    Cannot add a user who is already a member.
+    """
+    supabase = get_supabase()
+    meta_dict = request.state.get_meta()
+
+    try:
+        # Verify requester has admin/owner access
+        requester_role = await get_user_role_in_workspace(user.uid, workspace_id, supabase)
+        if requester_role not in ("owner", "admin"):
+            raise HTTPException(
+                status_code=status.HTTP_403_FORBIDDEN,
+                detail="Only owners and admins can add members"
+            )
+
+        # Verify workspace exists
+        workspace = await get_workspace_by_id(workspace_id, supabase)
+        if not workspace:
+            raise HTTPException(
+                status_code=status.HTTP_404_NOT_FOUND,
+                detail=f"Workspace {workspace_id} not found"
+            )
+
+        # Find the user to add - validate user exists
+        target_user = None
+        if member_data.user_id:
+            target_user = await get_user_by_id(member_data.user_id, supabase)
+        if not target_user:
+            target_user = await get_user_by_email(member_data.email, supabase)
+
+        if not target_user:
+            raise HTTPException(
+                status_code=status.HTTP_404_NOT_FOUND,
+                detail=f"User with email '{member_data.email}' not found. User must register first."
+            )
+
+        target_user_id = target_user.get("id")
+
+        # Check if user is already a member
+        if await is_user_in_workspace(target_user_id, workspace_id, supabase):
+            raise HTTPException(
+                status_code=status.HTTP_409_CONFLICT,
+                detail=f"User is already a member of this workspace"
+            )
+
+        # Validate role assignment - admins cannot assign owner role
+        if member_data.role == WorkspaceRole.OWNER and requester_role != "owner":
+            raise HTTPException(
+                status_code=status.HTTP_403_FORBIDDEN,
+                detail="Only owners can assign the owner role"
+            )
+
+        now = now_pacific()
+
+        # Add member to workspace
+        supabase.table("tenant_users").insert({
+            "tenant_id": workspace_id,
+            "user_id": target_user_id,
+            "role": member_data.role.value,
+            "groups": [],
+            "created_at": now,
+        }).execute()
+
+        logger.info(f"Added member {target_user_id} to workspace {workspace_id} with role {member_data.role}")
+
+        return APIResponse(
+            success=True,
+            data=MemberAddResponse(
+                member=WorkspaceMember(
+                    user_id=target_user_id,
+                    email=target_user.get("email"),
+                    name=target_user.get("display_name"),
+                    role=member_data.role,
+                    joined_at=now,
+                    last_active=None,
+                ),
+                workspace_id=workspace_id,
+                message=f"Successfully added {target_user.get('email')} to workspace",
+            ),
+            meta=ResponseMeta(**meta_dict),
+        )
+
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Error adding member to workspace {workspace_id}: {e}")
+        return APIResponse(
+            success=False,
+            error=str(e),
+            meta=ResponseMeta(**meta_dict),
+        )
+
+
+@router.patch("/{workspace_id}/members/{member_id}", response_model=APIResponse[WorkspaceMember])
+async def update_member_role(
+    workspace_id: str,
+    member_id: str,
+    updates: MemberUpdate,
+    request: Request,
+    user: UserContext = Depends(get_current_user),
+) -> APIResponse[WorkspaceMember]:
+    """
+    Update a member's role in the workspace.
+
+    Only owners can change roles to/from owner.
+    Admins can change roles between admin, member, and viewer.
+    Cannot demote the last owner.
+    """
+    supabase = get_supabase()
+    meta_dict = request.state.get_meta()
+
+    try:
+        # Verify requester has admin/owner access
+        requester_role = await get_user_role_in_workspace(user.uid, workspace_id, supabase)
+        if requester_role not in ("owner", "admin"):
+            raise HTTPException(
+                status_code=status.HTTP_403_FORBIDDEN,
+                detail="Only owners and admins can update member roles"
+            )
+
+        # Get current role of target member
+        current_role = await get_user_role_in_workspace(member_id, workspace_id, supabase)
+        if not current_role:
+            raise HTTPException(
+                status_code=status.HTTP_404_NOT_FOUND,
+                detail=f"Member not found in this workspace"
+            )
+
+        # Validate role changes
+        new_role = updates.role.value
+
+        # Only owners can promote to or demote from owner
+        if (current_role == "owner" or new_role == "owner") and requester_role != "owner":
+            raise HTTPException(
+                status_code=status.HTTP_403_FORBIDDEN,
+                detail="Only owners can change owner status"
+            )
+
+        # Prevent demoting the last owner
+        if current_role == "owner" and new_role != "owner":
+            owner_count = await count_workspace_owners(workspace_id, supabase)
+            if owner_count <= 1:
+                raise HTTPException(
+                    status_code=status.HTTP_400_BAD_REQUEST,
+                    detail="Cannot demote the last owner. Promote another member to owner first."
+                )
+
+        # Update the role
+        supabase.table("tenant_users").update({
+            "role": new_role,
+        }).eq("tenant_id", workspace_id).eq("user_id", member_id).execute()
+
+        # Fetch updated member info
+        target_user = await get_user_by_id(member_id, supabase)
+
+        logger.info(f"Updated member {member_id} role from {current_role} to {new_role} in workspace {workspace_id}")
+
+        return APIResponse(
+            success=True,
+            data=WorkspaceMember(
+                user_id=member_id,
+                email=target_user.get("email") if target_user else None,
+                name=target_user.get("display_name") if target_user else None,
+                role=updates.role,
+                joined_at=None,  # Would need to query for this
+                last_active=None,
+            ),
+            meta=ResponseMeta(**meta_dict),
+        )
+
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Error updating member role in workspace {workspace_id}: {e}")
+        return APIResponse(
+            success=False,
+            error=str(e),
+            meta=ResponseMeta(**meta_dict),
+        )
+
+
+@router.delete("/{workspace_id}/members/{member_id}", response_model=APIResponse[MemberRemoveResponse])
+async def remove_workspace_member(
+    workspace_id: str,
+    member_id: str,
+    request: Request,
+    user: UserContext = Depends(get_current_user),
+) -> APIResponse[MemberRemoveResponse]:
+    """
+    Remove a member from a workspace.
+
+    Owners and admins can remove members.
+    Members can remove themselves (leave workspace).
+    Cannot remove the last owner - must transfer ownership first.
+    Owners can remove admins, but admins cannot remove owners.
+    """
+    supabase = get_supabase()
+    meta_dict = request.state.get_meta()
+
+    try:
+        # Get requester's role
+        requester_role = await get_user_role_in_workspace(user.uid, workspace_id, supabase)
+        if not requester_role:
+            raise HTTPException(
+                status_code=status.HTTP_403_FORBIDDEN,
+                detail="You don't have access to this workspace"
+            )
+
+        # Get target member's role
+        target_role = await get_user_role_in_workspace(member_id, workspace_id, supabase)
+        if not target_role:
+            raise HTTPException(
+                status_code=status.HTTP_404_NOT_FOUND,
+                detail="Member not found in this workspace"
+            )
+
+        # Permission checks
+        is_self_removal = (user.uid == member_id)
+
+        if not is_self_removal:
+            # Non-self removal requires admin/owner
+            if requester_role not in ("owner", "admin"):
+                raise HTTPException(
+                    status_code=status.HTTP_403_FORBIDDEN,
+                    detail="Only owners and admins can remove other members"
+                )
+
+            # Admins cannot remove owners
+            if target_role == "owner" and requester_role != "owner":
+                raise HTTPException(
+                    status_code=status.HTTP_403_FORBIDDEN,
+                    detail="Admins cannot remove owners"
+                )
+
+        # Prevent removing the last owner
+        if target_role == "owner":
+            owner_count = await count_workspace_owners(workspace_id, supabase)
+            if owner_count <= 1:
+                raise HTTPException(
+                    status_code=status.HTTP_400_BAD_REQUEST,
+                    detail="Cannot remove the last owner. Transfer ownership to another member first."
+                )
+
+        # Remove the member
+        supabase.table("tenant_users").delete().eq(
+            "tenant_id", workspace_id
+        ).eq("user_id", member_id).execute()
+
+        # If user removed themselves, clear their active workspace if it was this one
+        if is_self_removal:
+            active_id = await get_active_workspace_id(user.uid, supabase)
+            if active_id == workspace_id:
+                # Find another workspace to switch to
+                memberships = await get_user_workspaces(user, supabase)
+                if memberships:
+                    new_active = memberships[0].get("tenant_id")
+                    if new_active:
+                        await set_active_workspace(user.uid, new_active, supabase)
+
+        action = "left" if is_self_removal else "removed from"
+        logger.info(f"Member {member_id} {action} workspace {workspace_id}")
+
+        return APIResponse(
+            success=True,
+            data=MemberRemoveResponse(
+                removed_user_id=member_id,
+                workspace_id=workspace_id,
+                message=f"Successfully {'left' if is_self_removal else 'removed member from'} workspace",
+            ),
+            meta=ResponseMeta(**meta_dict),
+        )
+
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Error removing member from workspace {workspace_id}: {e}")
         return APIResponse(
             success=False,
             error=str(e),
