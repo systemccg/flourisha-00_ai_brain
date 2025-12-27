@@ -140,6 +140,7 @@ from routers.okrs import router as okrs_router
 from routers.energy import router as energy_router
 from routers.skills import router as skills_router
 from routers.para import router as para_router
+from routers.queue import router as queue_router
 
 # Include routers
 app.include_router(search_router)
@@ -154,3 +155,4 @@ app.include_router(okrs_router)
 app.include_router(energy_router)
 app.include_router(skills_router)
 app.include_router(para_router)
+app.include_router(queue_router)
