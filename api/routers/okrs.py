@@ -5,6 +5,7 @@ Endpoints for managing Objectives and Key Results (OKRs).
 Wraps the okr_tracker service for quarterly goal management.
 """
 import sys
+import uuid
 from pathlib import Path
 from typing import List, Optional
 from datetime import datetime
@@ -103,6 +104,38 @@ class UpdateProgressRequest(BaseModel):
     notes: Optional[str] = Field(None, description="Optional notes about the update")
 
 
+class KeyResultCreate(BaseModel):
+    """Key Result creation data."""
+    title: str = Field(..., description="KR title")
+    target: float = Field(..., description="Target value")
+    unit: str = Field(default="units", description="Unit of measurement")
+    initial_value: float = Field(default=0.0, description="Starting value")
+
+
+class ObjectiveCreate(BaseModel):
+    """Objective creation request."""
+    title: str = Field(..., description="Objective title")
+    description: Optional[str] = Field(None, description="Objective description")
+    quarter: Optional[str] = Field(None, description="Quarter (defaults to current)")
+    owner: Optional[str] = Field(None, description="Objective owner")
+    target_completion: Optional[str] = Field(None, description="Target completion date")
+    key_results: List[KeyResultCreate] = Field(default_factory=list, description="Key Results")
+
+
+class ObjectiveUpdate(BaseModel):
+    """Objective update request."""
+    title: Optional[str] = Field(None, description="New title")
+    description: Optional[str] = Field(None, description="New description")
+    owner: Optional[str] = Field(None, description="New owner")
+    target_completion: Optional[str] = Field(None, description="New target completion date")
+
+
+class MeasurementRequest(BaseModel):
+    """Measurement recording request."""
+    value: float = Field(..., ge=0, description="Measurement value")
+    notes: Optional[str] = Field(None, description="Notes about this measurement")
+
+
 class OKRReportResponse(BaseModel):
     """Comprehensive OKR report response."""
     quarter: str = Field(..., description="Quarter identifier")
@@ -114,7 +147,449 @@ class OKRReportResponse(BaseModel):
     recommendations: List[str] = Field(..., description="Action recommendations")
 
 
+# Pacific timezone for timestamps
+PACIFIC = ZoneInfo("America/Los_Angeles")
+
+
 # === Endpoints ===
+
+@router.post("", response_model=APIResponse[ObjectiveData])
+async def create_objective(
+    request: Request,
+    objective_create: ObjectiveCreate,
+    user: UserContext = Depends(get_current_user),
+) -> APIResponse[ObjectiveData]:
+    """
+    Create a new Objective with Key Results.
+
+    Creates an objective with optional key results attached.
+    The objective is assigned to the specified quarter (or current quarter).
+
+    **Request Body:**
+    - title: Objective title (required)
+    - description: Optional description
+    - quarter: Quarter identifier (defaults to current)
+    - owner: Optional owner
+    - target_completion: Optional target date
+    - key_results: List of key results to create
+
+    **Response:**
+    - Created objective with assigned IDs
+
+    **Requires:** Valid Firebase JWT
+    """
+    meta_dict = request.state.get_meta()
+    tenant_id = user.tenant_id or user.uid
+    now = datetime.now(PACIFIC)
+
+    try:
+        from okr_tracker import OKRTrackerService
+
+        tracker = OKRTrackerService()
+        quarter = objective_create.quarter or tracker._get_current_quarter()
+
+        # Generate IDs
+        obj_id = f"obj_{uuid.uuid4().hex[:8]}"
+
+        # Build key results
+        key_results = []
+        for kr in objective_create.key_results:
+            kr_id = f"kr_{uuid.uuid4().hex[:8]}"
+            key_results.append(KeyResultData(
+                id=kr_id,
+                title=kr.title,
+                target=kr.target,
+                current=kr.initial_value,
+                unit=kr.unit,
+                progress_pct=(kr.initial_value / kr.target * 100) if kr.target > 0 else 0.0,
+                is_lagging=False,
+            ))
+
+        # Calculate overall progress
+        overall_progress = (
+            sum(kr.progress_pct or 0 for kr in key_results) / len(key_results)
+            if key_results else 0.0
+        )
+
+        # Build objective data
+        objective_data = ObjectiveData(
+            id=obj_id,
+            title=objective_create.title,
+            description=objective_create.description,
+            owner=objective_create.owner,
+            target_completion=objective_create.target_completion,
+            key_results=key_results,
+            progress_pct=overall_progress,
+        )
+
+        # Persist to Supabase
+        if tracker._client:
+            # Insert objective
+            tracker._client.table('okr_objectives').insert({
+                'id': obj_id,
+                'tenant_id': tenant_id,
+                'quarter': quarter,
+                'title': objective_create.title,
+                'description': objective_create.description,
+                'owner': objective_create.owner,
+                'target_completion': objective_create.target_completion,
+                'created_at': now.isoformat(),
+                'updated_at': now.isoformat(),
+            }).execute()
+
+            # Insert key results
+            for kr in key_results:
+                tracker._client.table('okr_key_results').insert({
+                    'id': kr.id,
+                    'objective_id': obj_id,
+                    'tenant_id': tenant_id,
+                    'title': kr.title,
+                    'target': kr.target,
+                    'current': kr.current,
+                    'unit': kr.unit,
+                    'created_at': now.isoformat(),
+                    'updated_at': now.isoformat(),
+                }).execute()
+
+        return APIResponse(
+            success=True,
+            data=objective_data,
+            meta=ResponseMeta(**meta_dict),
+        )
+
+    except ImportError as e:
+        return APIResponse(
+            success=False,
+            data=None,
+            error="OKR tracker service not available",
+            meta=ResponseMeta(**meta_dict),
+        )
+    except Exception as e:
+        return APIResponse(
+            success=False,
+            data=None,
+            error=f"Failed to create objective: {str(e)}",
+            meta=ResponseMeta(**meta_dict),
+        )
+
+
+@router.get("", response_model=APIResponse[OKRProgressResponse])
+async def list_objectives(
+    request: Request,
+    quarter: Optional[str] = Query(None, description="Quarter (e.g., Q1_2026). Defaults to current."),
+    user: UserContext = Depends(get_current_user),
+) -> APIResponse[OKRProgressResponse]:
+    """
+    List all objectives for a quarter.
+
+    Alias for /progress endpoint - returns all objectives with their key results.
+
+    **Query Parameters:**
+    - quarter: Quarter identifier (defaults to current quarter)
+
+    **Requires:** Valid Firebase JWT
+    """
+    return await get_okr_progress(request, quarter, "weekly", user)
+
+
+@router.get("/{objective_id}", response_model=APIResponse[ObjectiveData])
+async def get_objective(
+    request: Request,
+    objective_id: str,
+    quarter: Optional[str] = Query(None, description="Quarter (defaults to current)"),
+    user: UserContext = Depends(get_current_user),
+) -> APIResponse[ObjectiveData]:
+    """
+    Get a single objective by ID.
+
+    Returns the objective with its key results and current progress.
+
+    **Path Parameters:**
+    - objective_id: Objective identifier
+
+    **Query Parameters:**
+    - quarter: Quarter identifier (defaults to current quarter)
+
+    **Requires:** Valid Firebase JWT
+    """
+    meta_dict = request.state.get_meta()
+    tenant_id = user.tenant_id or user.uid
+
+    try:
+        from okr_tracker import OKRTrackerService
+
+        tracker = OKRTrackerService()
+        await tracker.load_okrs(quarter or tracker._get_current_quarter(), tenant_id)
+
+        obj = tracker._okrs.get(objective_id)
+        if not obj:
+            return APIResponse(
+                success=False,
+                data=None,
+                error=f"Objective {objective_id} not found",
+                meta=ResponseMeta(**meta_dict),
+            )
+
+        key_results = []
+        for kr in obj.key_results:
+            key_results.append(KeyResultData(
+                id=kr.id,
+                title=kr.title,
+                target=kr.target,
+                current=kr.current,
+                unit=kr.unit,
+                progress_pct=kr.progress_pct,
+                is_lagging=kr.is_lagging,
+            ))
+
+        objective_data = ObjectiveData(
+            id=obj.id,
+            title=obj.title,
+            description=obj.description,
+            owner=obj.owner,
+            target_completion=obj.target_completion,
+            key_results=key_results,
+            progress_pct=obj.progress_pct,
+        )
+
+        return APIResponse(
+            success=True,
+            data=objective_data,
+            meta=ResponseMeta(**meta_dict),
+        )
+
+    except ImportError as e:
+        return APIResponse(
+            success=False,
+            data=None,
+            error="OKR tracker service not available",
+            meta=ResponseMeta(**meta_dict),
+        )
+    except Exception as e:
+        return APIResponse(
+            success=False,
+            data=None,
+            error=f"Failed to get objective: {str(e)}",
+            meta=ResponseMeta(**meta_dict),
+        )
+
+
+@router.put("/{objective_id}", response_model=APIResponse[ObjectiveData])
+async def update_objective(
+    request: Request,
+    objective_id: str,
+    objective_update: ObjectiveUpdate,
+    quarter: Optional[str] = Query(None, description="Quarter (defaults to current)"),
+    user: UserContext = Depends(get_current_user),
+) -> APIResponse[ObjectiveData]:
+    """
+    Update an objective.
+
+    Updates objective properties (title, description, owner, target date).
+    Does not update key results - use the measure endpoint for that.
+
+    **Path Parameters:**
+    - objective_id: Objective identifier
+
+    **Request Body:**
+    - title: New title (optional)
+    - description: New description (optional)
+    - owner: New owner (optional)
+    - target_completion: New target date (optional)
+
+    **Requires:** Valid Firebase JWT
+    """
+    meta_dict = request.state.get_meta()
+    tenant_id = user.tenant_id or user.uid
+    now = datetime.now(PACIFIC)
+
+    try:
+        from okr_tracker import OKRTrackerService
+
+        tracker = OKRTrackerService()
+        quarter_str = quarter or tracker._get_current_quarter()
+        await tracker.load_okrs(quarter_str, tenant_id)
+
+        obj = tracker._okrs.get(objective_id)
+        if not obj:
+            return APIResponse(
+                success=False,
+                data=None,
+                error=f"Objective {objective_id} not found",
+                meta=ResponseMeta(**meta_dict),
+            )
+
+        # Build update payload
+        updates = {}
+        if objective_update.title is not None:
+            updates['title'] = objective_update.title
+            obj.title = objective_update.title
+        if objective_update.description is not None:
+            updates['description'] = objective_update.description
+            obj.description = objective_update.description
+        if objective_update.owner is not None:
+            updates['owner'] = objective_update.owner
+            obj.owner = objective_update.owner
+        if objective_update.target_completion is not None:
+            updates['target_completion'] = objective_update.target_completion
+            obj.target_completion = objective_update.target_completion
+
+        # Persist to Supabase
+        if tracker._client and updates:
+            updates['updated_at'] = now.isoformat()
+            tracker._client.table('okr_objectives').update(updates).eq(
+                'id', objective_id
+            ).eq('tenant_id', tenant_id).execute()
+
+        # Build response
+        key_results = []
+        for kr in obj.key_results:
+            key_results.append(KeyResultData(
+                id=kr.id,
+                title=kr.title,
+                target=kr.target,
+                current=kr.current,
+                unit=kr.unit,
+                progress_pct=kr.progress_pct,
+                is_lagging=kr.is_lagging,
+            ))
+
+        objective_data = ObjectiveData(
+            id=obj.id,
+            title=obj.title,
+            description=obj.description,
+            owner=obj.owner,
+            target_completion=obj.target_completion,
+            key_results=key_results,
+            progress_pct=obj.progress_pct,
+        )
+
+        return APIResponse(
+            success=True,
+            data=objective_data,
+            meta=ResponseMeta(**meta_dict),
+        )
+
+    except ImportError as e:
+        return APIResponse(
+            success=False,
+            data=None,
+            error="OKR tracker service not available",
+            meta=ResponseMeta(**meta_dict),
+        )
+    except Exception as e:
+        return APIResponse(
+            success=False,
+            data=None,
+            error=f"Failed to update objective: {str(e)}",
+            meta=ResponseMeta(**meta_dict),
+        )
+
+
+@router.post("/{objective_id}/measure", response_model=APIResponse[dict])
+async def record_measurement(
+    request: Request,
+    objective_id: str,
+    kr_id: str = Query(..., description="Key Result identifier"),
+    measurement: MeasurementRequest = None,
+    quarter: Optional[str] = Query(None, description="Quarter (defaults to current)"),
+    user: UserContext = Depends(get_current_user),
+) -> APIResponse[dict]:
+    """
+    Record a measurement for a Key Result.
+
+    Updates the current value of a key result and records the measurement.
+    This is the primary way to track progress on KRs.
+
+    **Path Parameters:**
+    - objective_id: Objective identifier
+
+    **Query Parameters:**
+    - kr_id: Key Result identifier (required)
+    - quarter: Quarter identifier (defaults to current)
+
+    **Request Body:**
+    - value: The new measurement value
+    - notes: Optional notes about this measurement
+
+    **Response:**
+    - updated: Whether update succeeded
+    - objective_id: The objective
+    - kr_id: The key result
+    - new_value: The recorded value
+    - progress_pct: New progress percentage
+
+    **Requires:** Valid Firebase JWT
+    """
+    meta_dict = request.state.get_meta()
+    tenant_id = user.tenant_id or user.uid
+
+    # Use the existing update_kr_progress logic
+    update_request = UpdateProgressRequest(
+        objective_id=objective_id,
+        kr_id=kr_id,
+        new_value=measurement.value if measurement else 0,
+        notes=measurement.notes if measurement else None,
+    )
+
+    try:
+        from okr_tracker import OKRTrackerService
+
+        tracker = OKRTrackerService()
+        await tracker.load_okrs(quarter or tracker._get_current_quarter(), tenant_id)
+
+        success = await tracker.update_kr_progress(
+            objective_id=update_request.objective_id,
+            kr_id=update_request.kr_id,
+            new_value=update_request.new_value,
+            tenant_id=tenant_id,
+            notes=update_request.notes,
+        )
+
+        if success:
+            # Get updated progress
+            obj = tracker._okrs.get(update_request.objective_id)
+            kr_progress = None
+            if obj:
+                for kr in obj.key_results:
+                    if kr.id == update_request.kr_id:
+                        kr_progress = kr.progress_pct
+                        break
+
+            return APIResponse(
+                success=True,
+                data={
+                    "updated": True,
+                    "objective_id": update_request.objective_id,
+                    "kr_id": update_request.kr_id,
+                    "new_value": update_request.new_value,
+                    "progress_pct": kr_progress,
+                },
+                meta=ResponseMeta(**meta_dict),
+            )
+        else:
+            return APIResponse(
+                success=False,
+                data=None,
+                error="Failed to record measurement - objective or KR not found",
+                meta=ResponseMeta(**meta_dict),
+            )
+
+    except ImportError as e:
+        return APIResponse(
+            success=False,
+            data=None,
+            error="OKR tracker service not available",
+            meta=ResponseMeta(**meta_dict),
+        )
+    except Exception as e:
+        return APIResponse(
+            success=False,
+            data=None,
+            error=f"Failed to record measurement: {str(e)}",
+            meta=ResponseMeta(**meta_dict),
+        )
+
 
 @router.get("/progress", response_model=APIResponse[OKRProgressResponse])
 async def get_okr_progress(
