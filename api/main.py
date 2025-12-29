@@ -177,6 +177,10 @@ OPENAPI_TAGS = [
         "name": "Mobile App",
         "description": "APIs for React Native mobile app: device registration, offline sync, voice notes, and mobile-optimized endpoints.",
     },
+    {
+        "name": "Skills Database",
+        "description": "Database-backed skills storage with filesystem sync. Supports CRUD operations and migration from ~/.claude/skills/.",
+    },
 ]
 
 # Create FastAPI app with enhanced OpenAPI configuration
@@ -435,6 +439,7 @@ from routers.crons import router as crons_router
 from routers.migrations import router as migrations_router
 from routers.chrome_extension import router as chrome_extension_router
 from routers.mobile_app import router as mobile_app_router
+from routers.skills_db import router as skills_db_router
 
 # Include routers
 app.include_router(search_router)
@@ -471,6 +476,7 @@ app.include_router(crons_router)
 app.include_router(migrations_router)
 app.include_router(chrome_extension_router)
 app.include_router(mobile_app_router)
+app.include_router(skills_db_router)
 
 
 # Custom OpenAPI schema with security definitions
