@@ -378,3 +378,160 @@ class MobileSearchResponse(BaseModel):
     results: List[SearchResultItem] = Field(default_factory=list, description="Search results")
     search_time_ms: int = Field(..., description="Search time in milliseconds")
     suggestions: List[str] = Field(default_factory=list, description="Search suggestions")
+
+
+# === Deep Links ===
+
+class DeepLinkType(str, Enum):
+    """Types of deep links."""
+    CAPTURE = "capture"
+    TASK = "task"
+    OKR = "okr"
+    SEARCH = "search"
+    ENERGY = "energy"
+    DASHBOARD = "dashboard"
+    PROFILE = "profile"
+    SETTINGS = "settings"
+    VOICE_NOTE = "voice_note"
+    DOCUMENT = "document"
+    SHARE = "share"
+
+
+class DeepLinkParams(BaseModel):
+    """Parameters for deep link generation."""
+    link_type: DeepLinkType = Field(..., description="Type of deep link")
+    target_id: Optional[str] = Field(None, description="Target resource ID (task, capture, etc.)")
+    params: Optional[Dict[str, Any]] = Field(None, description="Additional query parameters")
+    title: Optional[str] = Field(None, description="Social media title preview")
+    description: Optional[str] = Field(None, description="Social media description preview")
+    image_url: Optional[str] = Field(None, description="Social media image preview")
+    fallback_url: Optional[str] = Field(None, description="Fallback URL for web users")
+
+    model_config = {
+        "json_schema_extra": {
+            "example": {
+                "link_type": "task",
+                "target_id": "task_abc123",
+                "title": "Check out this task",
+                "description": "A task from Flourisha"
+            }
+        }
+    }
+
+
+class CreateDeepLinkRequest(BaseModel):
+    """Request to create a Firebase Dynamic Link."""
+    link_params: DeepLinkParams = Field(..., description="Deep link parameters")
+    short_link: bool = Field(default=True, description="Generate short link vs long link")
+    suffix_option: str = Field(
+        default="SHORT",
+        description="SHORT (4-char) or UNGUESSABLE (17-char) suffix"
+    )
+
+    model_config = {
+        "json_schema_extra": {
+            "example": {
+                "link_params": {
+                    "link_type": "task",
+                    "target_id": "task_abc123",
+                    "title": "View Task",
+                    "description": "Open this task in Flourisha app"
+                },
+                "short_link": True,
+                "suffix_option": "SHORT"
+            }
+        }
+    }
+
+
+class CreateDeepLinkResponse(BaseModel):
+    """Response with generated deep link."""
+    short_link: Optional[str] = Field(None, description="Firebase short link URL")
+    long_link: str = Field(..., description="Full Firebase Dynamic Link URL")
+    preview_link: Optional[str] = Field(None, description="Link preview URL")
+    warning: Optional[str] = Field(None, description="Warning message if applicable")
+    expires_at: Optional[str] = Field(None, description="Link expiration if set")
+
+
+class ResolveDeepLinkRequest(BaseModel):
+    """Request to resolve a deep link received by the app."""
+    link_url: str = Field(..., description="The incoming deep link URL")
+    device_id: Optional[str] = Field(None, description="Device ID for attribution")
+
+    model_config = {
+        "json_schema_extra": {
+            "example": {
+                "link_url": "https://flourisha.page.link/abc123",
+                "device_id": "device_xyz"
+            }
+        }
+    }
+
+
+class DeepLinkDestination(BaseModel):
+    """Resolved destination for a deep link."""
+    screen: str = Field(..., description="Target screen in app")
+    params: Dict[str, Any] = Field(default_factory=dict, description="Screen parameters")
+    resource_id: Optional[str] = Field(None, description="Resource ID if applicable")
+    resource_type: Optional[str] = Field(None, description="Resource type if applicable")
+    deferred: bool = Field(default=False, description="Whether this is a deferred deep link")
+
+
+class ResolveDeepLinkResponse(BaseModel):
+    """Response with resolved deep link destination."""
+    valid: bool = Field(..., description="Whether link is valid")
+    destination: Optional[DeepLinkDestination] = Field(
+        None,
+        description="Resolved destination"
+    )
+    error: Optional[str] = Field(None, description="Error if link is invalid")
+    attribution: Optional[Dict[str, Any]] = Field(
+        None,
+        description="Attribution data for analytics"
+    )
+
+
+class BatchDeepLinksRequest(BaseModel):
+    """Request to generate multiple deep links."""
+    links: List[DeepLinkParams] = Field(
+        ...,
+        min_length=1,
+        max_length=10,
+        description="List of deep link parameters"
+    )
+    short_links: bool = Field(default=True, description="Generate short links")
+
+
+class BatchDeepLinksResponse(BaseModel):
+    """Response with batch of generated deep links."""
+    links: List[CreateDeepLinkResponse] = Field(..., description="Generated links")
+    success_count: int = Field(..., description="Number of successfully generated links")
+    error_count: int = Field(..., description="Number of failed links")
+
+
+class DeepLinkAnalyticsRequest(BaseModel):
+    """Request to get deep link analytics."""
+    link_id: Optional[str] = Field(None, description="Specific link ID")
+    days: int = Field(default=7, ge=1, le=90, description="Days of analytics data")
+
+
+class DeepLinkStats(BaseModel):
+    """Statistics for a deep link."""
+    link_url: str = Field(..., description="Link URL")
+    clicks_total: int = Field(default=0, description="Total clicks")
+    clicks_ios: int = Field(default=0, description="iOS clicks")
+    clicks_android: int = Field(default=0, description="Android clicks")
+    clicks_web: int = Field(default=0, description="Web fallback clicks")
+    installs_total: int = Field(default=0, description="App installs attributed")
+    first_opens: int = Field(default=0, description="First app opens")
+    re_opens: int = Field(default=0, description="App re-opens")
+    created_at: str = Field(..., description="Link creation timestamp")
+
+
+class DeepLinkAnalyticsResponse(BaseModel):
+    """Response with deep link analytics."""
+    links: List[DeepLinkStats] = Field(default_factory=list, description="Link statistics")
+    period_start: str = Field(..., description="Analytics period start")
+    period_end: str = Field(..., description="Analytics period end")
+    total_clicks: int = Field(default=0, description="Total clicks across all links")
+    total_installs: int = Field(default=0, description="Total installs across all links")
