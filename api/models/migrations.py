@@ -20,11 +20,13 @@ class MigrationStatus(str, Enum):
 class TableInfo(BaseModel):
     """Information about a database table."""
     name: str = Field(..., description="Table name")
-    schema: str = Field(default="public", description="Schema name")
+    schema_name: str = Field(default="public", description="Schema name", alias="schema")
     row_count: Optional[int] = Field(default=None, description="Approximate row count")
     has_rls: bool = Field(default=False, description="Whether RLS is enabled")
     indexes: List[str] = Field(default_factory=list, description="Index names")
     columns: List[str] = Field(default_factory=list, description="Column names")
+
+    model_config = {"populate_by_name": True}
 
 
 class MigrationInfo(BaseModel):
