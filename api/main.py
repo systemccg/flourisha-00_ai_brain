@@ -181,6 +181,10 @@ OPENAPI_TAGS = [
         "name": "Skills Database",
         "description": "Database-backed skills storage with filesystem sync. Supports CRUD operations and migration from ~/.claude/skills/.",
     },
+    {
+        "name": "Personality Profiles",
+        "description": "Contact personality profiles for personalized communication. Extends Context Card concept to contacts with communication styles, relationship context, and interaction patterns.",
+    },
 ]
 
 # Create FastAPI app with enhanced OpenAPI configuration
@@ -440,6 +444,7 @@ from routers.migrations import router as migrations_router
 from routers.chrome_extension import router as chrome_extension_router
 from routers.mobile_app import router as mobile_app_router
 from routers.skills_db import router as skills_db_router
+from routers.personality_profile import router as personality_profile_router
 
 # Include routers
 app.include_router(search_router)
@@ -477,6 +482,7 @@ app.include_router(migrations_router)
 app.include_router(chrome_extension_router)
 app.include_router(mobile_app_router)
 app.include_router(skills_db_router)
+app.include_router(personality_profile_router)
 
 
 # Custom OpenAPI schema with security definitions
