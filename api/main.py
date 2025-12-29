@@ -173,6 +173,10 @@ OPENAPI_TAGS = [
         "name": "Chrome Extension",
         "description": "APIs for Chrome browser extension: quick capture, page saving, sync, and energy tracking.",
     },
+    {
+        "name": "Mobile App",
+        "description": "APIs for React Native mobile app: device registration, offline sync, voice notes, and mobile-optimized endpoints.",
+    },
 ]
 
 # Create FastAPI app with enhanced OpenAPI configuration
@@ -430,6 +434,7 @@ from routers.fabric import router as fabric_router
 from routers.crons import router as crons_router
 from routers.migrations import router as migrations_router
 from routers.chrome_extension import router as chrome_extension_router
+from routers.mobile_app import router as mobile_app_router
 
 # Include routers
 app.include_router(search_router)
@@ -465,6 +470,7 @@ app.include_router(fabric_router)
 app.include_router(crons_router)
 app.include_router(migrations_router)
 app.include_router(chrome_extension_router)
+app.include_router(mobile_app_router)
 
 
 # Custom OpenAPI schema with security definitions
