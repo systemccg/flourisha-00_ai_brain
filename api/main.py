@@ -189,6 +189,10 @@ OPENAPI_TAGS = [
         "name": "Memory System",
         "description": "Persistent memory across conversations using Mem0. Supports user memory (cross-session), session memory (single conversation), and agent memory (per-agent instance).",
     },
+    {
+        "name": "Hedra Avatar",
+        "description": "Hedra Character API integration for avatar generation. Supports image/audio uploads, TTS generation, lip-sync video creation, realtime avatar sessions (LiveKit), and project management.",
+    },
 ]
 
 # Create FastAPI app with enhanced OpenAPI configuration
@@ -450,6 +454,7 @@ from routers.mobile_app import router as mobile_app_router
 from routers.skills_db import router as skills_db_router
 from routers.personality_profile import router as personality_profile_router
 from routers.memory import router as memory_router
+from routers.hedra import router as hedra_router
 
 # Include routers
 app.include_router(search_router)
@@ -489,6 +494,7 @@ app.include_router(mobile_app_router)
 app.include_router(skills_db_router)
 app.include_router(personality_profile_router)
 app.include_router(memory_router)
+app.include_router(hedra_router)
 
 
 # Custom OpenAPI schema with security definitions

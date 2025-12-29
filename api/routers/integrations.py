@@ -265,6 +265,18 @@ INTEGRATION_CATALOG: Dict[str, IntegrationDefinition] = {
             read=True, write=True
         ),
     ),
+    "hedra": IntegrationDefinition(
+        id="hedra",
+        name="Hedra",
+        description="AI avatar generation and realtime avatars (LiveKit)",
+        category=IntegrationCategory.AI,
+        type=IntegrationType.API_KEY,
+        icon_url="/icons/hedra.svg",
+        docs_url="https://www.hedra.com/docs/api-reference/",
+        capabilities=IntegrationCapability(
+            read=True, write=True, realtime=True
+        ),
+    ),
 }
 
 
