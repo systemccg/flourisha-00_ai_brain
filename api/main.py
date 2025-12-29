@@ -156,6 +156,7 @@ from routers.groups import router as groups_router
 from routers.profile import router as profile_router
 from routers.integrations import router as integrations_router
 from routers.billing import router as billing_router
+from routers.agents import router as agents_router
 
 # Include routers
 app.include_router(search_router)
@@ -186,3 +187,4 @@ app.include_router(groups_router)
 app.include_router(profile_router)
 app.include_router(integrations_router)
 app.include_router(billing_router)
+app.include_router(agents_router)
