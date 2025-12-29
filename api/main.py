@@ -159,6 +159,7 @@ from routers.billing import router as billing_router
 from routers.agents import router as agents_router
 from routers.fabric import router as fabric_router
 from routers.crons import router as crons_router
+from routers.migrations import router as migrations_router
 
 # Include routers
 app.include_router(search_router)
@@ -192,3 +193,4 @@ app.include_router(billing_router)
 app.include_router(agents_router)
 app.include_router(fabric_router)
 app.include_router(crons_router)
+app.include_router(migrations_router)
