@@ -13,6 +13,7 @@ from zoneinfo import ZoneInfo
 from fastapi import FastAPI, Request, Depends
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.exceptions import RequestValidationError
+from fastapi.openapi.utils import get_openapi
 from starlette.exceptions import HTTPException as StarletteHTTPException
 
 from models.response import APIResponse, HealthStatus, ResponseMeta
@@ -29,14 +30,249 @@ from config import get_settings, validate_startup_config, Settings
 # Load settings from environment
 settings = get_settings()
 
-# Create FastAPI app
+# OpenAPI Tags with descriptions for documentation grouping
+OPENAPI_TAGS = [
+    {
+        "name": "System",
+        "description": "System health, status, and root endpoints. No authentication required for health checks.",
+    },
+    {
+        "name": "Auth",
+        "description": "Authentication and user profile endpoints. Requires Firebase JWT Bearer token.",
+    },
+    {
+        "name": "Search",
+        "description": "Unified semantic search across vector store, knowledge graph, and documents.",
+    },
+    {
+        "name": "YouTube",
+        "description": "YouTube channel management, playlist processing, and video transcription.",
+    },
+    {
+        "name": "Documents",
+        "description": "Document upload, processing, and extraction. Supports PDF, images, and text files.",
+    },
+    {
+        "name": "Ingestion",
+        "description": "Knowledge ingestion pipeline for processing content into vector/graph stores.",
+    },
+    {
+        "name": "Graph",
+        "description": "Neo4j knowledge graph queries, entity relationships, and graph traversal.",
+    },
+    {
+        "name": "Reports",
+        "description": "Morning reports, productivity analysis, and daily briefings.",
+    },
+    {
+        "name": "OKRs",
+        "description": "Objectives and Key Results tracking, progress updates, and rollups.",
+    },
+    {
+        "name": "Energy",
+        "description": "Energy tracking (1-10), focus quality monitoring, and productivity patterns.",
+    },
+    {
+        "name": "Skills",
+        "description": "PAI Skills registry, execution, and configuration management.",
+    },
+    {
+        "name": "PARA",
+        "description": "Projects, Areas, Resources, Archives file system navigation and management.",
+    },
+    {
+        "name": "Queue",
+        "description": "Background processing queue management and job status.",
+    },
+    {
+        "name": "Feedback",
+        "description": "Extraction feedback for improving document processing accuracy.",
+    },
+    {
+        "name": "Context Card",
+        "description": "Context cards for quick access to relevant information.",
+    },
+    {
+        "name": "Gmail",
+        "description": "Gmail integration for email processing and knowledge extraction.",
+    },
+    {
+        "name": "Voice",
+        "description": "Voice synthesis using ElevenLabs TTS with agent-specific voices.",
+    },
+    {
+        "name": "Roadmap",
+        "description": "Daily roadmap generation synthesizing OKRs, energy, and priorities.",
+    },
+    {
+        "name": "Health Dashboard",
+        "description": "System health monitoring for Supabase, Neo4j, and services.",
+    },
+    {
+        "name": "Sync",
+        "description": "Flourisha sync with Google Drive using rclone bisync.",
+    },
+    {
+        "name": "Transcript",
+        "description": "YouTube transcript retrieval with caching and multiple methods.",
+    },
+    {
+        "name": "A2A",
+        "description": "Agent-to-Agent protocol registry for agent discovery and communication.",
+    },
+    {
+        "name": "Workspace",
+        "description": "Multi-tenant workspace management, settings, and configuration.",
+    },
+    {
+        "name": "Invitations",
+        "description": "Workspace invitation management for team collaboration.",
+    },
+    {
+        "name": "Groups",
+        "description": "User group management for permissions and sharing.",
+    },
+    {
+        "name": "Profile",
+        "description": "User profile management, preferences, and settings.",
+    },
+    {
+        "name": "Integrations",
+        "description": "Third-party integration management (Slack, Notion, etc.).",
+    },
+    {
+        "name": "Billing",
+        "description": "Subscription management, usage tracking, and payment processing.",
+    },
+    {
+        "name": "Agents",
+        "description": "AI agent registry, execution, and monitoring.",
+    },
+    {
+        "name": "Fabric",
+        "description": "Fabric pattern execution for content transformation.",
+    },
+    {
+        "name": "Crons",
+        "description": "Scheduled task endpoints triggered by pg_cron or systemd timers.",
+    },
+    {
+        "name": "Migrations",
+        "description": "Database migration management and schema introspection (admin only).",
+    },
+    {
+        "name": "Webhooks",
+        "description": "Incoming webhooks from ClickUp, Gmail, Stripe, and energy tracking.",
+    },
+    {
+        "name": "ClickUp",
+        "description": "ClickUp task management integration and synchronization.",
+    },
+]
+
+# Create FastAPI app with enhanced OpenAPI configuration
 app = FastAPI(
     title="Flourisha API",
-    description="REST API for Flourisha AI Brain - Knowledge management, content processing, and productivity tools",
+    description="""
+## Flourisha AI Brain REST API
+
+**Knowledge management, content processing, and productivity tools for personal AI infrastructure.**
+
+### Architecture
+
+The API follows a **Five Pillars** architecture:
+
+| Pillar | Purpose | Key Endpoints |
+|--------|---------|---------------|
+| **INGEST** | Content ingestion | `/youtube`, `/documents`, `/gmail` |
+| **KNOW** | Knowledge storage | `/search`, `/graph`, `/ingestion` |
+| **THINK** | Strategic command | `/reports`, `/okrs`, `/roadmap` |
+| **EXECUTE** | Agentic operations | `/skills`, `/agents`, `/fabric` |
+| **GROW** | System evolution | `/feedback`, `/health-dashboard` |
+
+### Authentication
+
+Most endpoints require a **Firebase JWT Bearer token** in the Authorization header:
+
+```
+Authorization: Bearer <firebase-jwt-token>
+```
+
+**Public endpoints** (no auth required):
+- `GET /api/health` - Health check
+- `GET /api/crons/health` - Cron health
+- `GET /api/migrations/health` - Migration health
+- `POST /api/webhooks/*` - Webhook receivers (use signature verification)
+
+**Admin endpoints** require additional `X-Admin-Secret` or `X-Cron-Secret` header:
+- `POST /api/crons/trigger/*` - Trigger cron jobs
+- `POST /api/migrations/apply` - Apply migrations
+- `POST /api/migrations/execute` - Execute SQL
+
+### Response Format
+
+All responses follow a consistent format:
+
+```json
+{
+  "success": true,
+  "data": { ... },
+  "error": null,
+  "meta": {
+    "request_id": "uuid",
+    "duration_ms": 123,
+    "timestamp": "2025-12-29T12:00:00-08:00"
+  }
+}
+```
+
+### Error Codes
+
+| Code | Description |
+|------|-------------|
+| 400 | Bad Request - Invalid input |
+| 401 | Unauthorized - Missing or invalid token |
+| 403 | Forbidden - Insufficient permissions |
+| 404 | Not Found - Resource doesn't exist |
+| 422 | Validation Error - Request body validation failed |
+| 429 | Too Many Requests - Rate limit exceeded |
+| 500 | Internal Server Error - Server-side error |
+| 503 | Service Unavailable - Dependency unavailable |
+
+### Rate Limiting
+
+Rate limits are applied per user/API key:
+- **Standard**: 1000 requests/hour
+- **Search**: 100 requests/minute (expensive operations)
+- **Webhooks**: Unlimited (signature verified)
+
+### Multi-Tenant Architecture
+
+All data is isolated by `tenant_id`. Row-Level Security (RLS) is enforced at the database level.
+Users can only access data within their tenant unless explicitly shared via groups.
+
+### Timezone
+
+All timestamps use **Pacific Time (America/Los_Angeles)** unless otherwise specified.
+""",
     version=settings.api_version,
     docs_url="/docs",
     redoc_url="/redoc",
     openapi_url="/openapi.json",
+    openapi_tags=OPENAPI_TAGS,
+    contact={
+        "name": "Flourisha Support",
+        "url": "https://github.com/systemccg/flourisha-00_ai_brain",
+        "email": "gwasmuth@gmail.com",
+    },
+    license_info={
+        "name": "Private - All Rights Reserved",
+        "url": "https://github.com/systemccg/flourisha-00_ai_brain/blob/main/LICENSE",
+    },
+    servers=[
+        {"url": "http://localhost:8000", "description": "Local Development"},
+        {"url": "https://api.flourisha.app", "description": "Production (future)"},
+    ],
 )
 
 # Exception handlers - consistent APIResponse format for all errors
@@ -194,3 +430,105 @@ app.include_router(agents_router)
 app.include_router(fabric_router)
 app.include_router(crons_router)
 app.include_router(migrations_router)
+
+
+# Custom OpenAPI schema with security definitions
+def custom_openapi():
+    """Generate custom OpenAPI schema with security schemes and examples."""
+    if app.openapi_schema:
+        return app.openapi_schema
+
+    openapi_schema = get_openapi(
+        title=app.title,
+        version=app.version,
+        description=app.description,
+        routes=app.routes,
+        tags=app.openapi_tags,
+        servers=app.servers,
+        contact=app.contact,
+        license_info=app.license_info,
+    )
+
+    # Add security schemes
+    openapi_schema["components"]["securitySchemes"] = {
+        "BearerAuth": {
+            "type": "http",
+            "scheme": "bearer",
+            "bearerFormat": "JWT",
+            "description": "Firebase JWT token. Get from Firebase Authentication.",
+        },
+        "AdminSecret": {
+            "type": "apiKey",
+            "in": "header",
+            "name": "X-Admin-Secret",
+            "description": "Admin secret for privileged operations (migrations, SQL execution).",
+        },
+        "CronSecret": {
+            "type": "apiKey",
+            "in": "header",
+            "name": "X-Cron-Secret",
+            "description": "Internal secret for scheduled task endpoints.",
+        },
+        "WebhookSignature": {
+            "type": "apiKey",
+            "in": "header",
+            "name": "X-Signature",
+            "description": "HMAC-SHA256 signature for webhook verification.",
+        },
+    }
+
+    # Add global security (Bearer auth by default)
+    openapi_schema["security"] = [{"BearerAuth": []}]
+
+    # Add example responses to schema
+    if "components" not in openapi_schema:
+        openapi_schema["components"] = {}
+
+    # Add common response examples
+    openapi_schema["components"]["examples"] = {
+        "SuccessResponse": {
+            "summary": "Successful response",
+            "value": {
+                "success": True,
+                "data": {"example": "data"},
+                "error": None,
+                "meta": {
+                    "request_id": "550e8400-e29b-41d4-a716-446655440000",
+                    "duration_ms": 45,
+                    "timestamp": "2025-12-29T12:00:00-08:00",
+                },
+            },
+        },
+        "ErrorResponse": {
+            "summary": "Error response",
+            "value": {
+                "success": False,
+                "data": None,
+                "error": "Resource not found",
+                "meta": {
+                    "request_id": "550e8400-e29b-41d4-a716-446655440001",
+                    "duration_ms": 12,
+                    "timestamp": "2025-12-29T12:00:00-08:00",
+                },
+            },
+        },
+        "UnauthorizedResponse": {
+            "summary": "Unauthorized response",
+            "value": {
+                "success": False,
+                "data": None,
+                "error": "Invalid or expired token",
+                "meta": {
+                    "request_id": "550e8400-e29b-41d4-a716-446655440002",
+                    "duration_ms": 5,
+                    "timestamp": "2025-12-29T12:00:00-08:00",
+                },
+            },
+        },
+    }
+
+    app.openapi_schema = openapi_schema
+    return app.openapi_schema
+
+
+app.openapi = custom_openapi
