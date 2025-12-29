@@ -24,6 +24,7 @@ from middleware.exceptions import (
     generic_exception_handler,
 )
 from middleware.auth import get_current_user, get_optional_user, UserContext
+from middleware.rate_limit import RateLimitMiddleware, get_rate_limit_status
 from config import get_settings, validate_startup_config, Settings
 
 
@@ -283,6 +284,9 @@ app.add_exception_handler(Exception, generic_exception_handler)
 # Request timing middleware - adds request_id and timing
 app.add_middleware(TimingMiddleware)
 
+# Rate limiting middleware - per-user/IP limits
+app.add_middleware(RateLimitMiddleware)
+
 # CORS Configuration - from settings
 app.add_middleware(
     CORSMiddleware,
@@ -333,6 +337,31 @@ async def root():
         "docs": "/docs",
         "health": "/api/health",
     }
+
+
+@app.get("/api/rate-limit", tags=["System"])
+async def rate_limit_status(request: Request) -> APIResponse[dict]:
+    """
+    Get current rate limit status for the caller.
+
+    Returns rate limit configuration and current usage.
+    No authentication required - works for anonymous and authenticated users.
+
+    Response includes:
+    - identifier: Truncated identifier (user ID or IP hash)
+    - is_authenticated: Whether caller is authenticated
+    - limit: Maximum requests in window
+    - window_seconds: Rate limit window duration
+    - path: Current request path
+    """
+    status = get_rate_limit_status(request)
+    meta_dict = request.state.get_meta()
+
+    return APIResponse(
+        success=True,
+        data=status,
+        meta=ResponseMeta(**meta_dict),
+    )
 
 
 @app.get("/api/me", tags=["Auth"])
