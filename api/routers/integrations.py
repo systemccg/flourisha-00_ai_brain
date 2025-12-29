@@ -277,6 +277,18 @@ INTEGRATION_CATALOG: Dict[str, IntegrationDefinition] = {
             read=True, write=True, realtime=True
         ),
     ),
+    "nango": IntegrationDefinition(
+        id="nango",
+        name="Nango",
+        description="Unified OAuth management platform for 500+ APIs with automatic token refresh",
+        category=IntegrationCategory.PLATFORM,
+        type=IntegrationType.API_KEY,
+        icon_url="/icons/nango.svg",
+        docs_url="https://docs.nango.dev/",
+        capabilities=IntegrationCapability(
+            read=True, write=True, sync=True, webhook=True
+        ),
+    ),
 }
 
 

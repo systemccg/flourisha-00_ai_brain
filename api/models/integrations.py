@@ -30,6 +30,7 @@ class IntegrationCategory(str, Enum):
     DATABASE = "database"
     CONTENT = "content"
     AI = "ai"
+    PLATFORM = "platform"  # Infrastructure platforms like Nango, Zapier
     OTHER = "other"
 
 

@@ -193,6 +193,10 @@ OPENAPI_TAGS = [
         "name": "Hedra Avatar",
         "description": "Hedra Character API integration for avatar generation. Supports image/audio uploads, TTS generation, lip-sync video creation, realtime avatar sessions (LiveKit), and project management.",
     },
+    {
+        "name": "Nango OAuth Manager",
+        "description": "Nango unified OAuth management for 500+ APIs. Provides connection management, automatic token refresh, sync operations, action execution, and webhook handling.",
+    },
 ]
 
 # Create FastAPI app with enhanced OpenAPI configuration
@@ -455,6 +459,7 @@ from routers.skills_db import router as skills_db_router
 from routers.personality_profile import router as personality_profile_router
 from routers.memory import router as memory_router
 from routers.hedra import router as hedra_router
+from routers.nango import router as nango_router
 
 # Include routers
 app.include_router(search_router)
@@ -495,6 +500,7 @@ app.include_router(skills_db_router)
 app.include_router(personality_profile_router)
 app.include_router(memory_router)
 app.include_router(hedra_router)
+app.include_router(nango_router)
 
 
 # Custom OpenAPI schema with security definitions
