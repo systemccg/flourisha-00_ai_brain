@@ -169,6 +169,10 @@ OPENAPI_TAGS = [
         "name": "ClickUp",
         "description": "ClickUp task management integration and synchronization.",
     },
+    {
+        "name": "Chrome Extension",
+        "description": "APIs for Chrome browser extension: quick capture, page saving, sync, and energy tracking.",
+    },
 ]
 
 # Create FastAPI app with enhanced OpenAPI configuration
@@ -425,6 +429,7 @@ from routers.agents import router as agents_router
 from routers.fabric import router as fabric_router
 from routers.crons import router as crons_router
 from routers.migrations import router as migrations_router
+from routers.chrome_extension import router as chrome_extension_router
 
 # Include routers
 app.include_router(search_router)
@@ -459,6 +464,7 @@ app.include_router(agents_router)
 app.include_router(fabric_router)
 app.include_router(crons_router)
 app.include_router(migrations_router)
+app.include_router(chrome_extension_router)
 
 
 # Custom OpenAPI schema with security definitions
