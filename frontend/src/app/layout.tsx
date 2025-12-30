@@ -3,6 +3,7 @@
 import { ChakraProvider, defaultSystem } from '@chakra-ui/react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { useState, type ReactNode } from 'react'
+import { AuthProvider } from '@/contexts/auth-context'
 
 export default function RootLayout({
   children,
@@ -26,7 +27,9 @@ export default function RootLayout({
       <body>
         <QueryClientProvider client={queryClient}>
           <ChakraProvider value={defaultSystem}>
-            {children}
+            <AuthProvider>
+              {children}
+            </AuthProvider>
           </ChakraProvider>
         </QueryClientProvider>
       </body>
