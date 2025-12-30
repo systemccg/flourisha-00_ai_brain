@@ -2,9 +2,6 @@
 
 import {
   Box,
-  Button,
-  Container,
-  Flex,
   Grid,
   Heading,
   Text,
@@ -12,108 +9,65 @@ import {
 } from '@chakra-ui/react'
 import { useAuth } from '@/hooks/use-auth'
 import { useRouter } from 'next/navigation'
+import { PageContainer, PageHeader } from '@/components/layout'
 
 /**
  * Dashboard page - main authenticated landing page
  * Shows user info and navigation to key features
  */
 export default function DashboardPage() {
-  const { user, signOut } = useAuth()
-  const router = useRouter()
-
-  const handleSignOut = async () => {
-    await signOut()
-    router.push('/login')
-  }
+  const { user } = useAuth()
 
   return (
-    <Box minH="100vh" bg="gray.900">
-      {/* Header */}
-      <Box borderBottomWidth={1} borderColor="gray.800" bg="gray.900/80" backdropFilter="blur(8px)">
-        <Container maxW="7xl" py={4}>
-          <Flex justify="space-between" align="center">
-            <Heading
-              size="lg"
-              bgGradient="to-r"
-              gradientFrom="purple.400"
-              gradientTo="cyan.400"
-              bgClip="text"
-            >
-              Flourisha
-            </Heading>
-            <Flex align="center" gap={4}>
-              <Text color="gray.400">{user?.email}</Text>
-              <Button
-                size="sm"
-                variant="outline"
-                colorPalette="gray"
-                onClick={handleSignOut}
-              >
-                Sign Out
-              </Button>
-            </Flex>
-          </Flex>
-        </Container>
-      </Box>
+    <PageContainer>
+      <PageHeader
+        title={`Welcome back, ${user?.name || 'User'}`}
+        description="Your Personal AI Infrastructure is ready."
+      />
 
-      {/* Main Content */}
-      <Container maxW="7xl" py={8}>
-        <VStack gap={8} align="stretch">
-          {/* Welcome Section */}
-          <Box>
-            <Heading size="xl" color="white" mb={2}>
-              Welcome back, {user?.name || 'User'}
-            </Heading>
-            <Text color="gray.400">
-              Your Personal AI Infrastructure is ready.
-            </Text>
-          </Box>
-
-          {/* Quick Actions Grid */}
-          <Grid
-            templateColumns={{ base: '1fr', md: 'repeat(2, 1fr)', lg: 'repeat(3, 1fr)' }}
-            gap={6}
-          >
-            <QuickActionCard
-              title="Search Knowledge"
-              description="Query your AI Brain across all three stores"
-              icon="search"
-              href="/dashboard/search"
-            />
-            <QuickActionCard
-              title="OKR Tracking"
-              description="View and update your objectives and key results"
-              icon="target"
-              href="/dashboard/okrs"
-            />
-            <QuickActionCard
-              title="Energy Log"
-              description="Track your energy and focus throughout the day"
-              icon="battery"
-              href="/dashboard/energy"
-            />
-            <QuickActionCard
-              title="Skills"
-              description="Browse and execute PAI skills"
-              icon="magic"
-              href="/dashboard/skills"
-            />
-            <QuickActionCard
-              title="Knowledge Graph"
-              description="Explore entity relationships in Neo4j"
-              icon="graph"
-              href="/dashboard/graph"
-            />
-            <QuickActionCard
-              title="System Health"
-              description="Monitor infrastructure and service status"
-              icon="health"
-              href="/dashboard/health"
-            />
-          </Grid>
-        </VStack>
-      </Container>
-    </Box>
+      {/* Quick Actions Grid */}
+      <Grid
+        templateColumns={{ base: '1fr', md: 'repeat(2, 1fr)', lg: 'repeat(3, 1fr)' }}
+        gap={6}
+      >
+        <QuickActionCard
+          title="Search Knowledge"
+          description="Query your AI Brain across all three stores"
+          icon="search"
+          href="/dashboard/search"
+        />
+        <QuickActionCard
+          title="OKR Tracking"
+          description="View and update your objectives and key results"
+          icon="target"
+          href="/dashboard/okrs"
+        />
+        <QuickActionCard
+          title="Energy Log"
+          description="Track your energy and focus throughout the day"
+          icon="battery"
+          href="/dashboard/energy"
+        />
+        <QuickActionCard
+          title="Skills"
+          description="Browse and execute PAI skills"
+          icon="magic"
+          href="/dashboard/skills"
+        />
+        <QuickActionCard
+          title="Knowledge Graph"
+          description="Explore entity relationships in Neo4j"
+          icon="graph"
+          href="/dashboard/graph"
+        />
+        <QuickActionCard
+          title="System Health"
+          description="Monitor infrastructure and service status"
+          icon="health"
+          href="/dashboard/health"
+        />
+      </Grid>
+    </PageContainer>
   )
 }
 

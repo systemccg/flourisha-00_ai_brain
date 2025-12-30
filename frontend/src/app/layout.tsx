@@ -4,6 +4,7 @@ import { ChakraProvider, defaultSystem } from '@chakra-ui/react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { useState, type ReactNode } from 'react'
 import { AuthProvider } from '@/contexts/auth-context'
+import { ToastProvider, ModalProvider } from '@/components/ui'
 
 export default function RootLayout({
   children,
@@ -28,7 +29,11 @@ export default function RootLayout({
         <QueryClientProvider client={queryClient}>
           <ChakraProvider value={defaultSystem}>
             <AuthProvider>
-              {children}
+              <ToastProvider>
+                <ModalProvider>
+                  {children}
+                </ModalProvider>
+              </ToastProvider>
             </AuthProvider>
           </ChakraProvider>
         </QueryClientProvider>
