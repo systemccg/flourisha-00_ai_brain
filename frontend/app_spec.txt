@@ -1,0 +1,233 @@
+# Flourisha Frontend Dashboard Specification
+
+**Project:** Flourisha Frontend Dashboard
+**Type:** Next.js 14+ Web Application
+**Backend:** FastAPI at http://100.66.28.67:8001/api (300+ endpoints)
+
+## Overview
+
+Build a web dashboard that consumes the completed Flourisha API Backend. The frontend should provide UI for all Five Pillars of the Flourisha AI system.
+
+## Tech Stack
+
+| Layer | Technology |
+|-------|------------|
+| Framework | Next.js 14+ with App Router |
+| Styling | Chakra UI |
+| Animation | GSAP |
+| State | TanStack React Query |
+| Forms | React Hook Form + Zod |
+| Charts | Recharts |
+| Graph Viz | react-force-graph |
+| Auth | Firebase Authentication |
+
+## Project Structure
+
+```
+/root/flourisha/00_AI_Brain/frontend/
+├── app/                    # Next.js App Router
+│   ├── (auth)/            # Auth routes (login, signup)
+│   ├── (dashboard)/       # Main dashboard
+│   │   ├── page.tsx       # Dashboard home
+│   │   ├── search/        # Unified search
+│   │   ├── knowledge/     # Graph + PARA browser
+│   │   ├── okrs/          # OKR tracking
+│   │   ├── energy/        # Energy dashboard
+│   │   ├── skills/        # Skills browser
+│   │   ├── integrations/  # Integrations hub
+│   │   └── settings/      # User settings
+│   ├── api/               # API route wrappers (if needed)
+│   └── layout.tsx         # Root layout
+├── components/
+│   ├── ui/                # Base Chakra UI components
+│   ├── dashboard/         # Dashboard-specific components
+│   ├── knowledge/         # Knowledge graph components
+│   └── productivity/      # OKR, Energy components
+├── lib/
+│   ├── api.ts             # API client with React Query
+│   ├── auth.ts            # Firebase auth helpers
+│   └── utils.ts           # Utility functions
+├── hooks/                 # Custom React hooks
+├── types/                 # TypeScript types
+└── styles/               # Theme and globals
+```
+
+## API Integration
+
+**Base URL:** `http://100.66.28.67:8001/api`
+
+**Authentication:** Firebase JWT Bearer tokens in Authorization header
+
+**Response Format:**
+```typescript
+interface APIResponse<T> {
+  success: boolean;
+  data: T | null;
+  error: string | null;
+  meta: {
+    request_id: string;
+    duration_ms: number;
+    timestamp: string;
+  };
+}
+```
+
+## Key Endpoints by Feature
+
+### Authentication
+- `POST /api/auth/login` - Firebase JWT exchange
+- `GET /api/auth/me` - Current user
+- `POST /api/auth/logout` - End session
+
+### Search & Knowledge
+- `POST /api/search` - Unified semantic search
+- `GET /api/graph/query` - Knowledge graph queries
+- `GET /api/para/browse` - PARA folder navigation
+
+### Productivity
+- `GET /api/okrs` - OKR data
+- `POST /api/okrs/measure` - Record measurement
+- `POST /api/energy` - Log energy tracking
+- `GET /api/energy/history` - Energy timeline
+- `GET /api/reports/morning` - Morning report
+
+### Content
+- `GET /api/youtube/playlists` - YouTube playlists
+- `POST /api/documents/upload` - Document upload
+- `GET /api/skills` - Skills list
+
+### System
+- `GET /api/health/dashboard` - Service status
+- `GET /api/integrations` - Integration status
+
+## Implementation Phases
+
+### Phase 1: Foundation (Tasks 1-15)
+1. Initialize Next.js 14+ with TypeScript
+2. Configure Chakra UI theme
+3. Set up TanStack React Query
+4. Create API client with error handling
+5. Firebase Authentication integration
+6. Protected route wrapper
+7. Dashboard layout with sidebar
+8. Header with workspace switcher
+9. Basic navigation components
+10. Loading states and skeletons
+11. Error boundary components
+12. Toast notification system
+13. Modal system
+14. Form components with validation
+15. Theme toggle (light/dark)
+
+### Phase 2: Core Knowledge (Tasks 16-30)
+16. Unified search bar component
+17. Search results list
+18. Search filters (type, date, source)
+19. PARA folder tree component
+20. Folder browser with breadcrumbs
+21. File preview panel
+22. Knowledge graph container
+23. Graph visualization (react-force-graph)
+24. Node detail sidebar
+25. Entity type filters
+26. Graph search
+27. Relationship path finder
+28. Document upload dropzone
+29. Upload progress indicator
+30. Document preview modal
+
+### Phase 3: Productivity (Tasks 31-45)
+31. OKR dashboard layout
+32. Quarter selector component
+33. Objective cards with progress rings
+34. Key Results list with progress bars
+35. Measurement input form
+36. OKR status badges
+37. Progress history chart
+38. Energy tracking widget
+39. Energy slider input
+40. Focus quality buttons
+41. Energy timeline chart
+42. Energy forecast display
+43. Morning report viewer
+44. Report section components
+45. Context Card editor
+
+### Phase 4: Advanced (Tasks 46-60)
+46. Skills browser grid
+47. Skill card component
+48. Skill detail modal
+49. Skill execution trigger
+50. Integrations hub layout
+51. Integration cards
+52. OAuth connect flow
+53. Integration settings
+54. System health dashboard
+55. Service status cards
+56. Uptime indicators
+57. Settings page layout
+58. Profile settings form
+59. Notification preferences
+60. Workspace settings (if admin)
+
+## UI Components Checklist
+
+### Navigation
+- [ ] Sidebar with collapsible sections
+- [ ] Breadcrumb navigation
+- [ ] Quick search (Cmd+K)
+- [ ] User menu dropdown
+- [ ] Workspace switcher
+
+### Data Display
+- [ ] Data tables with sorting/filtering
+- [ ] Card grids
+- [ ] List views
+- [ ] Charts (line, bar, pie, progress)
+- [ ] Graph visualization
+
+### Forms
+- [ ] Text inputs
+- [ ] Select dropdowns
+- [ ] Date pickers
+- [ ] File upload
+- [ ] Sliders
+- [ ] Toggle switches
+
+### Feedback
+- [ ] Loading spinners
+- [ ] Skeleton loaders
+- [ ] Toast notifications
+- [ ] Progress bars
+- [ ] Empty states
+- [ ] Error states
+
+## Design Requirements
+
+### Colors (Chakra UI)
+- Primary: Blue 500
+- Secondary: Purple 500
+- Success: Green 500
+- Warning: Orange 500
+- Error: Red 500
+
+### Typography
+- Headings: Inter
+- Body: Inter
+- Code: JetBrains Mono
+
+### Spacing
+- Use Chakra UI spacing scale
+- Consistent padding/margin
+- Responsive breakpoints
+
+## Testing Strategy
+
+- Component tests with Vitest
+- E2E tests with Playwright
+- API mocking with MSW
+- Visual regression with Chromatic (optional)
+
+## Canonical Reference
+
+**FRONTEND_FEATURE_REGISTRY.md** at `/root/flourisha/00_AI_Brain/documentation/FRONTEND_FEATURE_REGISTRY.md` is the source of truth for all UI requirements.
