@@ -9,6 +9,7 @@ import {
 import { useState, useRef, useEffect, type KeyboardEvent } from 'react'
 import { useSearch, useSearchModal } from '@/hooks/use-search'
 import { SearchResults } from './search-results'
+import { SearchFiltersPanel, ActiveFilters } from './search-filters'
 
 /**
  * Search icon component
@@ -79,10 +80,20 @@ function KbdShortcut({ children }: { children: React.ReactNode }) {
  * Opens as a command palette modal with CMD+K
  */
 export function UnifiedSearchBar() {
-  const { isOpen, open, close } = useSearchModal()
-  const { query, results, isLoading, setQuery, clearSearch } = useSearch()
+  const { isOpen, close } = useSearchModal()
+  const {
+    query,
+    results,
+    filters,
+    isLoading,
+    setQuery,
+    setFilters,
+    removeFilter,
+    clearAll,
+  } = useSearch()
   const inputRef = useRef<HTMLInputElement>(null)
   const [selectedIndex, setSelectedIndex] = useState(0)
+  const [filtersExpanded, setFiltersExpanded] = useState(false)
 
   // Focus input when modal opens
   useEffect(() => {
@@ -118,11 +129,17 @@ export function UnifiedSearchBar() {
         e.preventDefault()
         handleClose()
         break
+      case 'Tab':
+        // Tab toggles filters panel
+        e.preventDefault()
+        setFiltersExpanded((prev) => !prev)
+        break
     }
   }
 
   const handleClose = () => {
-    clearSearch()
+    clearAll()
+    setFiltersExpanded(false)
     close()
   }
 
@@ -152,11 +169,11 @@ export function UnifiedSearchBar() {
       {/* Search Modal */}
       <Box
         position="fixed"
-        top="20%"
+        top="15%"
         left="50%"
         transform="translateX(-50%)"
         w="full"
-        maxW="640px"
+        maxW="680px"
         bg="gray.900"
         borderWidth={1}
         borderColor="gray.700"
@@ -197,7 +214,7 @@ export function UnifiedSearchBar() {
           {query && (
             <button
               type="button"
-              onClick={clearSearch}
+              onClick={() => setQuery('')}
               style={{
                 background: 'transparent',
                 border: 'none',
@@ -212,6 +229,17 @@ export function UnifiedSearchBar() {
 
           <KbdShortcut>ESC</KbdShortcut>
         </Flex>
+
+        {/* Active Filters Display */}
+        <ActiveFilters filters={filters} onRemove={removeFilter} />
+
+        {/* Filters Panel */}
+        <SearchFiltersPanel
+          filters={filters}
+          onChange={setFilters}
+          isExpanded={filtersExpanded}
+          onToggleExpanded={() => setFiltersExpanded((prev) => !prev)}
+        />
 
         {/* Results */}
         <SearchResults
@@ -245,6 +273,12 @@ export function UnifiedSearchBar() {
               <KbdShortcut>↵</KbdShortcut>
               <Text fontSize="xs" color="gray.500" ml={1}>
                 select
+              </Text>
+            </Flex>
+            <Flex align="center" gap={1}>
+              <KbdShortcut>Tab</KbdShortcut>
+              <Text fontSize="xs" color="gray.500" ml={1}>
+                filters
               </Text>
             </Flex>
           </Flex>

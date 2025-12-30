@@ -3,7 +3,7 @@
 import { useState, useCallback, useRef, useEffect } from 'react'
 import { useMutation } from '@tanstack/react-query'
 import { api, type APIResponse, endpoints } from '@/lib/api'
-import type { SearchRequest, SearchResponse, SearchResult } from '@/lib/types'
+import type { SearchRequest, SearchResponse, SearchResult, SearchFilters } from '@/lib/types'
 
 /**
  * Debounce delay for search (ms)
@@ -17,11 +17,12 @@ const MIN_QUERY_LENGTH = 2
 
 /**
  * Hook for unified search functionality
- * Provides debounced search with loading states
+ * Provides debounced search with loading states and filters
  */
 export function useSearch() {
   const [query, setQuery] = useState('')
   const [results, setResults] = useState<SearchResult[]>([])
+  const [filters, setFiltersState] = useState<SearchFilters>({})
   const debounceRef = useRef<NodeJS.Timeout | null>(null)
 
   // Search mutation
@@ -46,7 +47,7 @@ export function useSearch() {
 
   // Debounced search handler
   const debouncedSearch = useCallback(
-    (searchQuery: string, options?: Partial<SearchRequest>) => {
+    (searchQuery: string, currentFilters: SearchFilters, options?: Partial<SearchRequest>) => {
       // Clear existing timeout
       if (debounceRef.current) {
         clearTimeout(debounceRef.current)
@@ -64,6 +65,7 @@ export function useSearch() {
           query: searchQuery,
           limit: options?.limit ?? 10,
           threshold: options?.threshold ?? 0.7,
+          filters: hasActiveFilters(currentFilters) ? currentFilters : undefined,
         })
       }, SEARCH_DEBOUNCE)
     },
@@ -74,9 +76,49 @@ export function useSearch() {
   const handleQueryChange = useCallback(
     (newQuery: string, options?: Partial<SearchRequest>) => {
       setQuery(newQuery)
-      debouncedSearch(newQuery, options)
+      debouncedSearch(newQuery, filters, options)
     },
-    [debouncedSearch]
+    [debouncedSearch, filters]
+  )
+
+  // Handle filter change
+  const handleFiltersChange = useCallback(
+    (newFilters: SearchFilters) => {
+      setFiltersState(newFilters)
+      // Re-search with new filters if there's a query
+      if (query.length >= MIN_QUERY_LENGTH) {
+        debouncedSearch(query, newFilters)
+      }
+    },
+    [debouncedSearch, query]
+  )
+
+  // Remove a specific filter
+  const removeFilter = useCallback(
+    (filterType: 'type' | 'source' | 'date', value?: string) => {
+      const newFilters = { ...filters }
+
+      switch (filterType) {
+        case 'type':
+          if (value && filters.types) {
+            newFilters.types = filters.types.filter((t) => t !== value)
+            if (newFilters.types.length === 0) delete newFilters.types
+          }
+          break
+        case 'source':
+          if (value && filters.sources) {
+            newFilters.sources = filters.sources.filter((s) => s !== value)
+            if (newFilters.sources.length === 0) delete newFilters.sources
+          }
+          break
+        case 'date':
+          delete newFilters.dateRange
+          break
+      }
+
+      handleFiltersChange(newFilters)
+    },
+    [filters, handleFiltersChange]
   )
 
   // Immediate search (no debounce)
@@ -95,9 +137,10 @@ export function useSearch() {
         query: searchQuery,
         limit: options?.limit ?? 10,
         threshold: options?.threshold ?? 0.7,
+        filters: hasActiveFilters(filters) ? filters : undefined,
       })
     },
-    [mutation]
+    [mutation, filters]
   )
 
   // Clear search
@@ -109,6 +152,21 @@ export function useSearch() {
     setResults([])
     mutation.reset()
   }, [mutation])
+
+  // Clear filters
+  const clearFilters = useCallback(() => {
+    setFiltersState({})
+    // Re-search without filters if there's a query
+    if (query.length >= MIN_QUERY_LENGTH) {
+      debouncedSearch(query, {})
+    }
+  }, [debouncedSearch, query])
+
+  // Clear everything
+  const clearAll = useCallback(() => {
+    clearSearch()
+    clearFilters()
+  }, [clearSearch, clearFilters])
 
   // Cleanup on unmount
   useEffect(() => {
@@ -124,19 +182,41 @@ export function useSearch() {
     query,
     /** Search results */
     results,
+    /** Current filters */
+    filters,
     /** Whether search is in progress */
     isLoading: mutation.isPending,
     /** Search error if any */
     error: mutation.error,
     /** Set query and trigger debounced search */
     setQuery: handleQueryChange,
+    /** Set filters and trigger re-search */
+    setFilters: handleFiltersChange,
+    /** Remove a specific filter */
+    removeFilter,
     /** Trigger immediate search */
     searchNow,
     /** Clear search state */
     clearSearch,
+    /** Clear all filters */
+    clearFilters,
+    /** Clear everything */
+    clearAll,
     /** Raw mutation object for advanced usage */
     mutation,
   }
+}
+
+/**
+ * Check if there are any active filters
+ */
+function hasActiveFilters(filters: SearchFilters): boolean {
+  return (
+    (filters.types?.length || 0) > 0 ||
+    (filters.sources?.length || 0) > 0 ||
+    !!filters.dateRange?.start ||
+    (filters.tags?.length || 0) > 0
+  )
 }
 
 /**

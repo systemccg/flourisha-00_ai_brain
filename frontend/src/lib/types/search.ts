@@ -4,6 +4,23 @@
  */
 
 /**
+ * Filter options for search
+ */
+export interface SearchFilters {
+  /** Filter by content types */
+  types?: string[]
+  /** Filter by date range */
+  dateRange?: {
+    start?: string // ISO date string
+    end?: string   // ISO date string
+  }
+  /** Filter by source/origin */
+  sources?: string[]
+  /** Filter by tags */
+  tags?: string[]
+}
+
+/**
  * Search request parameters
  */
 export interface SearchRequest {
@@ -13,6 +30,8 @@ export interface SearchRequest {
   limit?: number
   /** Minimum similarity score threshold (0.5-0.99, default 0.7) */
   threshold?: number
+  /** Optional filters */
+  filters?: SearchFilters
 }
 
 /**
@@ -62,8 +81,58 @@ export const CONTENT_TYPES: Record<string, { label: string; icon: string; color:
 }
 
 /**
+ * Source/origin definitions for content
+ */
+export const CONTENT_SOURCES: Record<string, { label: string; color: string }> = {
+  youtube: { label: 'YouTube', color: 'red' },
+  gmail: { label: 'Gmail', color: 'orange' },
+  drive: { label: 'Google Drive', color: 'yellow' },
+  obsidian: { label: 'Obsidian', color: 'purple' },
+  manual: { label: 'Manual Upload', color: 'blue' },
+  web: { label: 'Web Scrape', color: 'cyan' },
+}
+
+/**
+ * Date range presets for filtering
+ */
+export const DATE_PRESETS = {
+  today: { label: 'Today', days: 0 },
+  week: { label: 'Past Week', days: 7 },
+  month: { label: 'Past Month', days: 30 },
+  quarter: { label: 'Past Quarter', days: 90 },
+  year: { label: 'Past Year', days: 365 },
+  all: { label: 'All Time', days: -1 },
+} as const
+
+export type DatePresetKey = keyof typeof DATE_PRESETS
+
+/**
  * Get content type metadata with fallback
  */
 export function getContentTypeMeta(type: string) {
   return CONTENT_TYPES[type] || CONTENT_TYPES.unknown
+}
+
+/**
+ * Get source metadata with fallback
+ */
+export function getSourceMeta(source: string) {
+  return CONTENT_SOURCES[source] || { label: source, color: 'gray' }
+}
+
+/**
+ * Calculate date range from preset
+ */
+export function getDateRangeFromPreset(preset: DatePresetKey): { start?: string; end?: string } {
+  const { days } = DATE_PRESETS[preset]
+  if (days < 0) return {} // All time
+
+  const end = new Date()
+  const start = new Date()
+  start.setDate(start.getDate() - days)
+
+  return {
+    start: start.toISOString().split('T')[0],
+    end: end.toISOString().split('T')[0],
+  }
 }

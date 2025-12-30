@@ -210,7 +210,7 @@ function NoResults({ query }: { query: string }) {
         No results found
       </Text>
       <Text color="gray.600" fontSize="xs" textAlign="center">
-        No matches for "{query}". Try a different search term.
+        No matches for &ldquo;{query}&rdquo;. Try a different search term.
       </Text>
     </Flex>
   )
