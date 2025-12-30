@@ -102,9 +102,12 @@ export const endpoints = {
   },
   // Search
   search: '/search',
-  // Knowledge
+  // Knowledge Graph
   graph: {
-    query: '/graph/query',
+    search: '/graph/search',
+    related: (name: string) => `/graph/entities/${encodeURIComponent(name)}/related`,
+    content: (id: string) => `/graph/content/${encodeURIComponent(id)}`,
+    stats: '/graph/stats',
   },
   para: {
     browse: '/para/browse',
