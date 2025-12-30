@@ -13,6 +13,7 @@ import { useAuth } from '@/hooks/use-auth'
 import { useRouter } from 'next/navigation'
 import { ThemeToggle } from '@/components/ui'
 import { SearchTrigger, UnifiedSearchBar } from '@/components/search'
+import { WorkspaceSwitcher } from './workspace-switcher'
 
 /**
  * Header component for the dashboard
@@ -45,9 +46,23 @@ export function Header() {
         justify="space-between"
         px={6}
       >
-        {/* Left: Breadcrumb / Page Title */}
+        {/* Left: Workspace Switcher & Breadcrumb */}
         <Flex align="center" gap={3}>
-          <Text color="gray.500" fontSize="sm">
+          <WorkspaceSwitcher
+            onWorkspaceChange={(workspace) => {
+              console.log('Switched to workspace:', workspace.name)
+            }}
+            onCreateWorkspace={() => {
+              console.log('Create workspace clicked')
+            }}
+          />
+          <Box
+            h={6}
+            w="1px"
+            bg="gray.700"
+            display={{ base: 'none', md: 'block' }}
+          />
+          <Text color="gray.500" fontSize="sm" display={{ base: 'none', md: 'block' }}>
             Dashboard
           </Text>
         </Flex>
