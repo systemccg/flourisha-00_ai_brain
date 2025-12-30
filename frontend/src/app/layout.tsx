@@ -1,9 +1,11 @@
 'use client'
 
+import './globals.css'
 import { ChakraProvider, defaultSystem } from '@chakra-ui/react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { useState, type ReactNode } from 'react'
 import { AuthProvider } from '@/contexts/auth-context'
+import { ThemeProvider } from '@/contexts/theme-context'
 import { ToastProvider, ModalProvider } from '@/components/ui'
 
 export default function RootLayout({
@@ -25,16 +27,21 @@ export default function RootLayout({
 
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <meta name="theme-color" content="#111827" />
+      </head>
       <body>
         <QueryClientProvider client={queryClient}>
           <ChakraProvider value={defaultSystem}>
-            <AuthProvider>
-              <ToastProvider>
-                <ModalProvider>
-                  {children}
-                </ModalProvider>
-              </ToastProvider>
-            </AuthProvider>
+            <ThemeProvider>
+              <AuthProvider>
+                <ToastProvider>
+                  <ModalProvider>
+                    {children}
+                  </ModalProvider>
+                </ToastProvider>
+              </AuthProvider>
+            </ThemeProvider>
           </ChakraProvider>
         </QueryClientProvider>
       </body>

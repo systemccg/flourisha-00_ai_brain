@@ -11,6 +11,8 @@ import {
 } from '@chakra-ui/react'
 import { useAuth } from '@/hooks/use-auth'
 import { useRouter } from 'next/navigation'
+import { ThemeToggle } from '@/components/ui'
+import { SearchTrigger, UnifiedSearchBar } from '@/components/search'
 
 /**
  * Header component for the dashboard
@@ -53,38 +55,13 @@ export function Header() {
         {/* Right: Actions & User Menu */}
         <Flex align="center" gap={4}>
           {/* Quick Search */}
-          <Button
-            variant="ghost"
-            size="sm"
-            color="gray.400"
-            _hover={{ color: 'white', bg: 'gray.800' }}
-            gap={2}
-          >
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <circle cx="11" cy="11" r="8" />
-              <path d="M21 21l-4.35-4.35" />
-            </svg>
-            <Text display={{ base: 'none', md: 'block' }}>Search</Text>
-            <Box
-              as="kbd"
-              display={{ base: 'none', md: 'flex' }}
-              alignItems="center"
-              gap={1}
-              ml={2}
-              px={2}
-              py={0.5}
-              fontSize="xs"
-              fontWeight="500"
-              color="gray.500"
-              bg="gray.800"
-              borderRadius="md"
-              borderWidth={1}
-              borderColor="gray.700"
-            >
-              <Text as="span" fontSize="10px">CMD</Text>
-              <Text as="span">K</Text>
-            </Box>
-          </Button>
+          <SearchTrigger />
+
+          {/* Search Modal (rendered via portal) */}
+          <UnifiedSearchBar />
+
+          {/* Theme Toggle */}
+          <ThemeToggle />
 
           {/* Notifications */}
           <Button

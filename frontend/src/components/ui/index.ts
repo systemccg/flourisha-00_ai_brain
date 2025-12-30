@@ -20,3 +20,8 @@ export {
   Switch,
   type SelectOption,
 } from './form'
+export {
+  ThemeToggle,
+  ThemeModeSelector,
+  CompactThemeToggle,
+} from './theme-toggle'
