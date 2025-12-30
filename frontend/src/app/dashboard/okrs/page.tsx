@@ -7,6 +7,7 @@ import {
   QuarterSelector,
   OKRSummary,
   ObjectiveCard,
+  MeasurementForm,
 } from '@/components/okrs'
 import { ErrorDisplay } from '@/components/ui/error-display'
 import { useOKRs } from '@/hooks/use-okrs'
@@ -41,6 +42,8 @@ function PlusIcon() {
 export default function OKRsPage() {
   const [selectedQuarter, setSelectedQuarter] = useState<Quarter>(getCurrentQuarter())
   const [expandedObjectives, setExpandedObjectives] = useState<Set<string>>(new Set())
+  const [selectedKeyResult, setSelectedKeyResult] = useState<KeyResult | null>(null)
+  const [isMeasurementModalOpen, setIsMeasurementModalOpen] = useState(false)
 
   const { data, isLoading, error, refetch } = useOKRs(selectedQuarter)
 
@@ -68,10 +71,21 @@ export default function OKRsPage() {
     setExpandedObjectives(new Set())
   }
 
-  // Handle key result selection (for future measurement modal)
+  // Handle key result selection - opens measurement modal
   const handleSelectKeyResult = (kr: KeyResult) => {
-    // TODO: Open measurement modal
-    console.log('Selected KR:', kr)
+    setSelectedKeyResult(kr)
+    setIsMeasurementModalOpen(true)
+  }
+
+  // Handle closing measurement modal
+  const handleCloseMeasurementModal = () => {
+    setIsMeasurementModalOpen(false)
+    setSelectedKeyResult(null)
+  }
+
+  // Handle successful measurement
+  const handleMeasurementSuccess = () => {
+    refetch() // Refresh the OKR data
   }
 
   // Handle objective selection (for future edit modal)
@@ -155,6 +169,16 @@ export default function OKRsPage() {
             <EmptyOKRs quarter={selectedQuarter} />
           )}
         </VStack>
+      )}
+
+      {/* Measurement Modal */}
+      {selectedKeyResult && (
+        <MeasurementForm
+          keyResult={selectedKeyResult}
+          isOpen={isMeasurementModalOpen}
+          onClose={handleCloseMeasurementModal}
+          onSuccess={handleMeasurementSuccess}
+        />
       )}
     </PageContainer>
   )
