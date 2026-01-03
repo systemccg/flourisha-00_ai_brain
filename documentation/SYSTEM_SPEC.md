@@ -2,11 +2,11 @@
 
 **The Canonical Reference for Autonomous Development**
 
-*Last Updated: 2025-12-24 | Version: 2.1*
+*Last Updated: 2026-01-02 | Version: 2.3*
 
 ---
 
-# Executive Summary
+# Executive Summary1-888-282-4481
 
 Flourisha is a **Personal AI Infrastructure (PAI)** that helps people become more fully themselves through AI that recognizes, amplifies, and grows with them. Unlike traditional multi-tenant SaaS, Flourisha uses a **user-centric model** where your AI stays yours across organizations.
 
@@ -37,6 +37,7 @@ Flourisha is a **Personal AI Infrastructure (PAI)** that helps people become mor
 |---------|----------|
 | **Agent routing** | [AGENT_WORK_INDEX.md](AGENT_WORK_INDEX.md) - START HERE for autonomous work |
 | Frontend features | [FRONTEND_FEATURE_REGISTRY.md](FRONTEND_FEATURE_REGISTRY.md) |
+| **Frontend testing** | [frontend/TESTING_METHODOLOGY.md](frontend/TESTING_METHODOLOGY.md) |
 | All documentation | [DOCUMENTATION_MAP.md](DOCUMENTATION_MAP.md) |
 | Autonomous tasks | [AUTONOMOUS_TASK_SPEC.md](AUTONOMOUS_TASK_SPEC.md) |
 | Database schema | [database/DATABASE_SCHEMA.md](database/DATABASE_SCHEMA.md) |
@@ -73,16 +74,19 @@ Content  Store  Strategize  Act    Evolve
 
 ## Technology Stack
 
-| Layer | Technology |
-|-------|------------|
-| **Frontend** | Next.js 14, TypeScript, Chakra UI, GSAP |
-| **Mobile** | React Native (Expo) - Planned |
-| **Backend** | FastAPI (Python), Claude Code |
-| **Database** | Supabase (PostgreSQL + pgvector) |
-| **Graph** | Neo4j + Graphiti |
-| **Auth** | Firebase Authentication |
-| **Voice** | ElevenLabs TTS, Deepgram STT |
-| **Hosting** | Contabo VPS, Cloudflare |
+| Layer | Technology | Details |
+|-------|------------|---------|
+| **Frontend** | Next.js 15, React 19, TypeScript, Chakra UI v3 | |
+| **Agent UI** | AG-UI (CopilotKit), A2UI (Google) | [AG-UI_A2UI_INTEGRATION.md](frontend/AG-UI_A2UI_INTEGRATION.md) |
+| **Mobile** | React Native (Expo) - Planned | |
+| **Backend** | FastAPI (Python), Claude Code | |
+| **Database** | Supabase (PostgreSQL + pgvector) | |
+| **Graph** | Neo4j + Graphiti | [GRAPH_STORE.md](knowledge-stores/GRAPH_STORE.md) |
+| **Memory** | Mem0 | [MEM0_MEMORY_ARCHITECTURE.md](MEM0_MEMORY_ARCHITECTURE.md) |
+| **Extraction** | Docling (backup), Claude (primary) | [DOCLING_SERVICE.md](infrastructure/DOCLING_SERVICE.md) |
+| **Auth** | Firebase Authentication | |
+| **Voice** | ElevenLabs TTS, Deepgram STT | |
+| **Hosting** | Contabo VPS, Cloudflare | |
 
 ## Infrastructure Services
 
@@ -251,11 +255,31 @@ Skills stored in Flourisha, symlinked for Claude Code:
 
 ## Agent Types
 
-| Type | Agents |
-|------|--------|
-| Research | perplexity-researcher, claude-researcher, gemini-researcher |
-| Engineering | engineer, architect, pentester |
-| Content | designer, writer (via Fabric) |
+| Type | Agents | Details |
+|------|--------|---------|
+| Research | perplexity-researcher, claude-researcher, gemini-researcher | Web research |
+| Engineering | engineer, architect, pentester | Code & security |
+| Testing | frontend-tester | [Agent](pai_updates/Agents/FrontendTester.md), [Methodology](frontend/TESTING_METHODOLOGY.md) |
+| Content | designer, writer (via Fabric) | Design & writing |
+
+## Frontend Testing
+
+**ClickUp List:** `901112777033` (Flourisha Frontend Dashboard)
+
+| Phase | Features | Status |
+|-------|----------|--------|
+| P1 (Core) | Auth, layout, navigation | 15/15 ✅ |
+| P2 (Search/Graph) | Search, PARA, graph | 14/15 ✅ |
+| P3 (OKRs/Energy) | Dashboard widgets | 11/15 ✅ |
+| P4 (Settings) | Settings, integrations | 0/15 |
+
+**Key Scripts:**
+- `scripts/testing/get_testable_features.py` - Fetch completed features from ClickUp
+- `frontend/e2e/preflight.spec.ts` - Pre-flight verification tests
+
+**Critical Rules:**
+- Always test against port 3000 (live server), NEVER port 3002 (Playwright managed)
+- Verify error.tsx, global-error.tsx, not-found.tsx exist before testing
 
 ## Automation Schedule (Pacific Time)
 
@@ -391,14 +415,77 @@ See [solution_architecture/ARCHITECTURE_DECISIONS.md](solution_architecture/ARCH
 
 ## Integration Status
 
-| Service | Type | Status |
-|---------|------|--------|
-| ClickUp | Direct API | ✅ Working |
-| Gmail | Direct API | ✅ Working |
-| Google Calendar | Direct API | 🔄 Planned |
-| Notion | MCP | 🔄 Planned |
-| Slack | MCP | 🔄 Planned |
-| Outlook | Direct API | 🔄 Planned |
+| Service | Type | Status | Details |
+|---------|------|--------|---------|
+| ClickUp | Direct API | ✅ Working | Task management |
+| Gmail | Direct API | ✅ Working | [gmail-integration.md](services/gmail-integration.md) |
+| A2A Protocol | Agent Protocol | ✅ Working | [a2a/overview.md](a2a/overview.md) |
+| Playwright | MCP Server | ✅ Working | Used by `frontend-tester` agent - [PLAYWRIGHT_MCP_SETUP.md](mcp-servers/PLAYWRIGHT_MCP_SETUP.md) |
+| **AG-UI** | Agent Protocol | 🔄 Planned | [AG-UI_A2UI_INTEGRATION.md](frontend/AG-UI_A2UI_INTEGRATION.md) |
+| **A2UI** | UI Protocol | 🔄 Planned | [AG-UI_A2UI_INTEGRATION.md](frontend/AG-UI_A2UI_INTEGRATION.md) |
+| Nango | OAuth Hub | 🔄 Planned | [ARCHITECTURE_DECISIONS.md](solution_architecture/ARCHITECTURE_DECISIONS.md) Section 5 |
+| Hedra | Avatar API | 🔄 Planned | [HEDRA_AVATAR_IMPLEMENTATION.md](user-experience/HEDRA_AVATAR_IMPLEMENTATION.md) |
+| Google Calendar | Direct API | 🔄 Planned | |
+| Notion | MCP | 🔄 Planned | |
+| Slack | MCP | 🔄 Planned | |
+| Outlook | Direct API | 🔄 Planned | |
+
+---
+
+# Module: AGENT UI (AG-UI + A2UI)
+
+**Purpose:** Enable real-time, streaming agent-driven user interfaces.
+
+**Full Implementation Plan:** [AG-UI_A2UI_INTEGRATION.md](frontend/AG-UI_A2UI_INTEGRATION.md)
+
+## Protocol Overview
+
+| Protocol | Creator | Purpose | Status |
+|----------|---------|---------|--------|
+| **AG-UI** | CopilotKit | Streaming events (transport layer) | v0.0.41, 178K npm weekly |
+| **A2UI** | Google | Declarative UI rendering | v0.8 Public Preview |
+
+**Relationship:** AG-UI transports events, A2UI renders components. They're complementary.
+
+```
+Agent Backend → AG-UI (SSE/WebSocket) → Frontend → A2UI (component catalog) → Native UI
+```
+
+## Key Features
+
+**AG-UI (Agent-User Interaction Protocol):**
+- Event types: `TEXT_MESSAGE_CONTENT`, `TOOL_CALL_START`, `STATE_DELTA`
+- Bi-directional streaming over SSE/WebSockets
+- Human-in-the-loop interrupts
+- Shared state management
+- SDKs: `@ag-ui/core`, `@ag-ui/client`
+
+**A2UI (Agent-to-User Interface):**
+- Declarative JSON component descriptions
+- Component catalog (pre-approved widgets only)
+- Security-first: no code execution
+- Framework-agnostic rendering
+- Progressive/streaming UI updates
+
+## Integration Points
+
+| Feature | Protocol | Description |
+|---------|----------|-------------|
+| Agent Chat | AG-UI | Real-time streaming conversations |
+| Dynamic Widgets | A2UI | Agent-generated dashboard components |
+| Knowledge Explorer | AG-UI + A2UI | Narrated graph exploration |
+| Morning Reports | A2UI | Interactive daily briefings |
+| Document Feedback | AG-UI | Streaming extraction results |
+
+## Implementation Phases
+
+| Phase | Scope | Status |
+|-------|-------|--------|
+| 1 | Add CopilotKit provider + AG-UI client | 🔄 Planned |
+| 2 | Build A2UI component catalog (Chakra mapping) | 🔄 Planned |
+| 3 | Create AgentChat component | 🔄 Planned |
+| 4 | Add AG-UI encoder to Python backend | 🔄 Planned |
+| 5 | Integrate with existing features | 🔄 Planned |
 
 ---
 
@@ -496,6 +583,8 @@ ClickUp                      ← Single source of truth for status
 
 | Date | Change |
 |------|--------|
+| 2026-01-02 | v2.3 - Added Frontend Testing section with ClickUp integration, testing methodology docs, pre-flight verification |
+| 2025-01-02 | v2.2 - Added AG-UI + A2UI Module for agent-driven UIs; updated frontend stack to Next.js 15 + React 19 |
 | 2025-12-24 | v2.1 - Created AGENT_WORK_INDEX.md for tiered loading; ClickUp now single source of truth for status |
 | 2025-12-24 | Removed duplicated Feature Registry (replaced with summary); updated harness prompts |
 | 2025-12-24 | v2.0 - Complete restructure with proper H1 headings, Feature Registry, extracted schemas to subdocs |

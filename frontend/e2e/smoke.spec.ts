@@ -30,9 +30,13 @@ test.describe('Navigation', () => {
   test('main navigation elements are present', async ({ page }) => {
     await page.goto('/');
 
-    // Check for main navigation structure
-    const nav = page.locator('nav, [role="navigation"]');
-    await expect(nav.first()).toBeVisible();
+    // Check for main content container and key navigation elements
+    // Homepage has Get Started and Learn More buttons as primary navigation
+    const getStartedBtn = page.getByRole('link', { name: /get started/i });
+    await expect(getStartedBtn).toBeVisible();
+
+    const learnMoreBtn = page.getByRole('link', { name: /learn more/i });
+    await expect(learnMoreBtn).toBeVisible();
   });
 });
 
@@ -42,7 +46,9 @@ test.describe('API Health', () => {
     expect(response.ok()).toBeTruthy();
 
     const data = await response.json();
-    expect(data).toHaveProperty('status');
+    // API wraps response in {success, data, error, meta} format
+    expect(data.success).toBe(true);
+    expect(data.data).toHaveProperty('status');
   });
 
   test('API health dashboard returns service statuses', async ({ request }) => {

@@ -28,6 +28,8 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        <title>Flourisha - Personal AI Infrastructure</title>
+        <meta name="description" content="AI that recognizes, amplifies, and grows with you" />
         <meta name="theme-color" content="#111827" />
       </head>
       <body>
