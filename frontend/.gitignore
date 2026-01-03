@@ -41,3 +41,4 @@ logs/
 # IDE
 .idea/
 .vscode/
+.auth/

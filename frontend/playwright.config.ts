@@ -56,9 +56,31 @@ export default defineConfig({
   },
 
   projects: [
+    // Setup project - runs auth.setup.ts to establish authenticated session
+    // Run with: npx playwright test --project=setup --headed
+    {
+      name: 'setup',
+      testMatch: /auth\.setup\.ts/,
+      use: { ...devices['Desktop Chrome'] },
+    },
+
+    // Unauthenticated tests (smoke tests, public pages)
     {
       name: 'chromium',
       use: { ...devices['Desktop Chrome'] },
+      testIgnore: /auth\.setup\.ts/,
+    },
+
+    // Authenticated tests - depend on setup project
+    // These tests run with saved auth state from .auth/user.json
+    {
+      name: 'authenticated',
+      use: {
+        ...devices['Desktop Chrome'],
+        storageState: '.auth/user.json',
+      },
+      dependencies: ['setup'],
+      testMatch: /.*\.auth\.spec\.ts/,
     },
   ],
 

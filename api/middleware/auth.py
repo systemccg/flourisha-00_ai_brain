@@ -1,7 +1,8 @@
 """
 Firebase Authentication Middleware
 
-JWT verification for Firebase tokens with user context extraction.
+JWT verification for Firebase tokens using public key verification.
+No service account required - uses Google's public keys API.
 """
 import logging
 from typing import Optional, Dict, Any
@@ -9,9 +10,11 @@ from functools import lru_cache
 
 from fastapi import Depends, HTTPException, status, Request
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
-import firebase_admin
-from firebase_admin import credentials, auth as firebase_auth
 from pydantic import BaseModel
+import jwt
+import requests
+from cryptography.hazmat.primitives import serialization
+from cryptography import x509
 
 from config import get_settings
 
@@ -20,6 +23,9 @@ logger = logging.getLogger("flourisha.api.auth")
 
 # Security scheme for JWT bearer tokens
 security = HTTPBearer(auto_error=False)
+
+# Firebase public keys URL
+PUBLIC_KEYS_URL = 'https://www.googleapis.com/robot/v1/metadata/x509/securetoken@system.gserviceaccount.com'
 
 
 class UserContext(BaseModel):
@@ -39,82 +45,121 @@ class UserContext(BaseModel):
     raw_claims: Dict[str, Any] = {}
 
 
-def _init_firebase() -> bool:
-    """Initialize Firebase Admin SDK if not already initialized.
-
-    Returns True if successfully initialized, False otherwise.
-    """
+@lru_cache(maxsize=1)
+def _get_public_keys() -> Dict[str, str]:
+    """Fetch Firebase public keys for JWT verification (cached)."""
     try:
-        # Check if already initialized
-        firebase_admin.get_app()
-        return True
-    except ValueError:
-        # Not initialized, try to initialize
-        settings = get_settings()
+        response = requests.get(PUBLIC_KEYS_URL, timeout=10)
+        response.raise_for_status()
+        return response.json()
+    except Exception as e:
+        logger.error(f"Failed to fetch Firebase public keys: {e}")
+        raise
 
-        if not settings.firebase_project_id:
-            logger.warning("Firebase project ID not configured - auth will be disabled")
-            return False
 
-        try:
-            # Initialize with default credentials (uses GOOGLE_APPLICATION_CREDENTIALS)
-            # or Application Default Credentials
-            cred = credentials.ApplicationDefault()
-            firebase_admin.initialize_app(cred, {
-                'projectId': settings.firebase_project_id,
-            })
-            logger.info(f"Firebase initialized for project: {settings.firebase_project_id}")
-            return True
-        except Exception as e:
-            logger.error(f"Failed to initialize Firebase: {e}")
-            return False
+def _clear_keys_cache():
+    """Clear the public keys cache (call if keys rotated)."""
+    _get_public_keys.cache_clear()
 
 
 @lru_cache
 def is_firebase_available() -> bool:
-    """Check if Firebase is available and initialized."""
-    return _init_firebase()
+    """Check if Firebase config is available."""
+    settings = get_settings()
+    return bool(settings.firebase_project_id)
 
 
 async def verify_token(token: str) -> Optional[Dict[str, Any]]:
-    """Verify a Firebase JWT and return decoded claims.
+    """Verify a Firebase JWT using public key verification.
+
+    No service account required - uses Google's public keys API.
 
     Args:
         token: The JWT token string
 
     Returns:
-        Decoded token claims if valid, None if invalid
+        Decoded token claims if valid
 
     Raises:
         HTTPException: If token is invalid or expired
     """
-    if not is_firebase_available():
+    settings = get_settings()
+
+    if not settings.firebase_project_id:
         raise HTTPException(
             status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
-            detail="Authentication service unavailable"
+            detail="Firebase project ID not configured"
         )
 
     try:
-        decoded = firebase_auth.verify_id_token(token)
+        # Decode header to get key id (kid)
+        unverified_header = jwt.get_unverified_header(token)
+        kid = unverified_header.get('kid')
+
+        if not kid:
+            raise HTTPException(
+                status_code=status.HTTP_401_UNAUTHORIZED,
+                detail="Token header missing 'kid' field",
+                headers={"WWW-Authenticate": "Bearer"},
+            )
+
+        # Get public keys
+        public_keys = _get_public_keys()
+
+        if kid not in public_keys:
+            # Keys might have rotated, clear cache and retry
+            _clear_keys_cache()
+            public_keys = _get_public_keys()
+
+            if kid not in public_keys:
+                raise HTTPException(
+                    status_code=status.HTTP_401_UNAUTHORIZED,
+                    detail=f"Public key not found for kid: {kid}",
+                    headers={"WWW-Authenticate": "Bearer"},
+                )
+
+        # Convert certificate to public key
+        cert_str = public_keys[kid]
+        cert_obj = x509.load_pem_x509_certificate(cert_str.encode())
+        public_key = cert_obj.public_key()
+
+        # Convert to PEM format for PyJWT
+        pem_key = public_key.public_bytes(
+            encoding=serialization.Encoding.PEM,
+            format=serialization.PublicFormat.SubjectPublicKeyInfo
+        )
+
+        # Verify and decode token
+        decoded = jwt.decode(
+            token,
+            pem_key,
+            algorithms=['RS256'],
+            audience=settings.firebase_project_id,
+            issuer=f'https://securetoken.google.com/{settings.firebase_project_id}',
+            options={
+                'verify_exp': True,
+                'verify_iat': True,
+                'verify_aud': True,
+                'verify_iss': True
+            }
+        )
+
         return decoded
-    except firebase_auth.ExpiredIdTokenError:
+
+    except jwt.ExpiredSignatureError:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Token expired",
             headers={"WWW-Authenticate": "Bearer"},
         )
-    except firebase_auth.RevokedIdTokenError:
-        raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Token revoked",
-            headers={"WWW-Authenticate": "Bearer"},
-        )
-    except firebase_auth.InvalidIdTokenError as e:
+    except jwt.InvalidTokenError as e:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail=f"Invalid token: {str(e)}",
             headers={"WWW-Authenticate": "Bearer"},
         )
+    except HTTPException:
+        raise
     except Exception as e:
         logger.error(f"Token verification failed: {e}")
         raise HTTPException(

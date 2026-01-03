@@ -1,7 +1,7 @@
 'use client'
 
-import { useState } from 'react'
-import { useRouter } from 'next/navigation'
+import { useState, useEffect } from 'react'
+import { useRouter, useSearchParams } from 'next/navigation'
 import {
   Box,
   Button,
@@ -22,15 +22,25 @@ import { useAuth } from '@/hooks/use-auth'
  */
 export default function LoginPage() {
   const router = useRouter()
+  const searchParams = useSearchParams()
   const { signIn, signInWithGoogle, loading, error, clearError, user } = useAuth()
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
 
-  // Redirect if already authenticated
+  // Get return URL from query params
+  const returnUrl = searchParams.get('returnUrl') || '/dashboard'
+
+  // Redirect when user becomes authenticated
+  useEffect(() => {
+    if (user) {
+      router.push(returnUrl)
+    }
+  }, [user, router, returnUrl])
+
+  // Don't render form if already authenticated
   if (user) {
-    router.push('/dashboard')
     return null
   }
 
@@ -41,7 +51,7 @@ export default function LoginPage() {
 
     try {
       await signIn(email, password)
-      router.push('/dashboard')
+      // Don't redirect here - useEffect will handle it when user state updates
     } catch {
       // Error is handled by auth context
     } finally {
@@ -55,7 +65,7 @@ export default function LoginPage() {
 
     try {
       await signInWithGoogle()
-      router.push('/dashboard')
+      // Don't redirect here - useEffect will handle it when user state updates
     } catch {
       // Error is handled by auth context
     } finally {

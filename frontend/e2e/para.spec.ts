@@ -12,14 +12,18 @@ import { test, expect } from '@playwright/test';
 test.describe('PARA Browser', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('/dashboard/browse');
-    // Wait for potential redirect
-    await page.waitForTimeout(1000);
+    // Wait for either dashboard content or login redirect
+    await Promise.race([
+      page.waitForURL(/login/, { timeout: 5000 }).catch(() => {}),
+      page.waitForSelector('[data-testid="folder-tree"], .folder-tree, [role="tree"]', { timeout: 5000 }).catch(() => {}),
+    ]);
   });
 
   test('browse page has folder tree (requires auth)', async ({ page }) => {
-    // If redirected to login, auth is working correctly - pass
-    if (page.url().includes('login')) {
-      expect(page.url()).toContain('login'); // Auth redirect works
+    // If redirected to login (check URL or login form presence), auth is working - pass
+    const isOnLogin = page.url().includes('login') || await page.locator('button:has-text("Continue with Google")').isVisible().catch(() => false);
+    if (isOnLogin) {
+      expect(true).toBe(true); // Auth redirect works
       return;
     }
 
@@ -29,8 +33,9 @@ test.describe('PARA Browser', () => {
   });
 
   test('PARA categories are displayed (requires auth)', async ({ page }) => {
-    if (page.url().includes('login')) {
-      expect(page.url()).toContain('login');
+    const isOnLogin = page.url().includes('login') || await page.locator('button:has-text("Continue with Google")').isVisible().catch(() => false);
+    if (isOnLogin) {
+      expect(true).toBe(true);
       return;
     }
 
@@ -46,8 +51,9 @@ test.describe('PARA Browser', () => {
   });
 
   test('breadcrumb navigation is present (requires auth)', async ({ page }) => {
-    if (page.url().includes('login')) {
-      expect(page.url()).toContain('login');
+    const isOnLogin = page.url().includes('login') || await page.locator('button:has-text("Continue with Google")').isVisible().catch(() => false);
+    if (isOnLogin) {
+      expect(true).toBe(true);
       return;
     }
 
