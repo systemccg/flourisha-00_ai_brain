@@ -50,8 +50,13 @@ class Settings(BaseSettings):
     # Anthropic Configuration (Required for AI processing)
     anthropic_api_key: Optional[str] = Field(default=None, description="Anthropic API key")
 
+    # ClickUp Configuration
+    clickup_api_key: Optional[str] = Field(default=None, description="ClickUp API key")
+    clickup_team_id: Optional[str] = Field(default=None, description="ClickUp team ID")
+    clickup_webhook_secret: Optional[str] = Field(default=None, description="ClickUp webhook secret for signature verification")
+
     model_config = SettingsConfigDict(
-        env_file="/root/.claude/.env",
+        env_file="/root/flourisha/00_AI_Brain/.env",
         env_file_encoding="utf-8",
         extra="ignore",  # Ignore extra env vars not in schema
         case_sensitive=False,  # Allow SUPABASE_URL or supabase_url
@@ -120,6 +125,8 @@ def validate_startup_config() -> None:
         "firebase": bool(settings.firebase_project_id),
         "openai": bool(settings.openai_api_key),
         "anthropic": bool(settings.anthropic_api_key),
+        "clickup": bool(settings.clickup_api_key),
+        "clickup_webhook": bool(settings.clickup_webhook_secret),
     }
 
     print(f"Configuration loaded: {config_status}")
